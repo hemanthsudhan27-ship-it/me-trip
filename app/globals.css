@@ -1,0 +1,213 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Fonts */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-sora);
+
+  /* Colors: Sunset Coral & Deep Ocean Navy Theme */
+  --background: hsl(30 20% 97%); /* Warm Sand / Cream */
+  --foreground: hsl(215 47% 11%); /* Deep Marine / Navy */
+  
+  --card: hsl(0 0% 100%); /* Crisp white for cards */
+  --card-foreground: hsl(215 47% 11%);
+  
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(215 47% 11%);
+  
+  --primary: hsl(14 87% 58%); /* Sunset Coral */
+  --primary-foreground: hsl(30 20% 97%);
+  
+  --secondary: hsl(175 46% 42% / 10%); /* Soft Teal background */
+  --secondary-foreground: hsl(175 46% 42%); /* Coastal Teal */
+  
+  --muted: hsl(30 10% 90%);
+  --muted-foreground: hsl(215 15% 45%);
+  
+  --accent: hsl(175 46% 42%); /* Coastal Teal */
+  --accent-foreground: hsl(0 0% 100%);
+  
+  --destructive: hsl(346 84% 61%);
+  --destructive-foreground: hsl(0 0% 100%);
+  
+  --border: hsl(30 10% 88%);
+  --input: hsl(30 10% 88%);
+  --ring: hsl(14 87% 58%);
+  
+  --radius: 0.75rem;
+
+  --chart-1: hsl(14 87% 58%);
+  --chart-2: hsl(175 46% 42%);
+  --chart-3: hsl(215 47% 11%);
+  --chart-4: hsl(30 20% 97%);
+  --chart-5: hsl(30 10% 90%);
+
+  --sidebar: hsl(0 0% 100%);
+  --sidebar-foreground: hsl(215 47% 11%);
+  --sidebar-primary: hsl(14 87% 58%);
+  --sidebar-primary-foreground: hsl(30 20% 97%);
+  --sidebar-accent: hsl(175 46% 42% / 8%);
+  --sidebar-accent-foreground: hsl(175 46% 42%);
+  --sidebar-border: hsl(30 10% 90%);
+  --sidebar-ring: hsl(14 87% 58%);
+}
+
+.dark {
+  --background: hsl(215 47% 8%);
+  --foreground: hsl(30 20% 98%);
+  
+  --card: hsl(215 47% 11%);
+  --card-foreground: hsl(30 20% 98%);
+  
+  --popover: hsl(215 47% 11%);
+  --popover-foreground: hsl(30 20% 98%);
+  
+  --primary: hsl(14 87% 62%);
+  --primary-foreground: hsl(215 47% 8%);
+  
+  --secondary: hsl(175 46% 35% / 20%);
+  --secondary-foreground: hsl(175 46% 60%);
+  
+  --muted: hsl(215 30% 16%);
+  --muted-foreground: hsl(215 15% 75%);
+  
+  --accent: hsl(175 46% 50%);
+  --accent-foreground: hsl(0 0% 100%);
+  
+  --border: hsl(215 30% 18%);
+  --input: hsl(215 30% 18%);
+  --ring: hsl(14 87% 62%);
+
+  --sidebar: hsl(215 47% 10%);
+  --sidebar-foreground: hsl(30 20% 98%);
+  --sidebar-primary: hsl(14 87% 62%);
+  --sidebar-primary-foreground: hsl(215 47% 8%);
+  --sidebar-accent: hsl(175 46% 50% / 15%);
+  --sidebar-accent-foreground: hsl(175 46% 60%);
+  --sidebar-border: hsl(215 30% 18%);
+  --sidebar-ring: hsl(14 87% 62%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50 transition-colors duration-200;
+  }
+  
+  html {
+    @apply font-sans scroll-smooth antialiased;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight font-bold text-foreground;
+  }
+}
+
+/* Custom Lean & Clean Scrollbar (Lenis matches this nicely) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(30 10% 80%);
+  border: 2px solid var(--background);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(14 87% 58% / 60%);
+}
+
+/* Glassmorphism Styles */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Lenis Specific CSS (recommended by Lenis docs) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
