@@ -131,7 +131,7 @@ export default function PackageDetails() {
               <h3 className="font-heading font-extrabold text-lg text-foreground border-b border-border/60 pb-3">
                 Detailed Day-wise Itinerary
               </h3>
-              <Accordion type="single" collapsible defaultValue={["day-1"]} className="w-full divide-y divide-border/60">
+              <Accordion defaultValue={["day-1"]} className="w-full divide-y divide-border/60">
                 {pkg.itinerary.map((day) => (
                   <AccordionItem key={day.day} value={`day-${day.day}`} className="border-none py-1">
                     <AccordionTrigger className="font-heading font-extrabold text-sm sm:text-base text-foreground hover:text-primary hover:no-underline text-left py-4.5">
