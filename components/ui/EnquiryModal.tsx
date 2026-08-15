@@ -64,11 +64,27 @@ export default function EnquiryModal() {
 
   const onSubmit = async (data: EnquiryFormValues) => {
     setIsSubmitting(true);
-    // Simulate API request
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    
+    const phoneNumber = "917736322522";
+    const messageText = `Hello Me Trip Holidays, I would like to enquire about a package!
+    
+*Name*: ${data.name}
+*Email*: ${data.email}
+*Phone*: ${data.phone}
+*Destination*: ${data.destination}
+${data.message ? `*Message*: ${data.message}` : ""}`;
+    
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+
+    // Simulate API request delay for better UX
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    
     console.log("Enquiry Form Submitted: ", data);
     setIsSubmitting(false);
     setIsSubmitted(true);
+    
+    // Redirect to WhatsApp
+    window.open(whatsappUrl, "_blank");
   };
 
   const handleClose = () => {
