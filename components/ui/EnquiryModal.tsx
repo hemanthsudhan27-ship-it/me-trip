@@ -150,7 +150,7 @@ export default function EnquiryModal() {
               <Label htmlFor="enquiry-phone" className="text-xs font-bold text-foreground">Phone / WhatsApp Number</Label>
               <Input
                 id="enquiry-phone"
-                placeholder="+91 98765 43210"
+                placeholder="+91 77363 22522"
                 {...register("phone")}
                 className={`rounded-lg py-2 text-sm focus-visible:ring-primary ${errors.phone ? "border-destructive focus-visible:ring-destructive" : ""}`}
               />

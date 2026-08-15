@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Preloader from "@/components/ui/Preloader";
+import HeroSection from "@/components/ui/HeroSection";
+import ScrollReveal, { ScrollStaggerContainer, ScrollStaggerItem } from "@/components/ui/ScrollReveal";
 import Image from "next/image";
 import Link from "next/link";
 import { Compass, Users, Map, Award, ShieldCheck, HeartHandshake, BadgePercent, Headset, Plane, ArrowRight, Star, Quote } from "lucide-react";
@@ -15,22 +18,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
   const { enquiry, quickView } = useUIModals();
-  const [plannerType, setPlannerType] = useState("all");
-  const [plannerDest, setPlannerDest] = useState("");
+  const [showPreloader, setShowPreloader] = useState(false);
 
-  const handlePlannerSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const selectedPkgName = plannerDest || undefined;
-    enquiry.open(selectedPkgName);
-  };
-
-  // Filter options for planner dropdown based on type
-  const filteredPlannerPkgs = packages.filter(
-    (pkg) => plannerType === "all" || pkg.type === plannerType
-  );
+  useEffect(() => {
+    const hasVisited = sessionStorage.getItem("me_trip_has_visited");
+    if (!hasVisited) {
+      setShowPreloader(true);
+    }
+  }, []);
 
   // Featured Packages (Maldives, Bali, Meghalaya, Golden Triangle)
-  const featuredPkgs = packages.filter((pkg) => 
+  const featuredPkgs = packages.filter((pkg) =>
     ["int-maldives", "int-bali", "dom-meghalaya", "dom-golden-triangle"].includes(pkg.id)
   );
 
@@ -97,260 +95,176 @@ export default function Home() {
 
   return (
     <div className="space-y-24 pb-12">
+      {/* Preloader overlay (mounted on first load) */}
+      {showPreloader && (
+        <Preloader
+          onComplete={() => {
+            sessionStorage.setItem("me_trip_has_visited", "true");
+            setShowPreloader(false);
+            // Signal HeroSection to play its entrance timeline.
+            // HeroSection listens for this event in its own useEffect.
+            window.dispatchEvent(new Event("me-trip-hero-entrance"));
+          }}
+        />
+      )}
+
       {/* 1. HERO SECTION */}
-      <section className="relative h-[90vh] min-h-[580px] w-full flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero.jpg"
-            alt="Scenic Beach Sunset"
-            fill
-            priority
-            className="object-cover object-center scale-105"
-          />
-          <div className="absolute inset-0 bg-black/45 dark:bg-black/55" />
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white space-y-8 mt-10">
-          <div className="space-y-4 max-w-4xl mx-auto">
-            <motion.span
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-extrabold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20 backdrop-blur-md px-4 py-1.5 rounded-full"
-            >
-              <Plane className="h-4 w-4 rotate-45 text-primary fill-primary" />
-              Tours & Holiday Experts
-            </motion.span>
-            
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-heading font-extrabold text-3xl sm:text-5xl md:text-6xl tracking-tight text-white leading-tight"
-            >
-              Your Journey, <br className="sm:hidden" />
-              <span className="text-primary">Perfectly Planned</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-sm sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed"
-            >
-              Explore custom international and domestic holiday packages curated by destination experts. Book your escape today.
-            </motion.p>
-          </div>
-
-          {/* Quick Search/Enquiry Planner Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="w-full max-w-4xl mx-auto"
-          >
-            <form
-              onSubmit={handlePlannerSubmit}
-              className="glass p-5 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center gap-4 text-foreground text-left"
-            >
-              {/* Type Select */}
-              <div className="flex-1 w-full space-y-1.5">
-                <label className="text-[10px] font-extrabold text-foreground/50 uppercase tracking-widest block pl-1">
-                  Trip Type
-                </label>
-                <select
-                  value={plannerType}
-                  onChange={(e) => {
-                    setPlannerType(e.target.value);
-                    setPlannerDest("");
-                  }}
-                  className="w-full bg-white dark:bg-card border border-border rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-primary transition-colors cursor-pointer"
-                >
-                  <option value="all">All Packages</option>
-                  <option value="international">International</option>
-                  <option value="domestic">Domestic Trips</option>
-                </select>
-              </div>
-
-              {/* Destination Select */}
-              <div className="flex-[2] w-full space-y-1.5">
-                <label className="text-[10px] font-extrabold text-foreground/50 uppercase tracking-widest block pl-1">
-                  Select Destination
-                </label>
-                <select
-                  value={plannerDest}
-                  onChange={(e) => setPlannerDest(e.target.value)}
-                  className="w-full bg-white dark:bg-card border border-border rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-primary transition-colors cursor-pointer"
-                >
-                  <option value="">Choose Destination...</option>
-                  {filteredPlannerPkgs.map((pkg) => (
-                    <option key={pkg.id} value={pkg.name}>
-                      {pkg.name} ({pkg.duration})
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Submit CTA */}
-              <div className="w-full md:w-auto md:self-end pt-2 md:pt-0">
-                <Button
-                  type="submit"
-                  className="w-full md:w-auto bg-primary hover:bg-primary/95 text-white font-bold rounded-xl px-8 py-6.5 text-sm shadow-lg flex items-center justify-center gap-2 transform active:scale-95 transition-transform"
-                >
-                  Find Holiday
-                  <ArrowRight className="h-4.5 w-4.5" />
-                </Button>
-              </div>
-            </form>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* 2. TRUST STRIP */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white dark:bg-card border border-border/60 rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-border/60">
-          <div className="space-y-1.5 py-4 md:py-0">
-            <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-primary">10+</span>
-            <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
-              Years of Experience
-            </span>
+        <ScrollReveal direction="up" distance={25}>
+          <div className="dot-bg bg-white dark:bg-card border border-border/60 rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-border/60">
+            <div className="space-y-1.5 py-4 md:py-0">
+              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-primary">10+</span>
+              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                Years of Experience
+              </span>
+            </div>
+            <div className="space-y-1.5 py-4 md:py-0">
+              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-accent">15K+</span>
+              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                Happy Travelers
+              </span>
+            </div>
+            <div className="space-y-1.5 py-4 md:py-0">
+              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-primary">50+</span>
+              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                Destinations Covered
+              </span>
+            </div>
+            <div className="space-y-1.5 py-4 md:py-0">
+              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-accent">24/7</span>
+              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                On-trip Concierge
+              </span>
+            </div>
           </div>
-          <div className="space-y-1.5 py-4 md:py-0">
-            <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-accent">15K+</span>
-            <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
-              Happy Travelers
-            </span>
-          </div>
-          <div className="space-y-1.5 py-4 md:py-0">
-            <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-primary">50+</span>
-            <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
-              Destinations Covered
-            </span>
-          </div>
-          <div className="space-y-1.5 py-4 md:py-0">
-            <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-accent">24/7</span>
-            <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
-              On-trip Concierge
-            </span>
-          </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* 3. FEATURED/POPULAR PACKAGES */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
-          <SectionHeading
-            title="Most Popular Packages"
-            subtitle="Best Sellers"
-            align="left"
-            className="mb-0"
-          />
-          <Link href="/gallery" className="group text-sm font-extrabold text-accent hover:underline flex items-center gap-1.5">
-            Browse All Excursions
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
-          </Link>
-        </div>
+        <ScrollReveal direction="up">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+            <SectionHeading
+              title="Most Popular Packages"
+              subtitle="Best Sellers"
+              align="left"
+              className="mb-0"
+            />
+            <Link href="/gallery" className="group text-sm font-extrabold text-accent hover:underline flex items-center gap-1.5">
+              Browse All Excursions
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
+            </Link>
+          </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ScrollStaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredPkgs.map((pkg, index) => (
-            <PackageCard key={pkg.id} pkg={pkg} index={index} />
+            <ScrollStaggerItem key={pkg.id} direction="up">
+              <PackageCard pkg={pkg} index={index} />
+            </ScrollStaggerItem>
           ))}
-        </div>
+        </ScrollStaggerContainer>
       </section>
 
       {/* 4. DESTINATIONS TABS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="Explore Our Destinations"
-          subtitle="Where to next?"
-          align="center"
-        />
+        <ScrollReveal direction="up">
+          <SectionHeading
+            title="Explore Our Destinations"
+            subtitle="Where to next?"
+            align="center"
+          />
+        </ScrollReveal>
 
         <Tabs defaultValue="international" className="w-full text-center space-y-10">
-          <TabsList className="bg-muted p-1 rounded-full inline-flex border border-border mb-4">
-            <TabsTrigger value="international" className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider">
-              International
-            </TabsTrigger>
-            <TabsTrigger value="domestic" className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider">
-              Domestic Trips
-            </TabsTrigger>
-          </TabsList>
+          <ScrollReveal direction="up" delay={0.1}>
+            <TabsList className="bg-muted p-1 rounded-full inline-flex border border-border mb-4">
+              <TabsTrigger value="international" className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider">
+                International
+              </TabsTrigger>
+              <TabsTrigger value="domestic" className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider">
+                Domestic Trips
+              </TabsTrigger>
+            </TabsList>
+          </ScrollReveal>
 
           {/* International Tab */}
           <TabsContent value="international" className="text-left animate-in fade-in slide-in-from-bottom-5 duration-300">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {internationalPkgs.slice(0, 6).map((pkg, index) => (
-                <div
-                  key={pkg.id}
-                  onClick={() => quickView.open(pkg)}
-                  className="group relative h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
-                >
-                  <Image
-                    src={pkg.image}
-                    alt={pkg.name}
-                    fill
-                    className="object-cover transform group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                  
-                  {/* Top Header Tag */}
-                  <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider">
-                    {pkg.duration}
-                  </div>
+            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {internationalPkgs.slice(0, 6).map((pkg) => (
+                <ScrollStaggerItem key={pkg.id} direction="up">
+                  <div
+                    onClick={() => quickView.open(pkg)}
+                    className="group relative h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
+                  >
+                    <Image
+                      src={pkg.image}
+                      alt={pkg.name}
+                      fill
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
-                  {/* Info Overlay */}
-                  <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
-                    <h3 className="font-heading font-extrabold text-lg leading-tight group-hover:text-primary transition-colors">
-                      {pkg.name}
-                    </h3>
-                    <p className="text-xs text-white/70 line-clamp-1">{pkg.description}</p>
-                    <span className="text-[10px] font-bold text-primary tracking-wider uppercase inline-flex items-center gap-1.5 pt-1.5">
-                      Explore Package <ArrowRight className="h-3 w-3" />
-                    </span>
+                    {/* Top Header Tag */}
+                    <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider">
+                      {pkg.duration}
+                    </div>
+
+                    {/* Info Overlay */}
+                    <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
+                      <h3 className="font-heading font-extrabold text-lg leading-tight group-hover:text-primary transition-colors">
+                        {pkg.name}
+                      </h3>
+                      <p className="text-xs text-white/70 line-clamp-1">{pkg.description}</p>
+                      <span className="text-[10px] font-bold text-primary tracking-wider uppercase inline-flex items-center gap-1.5 pt-1.5">
+                        Explore Package <ArrowRight className="h-3 w-3" />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </ScrollStaggerItem>
               ))}
-            </div>
+            </ScrollStaggerContainer>
           </TabsContent>
 
           {/* Domestic Tab */}
           <TabsContent value="domestic" className="text-left animate-in fade-in slide-in-from-bottom-5 duration-300">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {domesticPkgs.map((pkg, index) => (
-                <div
-                  key={pkg.id}
-                  onClick={() => quickView.open(pkg)}
-                  className="group relative h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
-                >
-                  <Image
-                    src={pkg.image}
-                    alt={pkg.name}
-                    fill
-                    className="object-cover transform group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                  
-                  {/* Top Header Tag */}
-                  <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider">
-                    {pkg.duration}
-                  </div>
+            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {domesticPkgs.map((pkg) => (
+                <ScrollStaggerItem key={pkg.id} direction="up">
+                  <div
+                    onClick={() => quickView.open(pkg)}
+                    className="group relative h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
+                  >
+                    <Image
+                      src={pkg.image}
+                      alt={pkg.name}
+                      fill
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
-                  {/* Info Overlay */}
-                  <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
-                    <h3 className="font-heading font-extrabold text-lg leading-tight group-hover:text-primary transition-colors">
-                      {pkg.name}
-                    </h3>
-                    <p className="text-xs text-white/70 line-clamp-1">{pkg.description}</p>
-                    <span className="text-[10px] font-bold text-accent tracking-wider uppercase inline-flex items-center gap-1.5 pt-1.5">
-                      Explore Package <ArrowRight className="h-3 w-3" />
-                    </span>
+                    {/* Top Header Tag */}
+                    <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider">
+                      {pkg.duration}
+                    </div>
+
+                    {/* Info Overlay */}
+                    <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
+                      <h3 className="font-heading font-extrabold text-lg leading-tight group-hover:text-primary transition-colors">
+                        {pkg.name}
+                      </h3>
+                      <p className="text-xs text-white/70 line-clamp-1">{pkg.description}</p>
+                      <span className="text-[10px] font-bold text-accent tracking-wider uppercase inline-flex items-center gap-1.5 pt-1.5">
+                        Explore Package <ArrowRight className="h-3 w-3" />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </ScrollStaggerItem>
               ))}
-            </div>
+            </ScrollStaggerContainer>
           </TabsContent>
         </Tabs>
       </section>
@@ -358,54 +272,53 @@ export default function Home() {
       {/* 5. WHY CHOOSE US */}
       <section className="bg-foreground text-background py-20 border-y border-border/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            title="Why Travel With ME TRIP HOLIDAYS?"
-            subtitle="The ME TRIP Difference"
-            align="center"
-            className="text-white"
-          />
+          <ScrollReveal direction="up">
+            <SectionHeading
+              title="Why Travel With ME TRIP HOLIDAYS?"
+              subtitle="The ME TRIP Difference"
+              align="center"
+              className="text-white"
+            />
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <ScrollStaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors"
-              >
-                <div className="bg-white/5 p-3 rounded-xl inline-block mb-4 border border-white/10">
-                  {feature.icon}
+              <ScrollStaggerItem key={idx} direction="up">
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors h-full">
+                  <div className="bg-white/5 p-3 rounded-xl inline-block mb-4 border border-white/10">
+                    {feature.icon}
+                  </div>
+                  <h3 className="font-heading text-lg font-bold text-white mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-background/60 leading-relaxed">
+                    {feature.desc}
+                  </p>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-white mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-background/60 leading-relaxed">
-                  {feature.desc}
-                </p>
-              </motion.div>
+              </ScrollStaggerItem>
             ))}
-          </div>
+          </ScrollStaggerContainer>
         </div>
       </section>
 
       {/* 6. TESTIMONIALS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <SectionHeading
-          title="What Our Clients Say"
-          subtitle="Happy Travelers"
-          align="center"
-        />
+        <ScrollReveal direction="up">
+          <SectionHeading
+            title="What Our Clients Say"
+            subtitle="Happy Travelers"
+            align="center"
+          />
+        </ScrollReveal>
 
-        <div className="max-w-4xl mx-auto relative px-8">
+        <ScrollReveal direction="scale" duration={0.7} className="max-w-4xl mx-auto relative px-8">
           <Carousel className="w-full">
             <CarouselContent>
               {testimonials.map((test, index) => (
                 <CarouselItem key={index}>
-                  <div className="bg-white dark:bg-card border border-border/60 p-8 sm:p-12 rounded-2xl flex flex-col items-center text-center space-y-6 shadow-xl relative">
+                  <div className="dot-bg bg-white dark:bg-card border border-border/60 p-8 sm:p-12 rounded-2xl flex flex-col items-center text-center space-y-6 shadow-xl relative">
                     <Quote className="absolute top-6 left-6 h-10 w-10 text-primary/10" />
-                    
+
                     {/* Stars */}
                     <div className="flex gap-1">
                       {Array.from({ length: test.stars }).map((_, i) => (
@@ -444,87 +357,99 @@ export default function Home() {
             <CarouselPrevious className="absolute left-0 -translate-x-1/2 border border-border bg-white" />
             <CarouselNext className="absolute right-0 translate-x-1/2 border border-border bg-white" />
           </Carousel>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* 7. GALLERY PREVIEW */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
-          <SectionHeading
-            title="Snapshots of Paradise"
-            subtitle="Travel Gallery"
-            align="left"
-            className="mb-0"
-          />
-          <Link
-            href="/gallery"
-            className="group text-sm font-extrabold text-primary hover:underline flex items-center gap-1.5"
-          >
-            Explore Full Gallery
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
-          </Link>
-        </div>
+        <ScrollReveal direction="up">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+            <SectionHeading
+              title="Snapshots of Paradise"
+              subtitle="Travel Gallery"
+              align="left"
+              className="mb-0"
+            />
+            <Link
+              href="/gallery"
+              className="group text-sm font-extrabold text-primary hover:underline flex items-center gap-1.5"
+            >
+              Explore Full Gallery
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
+            </Link>
+          </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 h-[350px] md:h-[280px]">
-          <div className="relative h-full w-full rounded-xl overflow-hidden group shadow-md md:col-span-2">
-            <Image
-              src="/images/destinations/maldives.jpg"
-              alt="Maldives Resort"
-              fill
-              className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-black/20" />
-          </div>
-          <div className="relative h-full w-full rounded-xl overflow-hidden group shadow-md">
-            <Image
-              src="/images/destinations/bali.jpg"
-              alt="Bali Temple"
-              fill
-              className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-black/20" />
-          </div>
-          <div className="relative h-full w-full rounded-xl overflow-hidden group shadow-md">
-            <Image
-              src="/images/destinations/vietnam.jpg"
-              alt="Halong Bay"
-              fill
-              className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-black/20" />
-          </div>
-        </div>
+        <ScrollStaggerContainer staggerDelay={0.12} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 h-[350px] md:h-[280px]">
+          <ScrollStaggerItem direction="scale" className="h-full w-full md:col-span-2">
+            <div className="relative h-full w-full rounded-xl overflow-hidden group shadow-md">
+              <Image
+                src="/images/destinations/maldives.jpg"
+                alt="Maldives Resort"
+                fill
+                className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/20" />
+            </div>
+          </ScrollStaggerItem>
+          <ScrollStaggerItem direction="scale" className="h-full w-full">
+            <div className="relative h-full w-full rounded-xl overflow-hidden group shadow-md">
+              <Image
+                src="/images/destinations/bali.jpg"
+                alt="Bali Temple"
+                fill
+                className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/20" />
+            </div>
+          </ScrollStaggerItem>
+          <ScrollStaggerItem direction="scale" className="h-full w-full">
+            <div className="relative h-full w-full rounded-xl overflow-hidden group shadow-md">
+              <Image
+                src="/images/destinations/vietnam.jpg"
+                alt="Halong Bay"
+                fill
+                className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/20" />
+            </div>
+          </ScrollStaggerItem>
+        </ScrollStaggerContainer>
       </section>
 
       {/* 8. CLOSING CTA BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden py-16 px-8 sm:px-16 text-center text-white bg-gradient-to-br from-primary to-accent shadow-2xl">
-          {/* Overlay elements */}
-          <div className="absolute inset-0 bg-black/15 pointer-events-none" />
-          
-          <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-white leading-tight">
-              Ready to Write Your <br className="sm:hidden" /> Next Travel Story?
-            </h2>
-            <p className="text-white/80 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-              Get in touch with our holiday specialists today and let us customize an unforgettable itinerary just for you.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <Button
-                onClick={() => enquiry.open()}
-                className="w-full sm:w-auto bg-white hover:bg-white/95 text-primary font-extrabold rounded-full px-8 py-6.5 text-sm shadow-xl transform active:scale-95 transition-transform"
-              >
-                Plan My Trip
-              </Button>
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto border border-white/35 hover:bg-white/10 text-white font-extrabold rounded-full px-8 py-3 text-sm transition-colors text-center"
-              >
-                Contact Agency
-              </Link>
+        <ScrollReveal direction="scale" duration={0.7} distance={20}>
+          <div className="relative rounded-3xl overflow-hidden py-16 px-8 sm:px-16 text-center text-white bg-gradient-to-br from-primary to-accent shadow-2xl">
+            {/* Overlay elements */}
+            <div className="absolute inset-0 bg-black/15 pointer-events-none" />
+            {/* Dot pattern overlay on gradient banner */}
+            <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+
+            <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+              <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-white leading-tight">
+                Ready to Write Your <br className="sm:hidden" /> Next Travel Story?
+              </h2>
+              <p className="text-white/80 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                Get in touch with our holiday specialists today and let us customize an unforgettable itinerary just for you.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <Button
+                  onClick={() => enquiry.open()}
+                  className="w-full sm:w-auto bg-white hover:bg-white/95 text-primary font-extrabold rounded-full px-8 py-6.5 text-sm shadow-xl transform active:scale-95 transition-transform"
+                >
+                  Plan My Trip
+                </Button>
+                <Link
+                  href="/contact"
+                  className="w-full sm:w-auto border border-white/35 hover:bg-white/10 text-white font-extrabold rounded-full px-8 py-3 text-sm transition-colors text-center"
+                >
+                  Contact Agency
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </div>
   );

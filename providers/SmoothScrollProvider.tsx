@@ -2,6 +2,13 @@
 
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { ReactLenis, useLenis } from "lenis/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface SmoothScrollContextType {
   lenis: any;
@@ -85,19 +92,39 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     };
   }, []);
 
-  // Custom requestAnimationFrame loop for Lenis
+  // Drive Lenis with GSAP's ticker and sync ScrollTrigger
   useEffect(() => {
     if (isReducedMotion) return;
 
-    let rafId: number;
     const update = (time: number) => {
-      lenisRef.current?.lenis?.raf(time);
-      rafId = requestAnimationFrame(update);
+      // gsap ticker time is in seconds, convert to ms for Lenis
+      lenisRef.current?.lenis?.raf(time * 1000);
     };
 
-    rafId = requestAnimationFrame(update);
+    gsap.ticker.add(update);
+
+    // Sync ScrollTrigger on scroll
+    let lenisInst: any = null;
+    const handleScroll = () => {
+      ScrollTrigger.update();
+    };
+
+    // Wait for lenis instance to be available to bind scroll event
+    const checkLenisInterval = setInterval(() => {
+      if (lenisRef.current?.lenis) {
+        lenisInst = lenisRef.current.lenis;
+        lenisInst.on("scroll", handleScroll);
+        clearInterval(checkLenisInterval);
+      }
+    }, 50);
+
     return () => {
-      cancelAnimationFrame(rafId);
+      gsap.ticker.remove(update);
+      if (lenisInst) {
+        lenisInst.off("scroll", handleScroll);
+      } else {
+        clearInterval(checkLenisInterval);
+      }
     };
   }, [isReducedMotion]);
 

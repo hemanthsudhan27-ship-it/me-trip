@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import PackageCard from "@/components/ui/PackageCard";
 import SectionHeading from "@/components/ui/SectionHeading";
+import ScrollReveal, { ScrollStaggerContainer, ScrollStaggerItem } from "@/components/ui/ScrollReveal";
 
 export default function PackageDetails() {
   const params = useParams();
@@ -102,59 +103,65 @@ export default function PackageDetails() {
           {/* Details Column (65% or 8 Cols) */}
           <div className="lg:col-span-8 space-y-10">
             {/* Overview */}
-            <div className="bg-white dark:bg-card border border-border/60 p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
-              <h3 className="font-heading font-extrabold text-lg text-foreground border-b border-border/60 pb-3">
-                Package Overview
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {pkg.description}
-              </p>
-            </div>
+            <ScrollReveal direction="up">
+              <div className="dot-bg bg-white dark:bg-card border border-border/60 p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
+                <h3 className="font-heading font-extrabold text-lg text-foreground border-b border-border/60 pb-3">
+                  Package Overview
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {pkg.description}
+                </p>
+              </div>
+            </ScrollReveal>
 
             {/* Highlights */}
-            <div className="bg-white dark:bg-card border border-border/60 p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
-              <h3 className="font-heading font-extrabold text-lg text-foreground border-b border-border/60 pb-3">
-                Excursion Highlights
-              </h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {pkg.highlights.map((highlight, index) => (
-                  <li key={index} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
-                    <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ScrollReveal direction="up" delay={0.1}>
+              <div className="dot-bg bg-white dark:bg-card border border-border/60 p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
+                <h3 className="font-heading font-extrabold text-lg text-foreground border-b border-border/60 pb-3">
+                  Excursion Highlights
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {pkg.highlights.map((highlight, index) => (
+                    <li key={index} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                      <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
 
             {/* Day-by-Day Itinerary */}
-            <div className="bg-white dark:bg-card border border-border/60 p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
-              <h3 className="font-heading font-extrabold text-lg text-foreground border-b border-border/60 pb-3">
-                Detailed Day-wise Itinerary
-              </h3>
-              <Accordion defaultValue={["day-1"]} className="w-full divide-y divide-border/60">
-                {pkg.itinerary.map((day) => (
-                  <AccordionItem key={day.day} value={`day-${day.day}`} className="border-none py-1">
-                    <AccordionTrigger className="font-heading font-extrabold text-sm sm:text-base text-foreground hover:text-primary hover:no-underline text-left py-4.5">
-                      <span className="flex items-center gap-3">
-                        <span className="bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold px-2.5 py-1 rounded-md shrink-0 select-none">
-                          Day {day.day}
+            <ScrollReveal direction="up" delay={0.15}>
+              <div className="dot-bg bg-white dark:bg-card border border-border/60 p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
+                <h3 className="font-heading font-extrabold text-lg text-foreground border-b border-border/60 pb-3">
+                  Detailed Day-wise Itinerary
+                </h3>
+                <Accordion defaultValue={["day-1"]} className="w-full divide-y divide-border/60">
+                  {pkg.itinerary.map((day) => (
+                    <AccordionItem key={day.day} value={`day-${day.day}`} className="border-none py-1">
+                      <AccordionTrigger className="font-heading font-extrabold text-sm sm:text-base text-foreground hover:text-primary hover:no-underline text-left py-4.5">
+                        <span className="flex items-center gap-3">
+                          <span className="bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold px-2.5 py-1 rounded-md shrink-0 select-none">
+                            Day {day.day}
+                          </span>
+                          {day.title}
                         </span>
-                        {day.title}
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-xs sm:text-sm text-muted-foreground leading-relaxed pl-14 pb-5 pt-1">
-                      {day.description}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs sm:text-sm text-muted-foreground leading-relaxed pl-14 pb-5 pt-1">
+                        {day.description}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* Pricing & CTA Sidebar (35% or 4 Cols) */}
-          <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+          <ScrollReveal direction="left" duration={0.6} className="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
             {/* Booking Sidebar Card */}
-            <div className="bg-white dark:bg-card border border-border/60 p-6 rounded-2xl shadow-xl space-y-6">
+            <div className="dot-bg bg-white dark:bg-card border border-border/60 p-6 rounded-2xl shadow-xl space-y-6">
               <div className="space-y-2">
                 <span className="text-[10px] font-extrabold text-muted-foreground uppercase tracking-widest block">
                   Estimated Value
@@ -190,7 +197,7 @@ export default function PackageDetails() {
                   Book / Enquire Now
                 </Button>
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+917736322522"
                   className="w-full border border-border hover:bg-muted text-foreground font-extrabold py-3 rounded-full text-xs flex items-center justify-center gap-1.5 transition-colors"
                 >
                   <PhoneCall className="h-4 w-4 text-accent" />
@@ -209,23 +216,27 @@ export default function PackageDetails() {
                 </p>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* 3. RELATED PACKAGES SECTION */}
       {relatedPkgs.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border/60 pt-16">
-          <SectionHeading
-            title="Other Similar Excursions"
-            subtitle="Recommended For You"
-            align="left"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <ScrollReveal direction="up">
+            <SectionHeading
+              title="Other Similar Excursions"
+              subtitle="Recommended For You"
+              align="left"
+            />
+          </ScrollReveal>
+          <ScrollStaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {relatedPkgs.map((p, idx) => (
-              <PackageCard key={p.id} pkg={p} index={idx} />
+              <ScrollStaggerItem key={p.id} direction="up">
+                <PackageCard pkg={p} index={idx} />
+              </ScrollStaggerItem>
             ))}
-          </div>
+          </ScrollStaggerContainer>
         </section>
       )}
     </div>

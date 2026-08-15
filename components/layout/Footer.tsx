@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Compass, Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 import { packages } from "@/data/packages";
 import { Button } from "@/components/ui/button";
@@ -34,13 +35,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Info */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-primary p-2 rounded-lg text-white">
-                <Compass className="h-6 w-6" />
-              </div>
-              <span className="font-heading text-xl font-extrabold tracking-tight text-white">
-                ME TRIP <span className="text-primary">HOLIDAYS</span>
-              </span>
+            <Link href="/" className="inline-block group">
+              <Image
+                src="/logo.svg"
+                alt="ME TRIP HOLIDAYS Logo"
+                width={180}
+                height={52}
+                className="h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+              />
             </Link>
             <p className="text-sm text-background/60 leading-relaxed">
               Crafting premium travel experiences worldwide. From sun-kissed beaches to snowy peaks, we plan your perfect getaway so you can create timeless memories.
@@ -48,7 +50,7 @@ export default function Footer() {
             {/* WhatsApp Chat Button */}
             <div className="pt-2">
               <a
-                href="https://wa.me/919876543210?text=Hello%20Me%20Trip%20Holidays%2C%20I%20would%20like%20to%20enquire%20about%20a%20holiday%20package."
+                href="https://wa.me/917736322522?text=Hello%20Me%20Trip%20Holidays%2C%20I%20would%20like%20to%20enquire%20about%20a%20holiday%20package."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-emerald-500/10"
@@ -106,19 +108,24 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <span className="text-background/60">
-                  Suite 404, Travel Horizon Plaza, Banjara Hills Road No. 12, Hyderabad, Telangana, 500034
+                  KMJ Complex, Room No 29/1157, Kattukulangara, Nellikkode, Kozhikode, Kerala 673016
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-4.5 w-4.5 text-primary shrink-0" />
-                <a href="tel:+919876543210" className="text-background/60 hover:text-white transition-colors">
-                  +91 98765 43210
-                </a>
+              <li className="flex items-start gap-3">
+                <Phone className="h-4.5 w-4.5 text-primary shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1">
+                  <a href="tel:+917736322522" className="text-background/60 hover:text-white transition-colors">
+                    +91 77363 22522
+                  </a>
+                  <a href="tel:+919207322522" className="text-background/60 hover:text-white transition-colors">
+                    +91 92073 22522
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4.5 w-4.5 text-primary shrink-0" />
-                <a href="mailto:info@metripholidays.com" className="text-background/60 hover:text-white transition-colors">
-                  info@metripholidays.com
+                <a href="mailto:metripholidays@gmail.com" className="text-background/60 hover:text-white transition-colors">
+                  metripholidays@gmail.com
                 </a>
               </li>
             </ul>

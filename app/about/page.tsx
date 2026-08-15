@@ -7,6 +7,7 @@ import { Compass, ShieldCheck, HeartHandshake, Eye, Award, CheckCircle } from "l
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
 import StatsCounter from "@/components/ui/StatsCounter";
+import ScrollReveal, { ScrollStaggerContainer, ScrollStaggerItem } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/button";
 
 export default function About() {
@@ -65,13 +66,7 @@ export default function About() {
       {/* 2. COMPANY STORY */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
+          <ScrollReveal direction="left" duration={0.7} className="space-y-6">
             <SectionHeading
               title="Crafting Memories Since 2016"
               subtitle="Our Journey"
@@ -91,147 +86,140 @@ export default function About() {
                 </Button>
               </Link>
             </div>
-          </motion.div>
+          </ScrollReveal>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative h-[380px] rounded-2xl overflow-hidden shadow-2xl bg-muted"
-          >
-            <Image
-              src="/images/destinations/bali.jpg"
-              alt="Ubud Rice Fields"
-              fill
-              className="object-cover"
-            />
-          </motion.div>
+          <ScrollReveal direction="right" duration={0.7}>
+            <div className="relative h-[380px] rounded-2xl overflow-hidden shadow-2xl bg-muted">
+              <Image
+                src="/images/destinations/bali.jpg"
+                alt="Ubud Rice Fields"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* 3. MISSION & VISION CARDS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="bg-white dark:bg-card border border-border/60 p-8 rounded-2xl shadow-xl space-y-4 hover:border-primary/20 transition-colors"
-          >
-            <div className="bg-primary/10 p-3.5 rounded-xl inline-block text-primary">
-              <Compass className="h-6 w-6" />
+        <ScrollStaggerContainer staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <ScrollStaggerItem direction="up">
+            <div className="dot-bg bg-white dark:bg-card border border-border/60 p-8 rounded-2xl shadow-xl space-y-4 hover:border-primary/20 transition-colors h-full">
+              <div className="bg-primary/10 p-3.5 rounded-xl inline-block text-primary">
+                <Compass className="h-6 w-6" />
+              </div>
+              <h3 className="font-heading font-extrabold text-xl text-foreground">Our Mission</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                To design bespoke, affordable, and safe travel packages that empower people to explore the world with absolute confidence. We strive to automate complex booking hurdles and replace them with seamless, guided on-trip care.
+              </p>
             </div>
-            <h3 className="font-heading font-extrabold text-xl text-foreground">Our Mission</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              To design bespoke, affordable, and safe travel packages that empower people to explore the world with absolute confidence. We strive to automate complex booking hurdles and replace them with seamless, guided on-trip care.
-            </p>
-          </motion.div>
+          </ScrollStaggerItem>
 
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="bg-white dark:bg-card border border-border/60 p-8 rounded-2xl shadow-xl space-y-4 hover:border-accent/20 transition-colors"
-          >
-            <div className="bg-accent/10 p-3.5 rounded-xl inline-block text-accent">
-              <Eye className="h-6 w-6" />
+          <ScrollStaggerItem direction="up">
+            <div className="dot-bg bg-white dark:bg-card border border-border/60 p-8 rounded-2xl shadow-xl space-y-4 hover:border-accent/20 transition-colors h-full">
+              <div className="bg-accent/10 p-3.5 rounded-xl inline-block text-accent">
+                <Eye className="h-6 w-6" />
+              </div>
+              <h3 className="font-heading font-extrabold text-xl text-foreground">Our Vision</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                To become India's most trusted customized travel brand, known for transparency, local heritage integrations, and exceptional client hospitality that makes visitors feel like family.
+              </p>
             </div>
-            <h3 className="font-heading font-extrabold text-xl text-foreground">Our Vision</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              To become India's most trusted customized travel brand, known for transparency, local heritage integrations, and exceptional client hospitality that makes visitors feel like family.
-            </p>
-          </motion.div>
-        </div>
+          </ScrollStaggerItem>
+        </ScrollStaggerContainer>
       </section>
 
       {/* 4. STATS STRIP SECTION WITH COUNT UP */}
       <section className="bg-primary text-primary-foreground py-16 shadow-inner">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div className="space-y-1">
-            <span className="block font-heading text-4xl sm:text-5xl font-extrabold">
-              <StatsCounter value={10} suffix="+" duration={1.5} />
-            </span>
-            <span className="block text-xs font-bold text-white/70 uppercase tracking-widest">
-              Years in Business
-            </span>
+        <ScrollReveal direction="up">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="space-y-1">
+              <span className="block font-heading text-4xl sm:text-5xl font-extrabold">
+                <StatsCounter value={10} suffix="+" duration={1.5} />
+              </span>
+              <span className="block text-xs font-bold text-white/70 uppercase tracking-widest">
+                Years in Business
+              </span>
+            </div>
+            <div className="space-y-1">
+              <span className="block font-heading text-4xl sm:text-5xl font-extrabold">
+                <StatsCounter value={15000} suffix="+" duration={2} />
+              </span>
+              <span className="block text-xs font-bold text-white/70 uppercase tracking-widest">
+                Happy Clients
+              </span>
+            </div>
+            <div className="space-y-1">
+              <span className="block font-heading text-4xl sm:text-5xl font-extrabold">
+                <StatsCounter value={50} suffix="+" duration={1.5} />
+              </span>
+              <span className="block text-xs font-bold text-white/70 uppercase tracking-widest">
+                Destinations
+              </span>
+            </div>
+            <div className="space-y-1">
+              <span className="block font-heading text-4xl sm:text-5xl font-extrabold">
+                <StatsCounter value={2200} suffix="+" duration={2} />
+              </span>
+              <span className="block text-xs font-bold text-white/70 uppercase tracking-widest">
+                Trips Completed
+              </span>
+            </div>
           </div>
-          <div className="space-y-1">
-            <span className="block font-heading text-4xl sm:text-5xl font-extrabold">
-              <StatsCounter value={15000} suffix="+" duration={2} />
-            </span>
-            <span className="block text-xs font-bold text-white/70 uppercase tracking-widest">
-              Happy Clients
-            </span>
-          </div>
-          <div className="space-y-1">
-            <span className="block font-heading text-4xl sm:text-5xl font-extrabold">
-              <StatsCounter value={50} suffix="+" duration={1.5} />
-            </span>
-            <span className="block text-xs font-bold text-white/70 uppercase tracking-widest">
-              Destinations
-            </span>
-          </div>
-          <div className="space-y-1">
-            <span className="block font-heading text-4xl sm:text-5xl font-extrabold">
-              <StatsCounter value={2200} suffix="+" duration={2} />
-            </span>
-            <span className="block text-xs font-bold text-white/70 uppercase tracking-widest">
-              Trips Completed
-            </span>
-          </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* 5. WHY TRAVEL WITH US FEATURES */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="The Core Values We Uphold"
-          subtitle="Our Values"
-          align="center"
-        />
+        <ScrollReveal direction="up">
+          <SectionHeading
+            title="The Core Values We Uphold"
+            subtitle="Our Values"
+            align="center"
+          />
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <ScrollStaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {values.map((val, idx) => (
-            <div
-              key={idx}
-              className="bg-white dark:bg-card border border-border/60 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="bg-muted p-2.5 rounded-lg inline-block mb-3.5">
-                {val.icon}
+            <ScrollStaggerItem key={idx} direction="up">
+              <div className="dot-bg bg-white dark:bg-card border border-border/60 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300 h-full">
+                <div className="bg-muted p-2.5 rounded-lg inline-block mb-3.5">
+                  {val.icon}
+                </div>
+                <h3 className="font-heading font-bold text-base text-foreground mb-1.5">
+                  {val.title}
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {val.desc}
+                </p>
               </div>
-              <h3 className="font-heading font-bold text-base text-foreground mb-1.5">
-                {val.title}
-              </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                {val.desc}
-              </p>
-            </div>
+            </ScrollStaggerItem>
           ))}
-        </div>
+        </ScrollStaggerContainer>
       </section>
 
       {/* 6. BOTTOM CTA */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden py-16 px-8 sm:px-16 text-center text-white bg-gradient-to-br from-accent to-primary shadow-2xl">
-          <div className="relative z-10 max-w-xl mx-auto space-y-6">
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-white">
-              Want a Tailored Travel Plan?
-            </h2>
-            <p className="text-white/80 text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
-              We design itineraries specifically around your needs, dates, and budget. Speak to our holiday counselors today.
-            </p>
-            <div className="pt-2">
-              <Link href="/contact">
-                <Button className="bg-white hover:bg-white/95 text-accent font-extrabold rounded-full px-8 py-3 text-xs shadow-md">
-                  Get Free Consultation
-                </Button>
-              </Link>
+        <ScrollReveal direction="scale" duration={0.7}>
+          <div className="relative rounded-3xl overflow-hidden py-16 px-8 sm:px-16 text-center text-white bg-gradient-to-br from-accent to-primary shadow-2xl">
+            <div className="relative z-10 max-w-xl mx-auto space-y-6">
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-white">
+                Want a Tailored Travel Plan?
+              </h2>
+              <p className="text-white/80 text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
+                We design itineraries specifically around your needs, dates, and budget. Speak to our holiday counselors today.
+              </p>
+              <div className="pt-2">
+                <Link href="/contact">
+                  <Button className="bg-white hover:bg-white/95 text-accent font-extrabold rounded-full px-8 py-3 text-xs shadow-md">
+                    Get Free Consultation
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </div>
   );

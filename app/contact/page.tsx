@@ -8,6 +8,7 @@ import * as z from "zod";
 import { MapPin, Phone, Mail, Clock, Send, Loader2, MessageSquare, Compass, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
+import ScrollReveal, { ScrollStaggerContainer, ScrollStaggerItem } from "@/components/ui/ScrollReveal";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -66,23 +67,23 @@ export default function Contact() {
       icon: <Phone className="h-5 w-5 text-primary" />,
       title: "Phone Coordinates",
       lines: [
-        { text: "+91 98765 43210 (Main Line)", href: "tel:+919876543210" },
-        { text: "+91 98765 43211 (WhatsApp)", href: "https://wa.me/919876543211" },
+        { text: "+91 77363 22522", href: "tel:+917736322522" },
+        { text: "+91 92073 22522", href: "tel:+919207322522" },
+        { text: "+91 77363 22522 (WhatsApp)", href: "https://wa.me/917736322522" },
       ],
     },
     {
       icon: <Mail className="h-5 w-5 text-accent" />,
       title: "Email Channels",
       lines: [
-        { text: "info@metripholidays.com", href: "mailto:info@metripholidays.com" },
-        { text: "bookings@metripholidays.com", href: "mailto:bookings@metripholidays.com" },
+        { text: "metripholidays@gmail.com", href: "mailto:metripholidays@gmail.com" },
       ],
     },
     {
       icon: <MapPin className="h-5 w-5 text-primary" />,
       title: "Office Headquarters",
       lines: [
-        { text: "Suite 404, Travel Horizon Plaza, Banjara Hills Road No. 12, Hyderabad, TS, 500034" },
+        { text: "KMJ Complex, Room No 29/1157, Kattukulangara, Nellikkode, Kozhikode, Kerala 673016" },
       ],
     },
     {
@@ -133,7 +134,7 @@ export default function Contact() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Coordinates Details Column (5 Cols) */}
-          <div className="lg:col-span-5 space-y-8">
+          <ScrollReveal direction="left" duration={0.6} className="lg:col-span-5 space-y-8">
             <div className="space-y-3">
               <span className="text-xs font-extrabold uppercase tracking-widest text-primary bg-primary/5 px-3 py-1 rounded-full inline-block">
                 Reach Out
@@ -147,34 +148,33 @@ export default function Contact() {
             </div>
 
             {/* Grid of details cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {contactCards.map((card, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white dark:bg-card border border-border/60 p-4.5 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="bg-muted p-2 rounded-lg inline-block mb-3">
-                    {card.icon}
+                <ScrollStaggerItem key={idx} direction="up">
+                  <div className="dot-bg bg-white dark:bg-card border border-border/60 p-4.5 rounded-xl shadow-sm hover:shadow-md transition-shadow h-full">
+                    <div className="bg-muted p-2 rounded-lg inline-block mb-3">
+                      {card.icon}
+                    </div>
+                    <h4 className="font-heading font-bold text-xs text-foreground uppercase tracking-wide mb-1.5">
+                      {card.title}
+                    </h4>
+                    <div className="space-y-1">
+                      {card.lines.map((line, lIdx) => (
+                        <div key={lIdx} className="text-[11px] text-muted-foreground leading-relaxed">
+                          {line.href ? (
+                            <a href={line.href} className="hover:text-primary transition-colors hover:underline">
+                              {line.text}
+                            </a>
+                          ) : (
+                            <span>{line.text}</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <h4 className="font-heading font-bold text-xs text-foreground uppercase tracking-wide mb-1.5">
-                    {card.title}
-                  </h4>
-                  <div className="space-y-1">
-                    {card.lines.map((line, lIdx) => (
-                      <div key={lIdx} className="text-[11px] text-muted-foreground leading-relaxed">
-                        {line.href ? (
-                          <a href={line.href} className="hover:text-primary transition-colors hover:underline">
-                            {line.text}
-                          </a>
-                        ) : (
-                          <span>{line.text}</span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                </ScrollStaggerItem>
               ))}
-            </div>
+            </ScrollStaggerContainer>
 
             {/* WhatsApp Quick Chat Callout */}
             <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/50 p-5 rounded-2xl flex items-center justify-between gap-4">
@@ -187,7 +187,7 @@ export default function Contact() {
                 </p>
               </div>
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/917736322522"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#25D366] hover:bg-[#20ba5a] text-white p-3 rounded-full shadow-lg transition-transform hover:scale-105 shrink-0"
@@ -195,10 +195,10 @@ export default function Contact() {
                 <MessageSquare className="h-5 w-5 fill-white text-white" />
               </a>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Form Column (7 Cols) */}
-          <div className="lg:col-span-7 bg-white dark:bg-card border border-border/60 p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden">
+          <ScrollReveal direction="right" duration={0.6} className="lg:col-span-7 bg-white dark:bg-card border border-border/60 p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden">
             <h3 className="font-heading font-extrabold text-lg text-foreground mb-1.5 flex items-center gap-1.5">
               <Compass className="h-4.5 w-4.5 text-primary" />
               Send Booking Enquiry
@@ -264,7 +264,7 @@ export default function Contact() {
                     <Label htmlFor="contact-phone" className="text-xs font-bold text-foreground">Phone Number</Label>
                     <Input
                       id="contact-phone"
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 77363 22522"
                       {...register("phone")}
                       className={`rounded-lg py-2 text-xs focus-visible:ring-primary ${errors.phone ? "border-destructive focus-visible:ring-destructive" : ""}`}
                     />
@@ -342,26 +342,28 @@ export default function Contact() {
                 </Button>
               </form>
             )}
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* 3. GOOGLE MAP IFRAME PLACEHOLDER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl overflow-hidden border border-border shadow-xl h-[350px] relative bg-muted">
-          {/* Map Iframe */}
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.1350849206277!2d78.43577747516544!3d17.405322983488825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb97262ff25203%3A0xe54ef9ee15e612cb!2sBanjara%20Hills%2C%20Hyderabad%2C%20Telangana%20500034!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen={false}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="grayscale contrast-110 opacity-90"
-            title="ME TRIP HOLIDAYS Office Location"
-          ></iframe>
-        </div>
+        <ScrollReveal direction="up" distance={30}>
+          <div className="rounded-2xl overflow-hidden border border-border shadow-xl h-[350px] relative bg-muted">
+            {/* Map Iframe */}
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.0456102604696!2d75.80789717474442!3d11.26900418890987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba6595561a0f8bf%3A0xf6358c2794eb8e3d!2sNellikkode%2C%20Kozhikode%2C%20Kerala!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="grayscale contrast-110 opacity-90"
+              title="ME TRIP HOLIDAYS Office Location"
+            ></iframe>
+          </div>
+        </ScrollReveal>
       </section>
     </div>
   );

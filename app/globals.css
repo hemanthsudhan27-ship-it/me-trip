@@ -149,6 +149,9 @@
   body {
     @apply bg-background text-foreground overflow-x-hidden min-h-screen;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    /* Subtle dot pattern — visible on light sections, covered by dark section backgrounds */
+    background-image: radial-gradient(circle, hsl(215 15% 45% / 0.13) 1px, transparent 1px);
+    background-size: 22px 22px;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -175,7 +178,31 @@
   background: hsl(14 87% 58% / 60%);
 }
 
-/* Glassmorphism Styles */
+/* Dot pattern overlay — apply to opaque white cards/sections */
+.dot-bg {
+  position: relative;
+}
+.dot-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: radial-gradient(circle, hsl(215 15% 45% / 0.10) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+.dot-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode: slightly lighter dots on dark cards */
+.dark .dot-bg::before {
+  background-image: radial-gradient(circle, hsl(215 80% 80% / 0.07) 1px, transparent 1px);
+}
+
+
 .glass {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);

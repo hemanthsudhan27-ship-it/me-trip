@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function WhatsAppButton() {
-  const phoneNumber = "919876543210";
+  const phoneNumber = "917736322522";
   const defaultMessage = encodeURIComponent(
     "Hello Me Trip Holidays, I would like to enquire about holiday packages."
   );
