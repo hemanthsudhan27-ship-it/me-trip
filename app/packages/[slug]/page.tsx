@@ -89,11 +89,17 @@ export default function PackageDetails() {
               <Calendar className="h-4.5 w-4.5 text-primary" />
               <span className="font-bold">{pkg.duration}</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 px-4 py-1.5 rounded-full">
-              <Tag className="h-4.5 w-4.5 text-primary" />
-              <span className="font-bold">{pkg.price}</span>
+            <div className="flex flex-col gap-0.5">
+              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 px-4 py-1.5 rounded-full">
+                <Tag className="h-4.5 w-4.5 text-primary" />
+                <span className="font-bold">{pkg.price}</span>
+              </div>
+              {pkg.priceNote && (
+                <span className="text-[11px] text-white/60 pl-4">{pkg.priceNote}</span>
+              )}
             </div>
           </div>
+
         </div>
       </section>
 

@@ -69,11 +69,17 @@ export default function QuickViewModal() {
                   <Calendar className="h-3.5 w-3.5 text-primary" />
                   <span className="font-semibold text-foreground">{pkg.duration}</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-muted-foreground bg-muted px-2.5 py-1 rounded-md">
-                  <Tag className="h-3.5 w-3.5 text-accent" />
-                  <span className="font-semibold text-foreground">{pkg.price}</span>
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex items-center gap-1.5 text-muted-foreground bg-muted px-2.5 py-1 rounded-md">
+                    <Tag className="h-3.5 w-3.5 text-accent" />
+                    <span className="font-semibold text-foreground">{pkg.price}</span>
+                  </div>
+                  {pkg.priceNote && (
+                    <span className="text-[10px] text-muted-foreground pl-1">{pkg.priceNote}</span>
+                  )}
                 </div>
               </div>
+
 
               {/* Description */}
               <p className="text-xs text-muted-foreground leading-relaxed">

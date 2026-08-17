@@ -72,9 +72,14 @@ export default function PackageCard({ pkg, index }: PackageCardProps) {
                 <Calendar className="h-3.5 w-3.5 text-primary shrink-0" />
                 <span className="font-semibold text-foreground">{pkg.duration}</span>
               </span>
-              <span className="flex items-center gap-1">
-                <Tag className="h-3.5 w-3.5 text-accent shrink-0" />
-                <span className="font-semibold text-foreground">{pkg.price}</span>
+              <span className="flex flex-col items-end gap-0.5">
+                <span className="flex items-center gap-1">
+                  <Tag className="h-3.5 w-3.5 text-accent shrink-0" />
+                  <span className="font-semibold text-foreground">{pkg.price}</span>
+                </span>
+                {pkg.priceNote && (
+                  <span className="text-[9px] text-muted-foreground leading-tight">{pkg.priceNote}</span>
+                )}
               </span>
             </div>
 
