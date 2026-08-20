@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Preloader from "@/components/ui/Preloader";
+import React from "react";
 import HeroSection from "@/components/ui/HeroSection";
 import ScrollReveal, { ScrollStaggerContainer, ScrollStaggerItem } from "@/components/ui/ScrollReveal";
 import Image from "next/image";
 import Link from "next/link";
-import { Compass, Users, Map, Award, ShieldCheck, HeartHandshake, BadgePercent, Headset, Plane, ArrowRight, Star, Quote } from "lucide-react";
+import { Compass, Users, Map, Award, ShieldCheck, HeartHandshake, BadgePercent, Headset, Plane, ArrowRight, Star, Quote, GraduationCap, Users2, CheckCircle2, PhoneCall } from "lucide-react";
 import { motion } from "framer-motion";
 import { useUIModals } from "@/providers/UIModalProvider";
 import { packages } from "@/data/packages";
@@ -18,14 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
   const { enquiry, quickView } = useUIModals();
-  const [showPreloader, setShowPreloader] = useState(false);
 
-  useEffect(() => {
-    const hasVisited = sessionStorage.getItem("me_trip_has_visited");
-    if (!hasVisited) {
-      setShowPreloader(true);
-    }
-  }, []);
 
   // Featured Packages (Maldives, Bali, Meghalaya, Golden Triangle)
   const featuredPkgs = packages.filter((pkg) =>
@@ -35,6 +27,7 @@ export default function Home() {
   // Group packages for tabs
   const internationalPkgs = packages.filter((pkg) => pkg.type === "international");
   const domesticPkgs = packages.filter((pkg) => pkg.type === "domestic");
+  const collegePkgs = packages.filter((pkg) => pkg.type === "college");
 
   const testimonials = [
     {
@@ -95,18 +88,7 @@ export default function Home() {
 
   return (
     <div className="space-y-24 pb-12">
-      {/* Preloader overlay (mounted on first load) */}
-      {showPreloader && (
-        <Preloader
-          onComplete={() => {
-            sessionStorage.setItem("me_trip_has_visited", "true");
-            setShowPreloader(false);
-            // Signal HeroSection to play its entrance timeline.
-            // HeroSection listens for this event in its own useEffect.
-            window.dispatchEvent(new Event("me-trip-hero-entrance"));
-          }}
-        />
-      )}
+
 
       {/* 1. HERO SECTION */}
       <HeroSection />
@@ -188,6 +170,9 @@ export default function Home() {
               <TabsTrigger value="domestic" className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider">
                 Domestic Trips
               </TabsTrigger>
+              <TabsTrigger value="college" className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider">
+                College Tours
+              </TabsTrigger>
             </TabsList>
           </ScrollReveal>
 
@@ -266,10 +251,199 @@ export default function Home() {
               ))}
             </ScrollStaggerContainer>
           </TabsContent>
+
+          {/* College Tab */}
+          <TabsContent value="college" className="text-left animate-in fade-in slide-in-from-bottom-5 duration-300">
+            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {collegePkgs.map((pkg) => (
+                <ScrollStaggerItem key={pkg.id} direction="up">
+                  <div
+                    onClick={() => quickView.open(pkg)}
+                    className="group relative h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
+                  >
+                    <Image
+                      src={pkg.image}
+                      alt={`Me Trip Holidays college tour to ${pkg.name} - student group trip package`}
+                      fill
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+
+                    {/* Top Header Tag */}
+                    <div className="absolute top-4 left-4 bg-yellow-400 text-yellow-950 text-[9px] font-extrabold py-1 px-3 rounded-full uppercase tracking-wider">
+                      {pkg.duration} • Min 40-50 Pax
+                    </div>
+
+                    {/* Info Overlay */}
+                    <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
+                      <h3 className="font-heading font-extrabold text-lg leading-tight group-hover:text-yellow-400 transition-colors">
+                        {pkg.name}
+                      </h3>
+                      <p className="text-xs text-white/70 line-clamp-1">{pkg.description}</p>
+                      <div className="flex items-center justify-between pt-1">
+                        <span className="text-xs font-extrabold text-yellow-400">{pkg.price}</span>
+                        <span className="text-[10px] font-bold text-yellow-400 tracking-wider uppercase inline-flex items-center gap-1">
+                          Explore Package <ArrowRight className="h-3 w-3" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollStaggerItem>
+              ))}
+            </ScrollStaggerContainer>
+          </TabsContent>
         </Tabs>
       </section>
 
-      {/* 5. WHY CHOOSE US */}
+      {/* 5. COLLEGE TOURS SECTION */}
+      <section id="college-tours" className="relative overflow-hidden">
+        {/* College Section Header Banner */}
+        <div className="relative h-[380px] w-full flex items-center overflow-hidden">
+          <Image
+            src="/images/college/college-hero.jpg"
+            alt="College students celebrating on a mountain peak during a Me Trip Holidays college group tour"
+            fill
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <ScrollReveal direction="left">
+              <div className="max-w-2xl space-y-5">
+                <span className="inline-flex items-center gap-2 bg-yellow-400/20 border border-yellow-400/40 text-yellow-300 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest backdrop-blur-sm">
+                  <GraduationCap className="h-3.5 w-3.5" />
+                  College Tour Plans
+                </span>
+                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-white leading-tight">
+                  Adventure Awaits for{" "}
+                  <span className="text-yellow-400">Every Student!</span>
+                </h2>
+                <p className="text-sm text-white/70 leading-relaxed max-w-lg">
+                  Specially curated group tour packages for colleges and universities. Minimum 40–50 students required for exclusive group pricing. Certified tour guides, AC buses & unforgettable memories included.
+                </p>
+                <div className="flex flex-wrap gap-3 pt-1">
+                  {[
+                    { icon: <Users2 className="h-3.5 w-3.5" />, label: "Min 40–50 Pax" },
+                    { icon: <CheckCircle2 className="h-3.5 w-3.5" />, label: "Certified Guides" },
+                    { icon: <CheckCircle2 className="h-3.5 w-3.5" />, label: "AC Bus Transfers" },
+                  ].map((item, i) => (
+                    <span key={i} className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 backdrop-blur-sm text-white text-[11px] font-semibold px-3 py-1.5 rounded-full">
+                      {item.icon}{item.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+
+        {/* College Package Cards Grid */}
+        <div className="bg-gradient-to-b from-yellow-50/50 to-background dark:from-yellow-950/10 dark:to-background py-14">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <ScrollReveal direction="up">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                <div>
+                  <p className="text-xs font-bold text-yellow-600 dark:text-yellow-400 uppercase tracking-widest mb-1">College Tour Plans</p>
+                  <h3 className="font-heading font-extrabold text-2xl sm:text-3xl text-foreground">
+                    Choose Your Dream College Trip
+                  </h3>
+                </div>
+                <a
+                  href="tel:+918593040034"
+                  className="group flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-extrabold text-xs px-5 py-2.5 rounded-full transition-all shadow-md hover:shadow-lg"
+                >
+                  <PhoneCall className="h-3.5 w-3.5" />
+                  Book for Your College
+                </a>
+              </div>
+            </ScrollReveal>
+
+            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {collegePkgs.map((pkg, index) => (
+                <ScrollStaggerItem key={pkg.id} direction="up">
+                  <div
+                    onClick={() => quickView.open(pkg)}
+                    className="group relative bg-card border border-border/60 rounded-2xl overflow-hidden cursor-pointer hover:border-yellow-400/40 hover:shadow-xl transition-all duration-400 flex flex-col h-full"
+                  >
+                    {/* Image */}
+                    <div className="relative h-[200px] w-full overflow-hidden bg-muted">
+                      <Image
+                        src={pkg.image}
+                        alt={`Me Trip Holidays college tour to ${pkg.name.replace('College Tour: ', '')} - group student travel package`}
+                        fill
+                        className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                      />
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      {/* College badge */}
+                      <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-yellow-400 text-yellow-900 text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-widest">
+                        <GraduationCap className="h-3 w-3" />
+                        College Tour
+                      </div>
+                      {/* Duration */}
+                      <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                        {pkg.duration}
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-4 flex flex-col flex-grow space-y-3">
+                      <h3 className="font-heading font-extrabold text-sm text-foreground group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors leading-snug line-clamp-2">
+                        {pkg.name.replace("College Tour: ", "")}
+                      </h3>
+                      <p className="text-[11px] text-muted-foreground line-clamp-2 leading-relaxed flex-grow">
+                        {pkg.description}
+                      </p>
+                      <div className="border-t border-border/60 pt-3 space-y-1">
+                        <p className="text-base font-extrabold text-yellow-600 dark:text-yellow-400">{pkg.price}</p>
+                        <p className="text-[10px] text-muted-foreground">{pkg.priceNote}</p>
+                      </div>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); enquiry.open(pkg.name); }}
+                        className="w-full bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-extrabold text-xs py-2 rounded-full transition-all flex items-center justify-center gap-1.5 mt-1"
+                      >
+                        Enquire Now <ArrowRight className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                </ScrollStaggerItem>
+              ))}
+            </ScrollStaggerContainer>
+
+            {/* Bottom CTA strip */}
+            <ScrollReveal direction="up">
+              <div className="mt-4 bg-yellow-400/10 dark:bg-yellow-400/5 border border-yellow-400/30 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="bg-yellow-400/20 p-3 rounded-xl">
+                    <GraduationCap className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
+                  </div>
+                  <div>
+                    <p className="font-heading font-extrabold text-base text-foreground">Planning a College Trip?</p>
+                    <p className="text-xs text-muted-foreground">Get exclusive pricing for groups of 40+ students. Free itinerary customization!</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="tel:+918593040034"
+                    className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-extrabold text-xs px-5 py-2.5 rounded-full transition-all shadow-md"
+                  >
+                    <PhoneCall className="h-3.5 w-3.5" />
+                    +91 8593 040 034
+                  </a>
+                  <a
+                    href="tel:+917736322522"
+                    className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-extrabold text-xs px-5 py-2.5 rounded-full transition-all shadow-md"
+                  >
+                    <PhoneCall className="h-3.5 w-3.5" />
+                    +91 7736 322 522
+                  </a>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. WHY CHOOSE US */}
       <section className="bg-foreground text-background py-20 border-y border-border/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">

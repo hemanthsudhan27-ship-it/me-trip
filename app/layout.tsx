@@ -8,7 +8,6 @@ import { SmoothScrollProvider } from "@/providers/SmoothScrollProvider";
 import { UIModalProvider } from "@/providers/UIModalProvider";
 import EnquiryModal from "@/components/ui/EnquiryModal";
 import QuickViewModal from "@/components/ui/QuickViewModal";
-import SplashScreen from "@/components/ui/SplashScreen";
 
 // Load typography fonts
 const inter = Inter({
@@ -57,7 +56,6 @@ export default function RootLayout({
       className={`${inter.variable} ${sora.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-primary/20 selection:text-primary">
-        <SplashScreen />
         <UIModalProvider>
           <SmoothScrollProvider>
             {/* Global Navbar */}

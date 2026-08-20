@@ -279,35 +279,16 @@ export default function HeroSection() {
       });
     }, heroRef);
 
-    // ── 6. Play entrance: event-driven coordination with the Preloader ─────
-    // If user has visited before (no preloader), play immediately with a tiny
-    // delay so the DOM is fully painted. If first visit, wait for the preloader
-    // to dispatch "me-trip-hero-entrance" when its curtain wipe completes.
+    // ── 6. Play entrance ─────
     const playEntrance = () => {
       entranceTlRef.current?.delay(0.08).play();
     };
 
-    const hasVisited =
-      typeof window !== "undefined"
-        ? sessionStorage.getItem("me_trip_has_visited")
-        : null;
-
-    let timer: ReturnType<typeof setTimeout> | null = null;
-
-    if (hasVisited) {
-      // Return visit — play after short delay
-      timer = setTimeout(playEntrance, 120);
-    } else {
-      // First visit — wait for preloader to signal completion
-      window.addEventListener("me-trip-hero-entrance", playEntrance, {
-        once: true,
-      });
-    }
+    const timer = setTimeout(playEntrance, 120);
 
     return () => {
       ctx.revert();
-      if (timer !== null) clearTimeout(timer);
-      window.removeEventListener("me-trip-hero-entrance", playEntrance);
+      clearTimeout(timer);
     };
   }, []);
 
@@ -440,6 +421,7 @@ export default function HeroSection() {
                 <option value="all">All Packages</option>
                 <option value="international">International</option>
                 <option value="domestic">Domestic Trips</option>
+                <option value="college">College Tours</option>
               </select>
             </div>
 

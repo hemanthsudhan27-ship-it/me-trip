@@ -56,7 +56,7 @@ export default function QuickViewModal() {
               <div>
                 <span className="inline-flex items-center gap-1 text-[11px] font-bold text-accent">
                   <Compass className="h-3.5 w-3.5" />
-                  {pkg.type === "international" ? "International Escape" : "Domestic Gateway"}
+                  {pkg.type === "international" ? "International Escape" : pkg.type === "college" ? "College Group Tour" : "Domestic Gateway"}
                 </span>
                 <h3 className="font-heading font-extrabold text-lg text-foreground mt-1 leading-snug">
                   {pkg.name}

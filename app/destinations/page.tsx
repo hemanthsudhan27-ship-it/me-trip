@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 export default function DestinationsPage() {
   const { quickView, enquiry } = useUIModals();
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeTab, setActiveTab] = useState<"all" | "international" | "domestic">("all");
+  const [activeTab, setActiveTab] = useState<"all" | "international" | "domestic" | "college">("all");
 
   // Filter packages based on tab & search query
   const filteredPackages = packages.filter((pkg) => {
@@ -31,6 +31,7 @@ export default function DestinationsPage() {
 
   const internationalCount = packages.filter((p) => p.type === "international").length;
   const domesticCount = packages.filter((p) => p.type === "domestic").length;
+  const collegeCount = packages.filter((p) => p.type === "college").length;
 
   return (
     <div className="space-y-16 pb-20">
@@ -73,7 +74,7 @@ export default function DestinationsPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xs sm:text-sm text-white/75 max-w-xl mx-auto leading-relaxed"
           >
-            Browse our handpicked international &amp; domestic holiday packages. Filter by type or search for your favorite getaway spot.
+            Browse our handpicked international, domestic &amp; college group holiday packages. Filter by type or search for your favorite getaway spot.
           </motion.p>
         </div>
       </section>
@@ -115,6 +116,16 @@ export default function DestinationsPage() {
                   }`}
                 >
                   Domestic ({domesticCount})
+                </button>
+                <button
+                  onClick={() => setActiveTab("college")}
+                  className={`flex-1 md:flex-none px-5 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all whitespace-nowrap ${
+                    activeTab === "college"
+                      ? "bg-yellow-400 text-yellow-950 shadow-md"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  College Tours ({collegeCount})
                 </button>
               </div>
 
@@ -191,8 +202,10 @@ export default function DestinationsPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20" />
 
                     {/* Type Badge */}
-                    <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-md border border-white/20 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                      {pkg.type === "international" ? "International" : "Domestic"}
+                    <div className={`absolute top-4 left-4 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider ${
+                      pkg.type === "college" ? "bg-yellow-400 text-yellow-950" : "bg-black/40 backdrop-blur-md border border-white/20"
+                    }`}>
+                      {pkg.type === "international" ? "International" : pkg.type === "college" ? "College Tour" : "Domestic"}
                     </div>
 
                     {/* Duration Badge */}

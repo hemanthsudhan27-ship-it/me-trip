@@ -77,7 +77,7 @@ export default function PackageDetails() {
           <div className="space-y-1.5">
             <span className="inline-flex items-center gap-1 text-xs font-bold text-primary bg-primary/10 border border-primary/20 backdrop-blur-md px-3 py-1 rounded-full uppercase tracking-wider">
               <Compass className="h-3.5 w-3.5" />
-              {pkg.type === "international" ? "International Holiday" : "Domestic Tour"}
+              {pkg.type === "international" ? "International Holiday" : pkg.type === "college" ? "College Group Tour" : "Domestic Tour"}
             </span>
             <h1 className="font-heading font-extrabold text-2xl sm:text-4xl md:text-5xl leading-tight text-white max-w-4xl">
               {pkg.name}

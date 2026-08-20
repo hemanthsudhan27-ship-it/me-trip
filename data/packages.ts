@@ -8,7 +8,7 @@ export interface Package {
   id: string;
   slug: string;
   name: string;
-  type: "international" | "domestic";
+  type: "international" | "domestic" | "college";
   duration: string;
   image: string;
   description: string;
@@ -1095,6 +1095,423 @@ export const packages: Package[] = [
         title: "Manali to Delhi & Departure",
         description:
           "Board the Volvo bus or private vehicle back to Delhi. Transfer to airport or railway station for departure.",
+      },
+    ],
+  },
+
+  // ─── COLLEGE TOUR PACKAGES ────────────────────────────────────────────────
+
+  {
+    id: "col-agra-delhi",
+    slug: "college-agra-delhi",
+    name: "College Tour: Agra & Delhi",
+    type: "college",
+    duration: "2D/1N",
+    image: "/images/college/agra-delhi.jpg",
+    description:
+      "The most budget-friendly college tour covering India's two most iconic heritage destinations. Visit the world-famous Taj Mahal in Agra and the historic Red Fort and Qutub Minar in Delhi. Perfect for a short study-trip or cultural excursion.",
+    highlights: [
+      "Taj Mahal guided heritage tour in Agra",
+      "Agra Fort & Mehtab Bagh visit",
+      "Delhi monuments: Red Fort, Qutub Minar & India Gate",
+      "Comfortable AC bus transportation throughout",
+      "Minimum 50 students – best group pricing",
+    ],
+    price: "Starting ₹5,000/- per head",
+    priceNote: "Minimum 50 Pax Required | College Tour Plan",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival & Agra Heritage Tour",
+        description:
+          "Depart by AC bus. Arrive in Agra. Visit the magnificent Taj Mahal — a UNESCO World Heritage marvel. Explore Agra Fort with a certified guide. Overnight in Agra.",
+      },
+      {
+        day: 2,
+        title: "Delhi Sightseeing & Departure",
+        description:
+          "Drive to Delhi. Visit the iconic Red Fort, Qutub Minar, and India Gate. Group photo session at major landmarks. Return journey by bus.",
+      },
+    ],
+  },
+  {
+    id: "col-agra-delhi-manali",
+    slug: "college-agra-delhi-manali",
+    name: "College Tour: Agra, Delhi & Manali",
+    type: "college",
+    duration: "5D/4N",
+    image: "/images/college/manali-rafting.jpg",
+    description:
+      "The most popular college tour combining historical wonders of Agra & Delhi with the thrilling adventure and mountain beauty of Manali. Ideal for students looking for history, culture, and adventure in one epic journey.",
+    highlights: [
+      "Taj Mahal & Agra Fort guided heritage tour",
+      "Delhi: Red Fort, Qutub Minar & India Gate",
+      "Solang Valley – snow activities & paragliding",
+      "River rafting on Beas River, Kullu",
+      "Hadimba Temple & Vashisht Hot Springs, Manali",
+    ],
+    price: "Starting ₹7,900/- per head",
+    priceNote: "Minimum 50 Pax Required | College Tour Plan",
+    itinerary: [
+      {
+        day: 1,
+        title: "Departure & Agra Heritage",
+        description:
+          "Depart overnight by AC bus. Arrive Agra in the morning. Visit Taj Mahal and Agra Fort with a certified guide.",
+      },
+      {
+        day: 2,
+        title: "Delhi Sightseeing & Overnight to Manali",
+        description:
+          "Drive to Delhi. Visit Red Fort, Qutub Minar, and India Gate. Take overnight bus to Manali.",
+      },
+      {
+        day: 3,
+        title: "Manali Arrival & Local Sightseeing",
+        description:
+          "Arrive in Manali. Check in to hotel. Visit Hadimba Devi Temple, Tibetan Monastery, and Vashisht Hot Springs.",
+      },
+      {
+        day: 4,
+        title: "Solang Valley Snow Adventure",
+        description:
+          "Full day at Solang Valley. Experience snow activities, paragliding, zorbing, and team games. Group bonfire dinner in the evening.",
+      },
+      {
+        day: 5,
+        title: "Kullu River Rafting & Departure",
+        description:
+          "Thrilling white water river rafting on the Beas River at Kullu. Group lunch, shawl factory visit. Depart by overnight Volvo bus.",
+      },
+    ],
+  },
+  {
+    id: "col-delhi-manali",
+    slug: "college-delhi-manali",
+    name: "College Tour: Delhi & Manali",
+    type: "college",
+    duration: "4D/3N",
+    image: "/images/college/manali-paragliding.jpg",
+    description:
+      "From the capital's iconic monuments to the Himalayas' breathtaking peaks — this tour packs maximum adventure into a 4-day itinerary. Perfect for colleges looking for a compact, action-packed mountain trip.",
+    highlights: [
+      "Delhi sightseeing: India Gate, Qutub Minar & Red Fort",
+      "Paragliding & snow sports at Solang Valley",
+      "Atal Tunnel drive to Sissu, Lahaul",
+      "Hadimba Temple & Old Manali walk",
+      "Comfortable Volvo AC bus with professional tour guide",
+    ],
+    price: "Starting ₹9,200/- per head",
+    priceNote: "Minimum 50 Pax Required | College Tour Plan",
+    itinerary: [
+      {
+        day: 1,
+        title: "Delhi Sightseeing & Overnight to Manali",
+        description:
+          "Gather at Delhi. Visit Red Fort, Qutub Minar, and India Gate. Evening depart by overnight Volvo bus to Manali.",
+      },
+      {
+        day: 2,
+        title: "Manali Arrival & Local Sightseeing",
+        description:
+          "Arrive in Manali. Check in. Visit Hadimba Devi Temple, Club House, Tibetan Monastery, and Vashisht Hot Springs.",
+      },
+      {
+        day: 3,
+        title: "Solang Valley & Atal Tunnel",
+        description:
+          "Full day at Solang Valley. Enjoy paragliding, snow games, and zorbing. Drive through Atal Tunnel to the scenic Sissu valley.",
+      },
+      {
+        day: 4,
+        title: "Departure from Manali",
+        description:
+          "Morning free time at Mall Road. Group shopping for souvenirs. Board Volvo bus for Delhi/home. End of memorable journey.",
+      },
+    ],
+  },
+  {
+    id: "col-agra-delhi-manali-kasol",
+    slug: "college-agra-delhi-manali-kasol",
+    name: "College Tour: Agra, Delhi, Manali & Kasol",
+    type: "college",
+    duration: "7D/6N",
+    image: "/images/college/kasol-camping.jpg",
+    description:
+      "The ultimate student adventure spanning heritage wonders, Himalayan peaks, and the iconic backpacker haven of Kasol. This 7-day tour is a life-changing experience for any college group — history, mountains, rivers, and camping under the stars.",
+    highlights: [
+      "Taj Mahal & Agra Fort guided heritage tour",
+      "Solang Valley snow sports & paragliding, Manali",
+      "Kasol riverside camping on the Parvati River",
+      "Manikaran Sahib Gurudwara & natural hot springs",
+      "Kheerganga Trek through pine forests (optional)",
+    ],
+    price: "Starting ₹9,600/- per head",
+    priceNote: "Minimum 50 Pax Required | College Tour Plan",
+    itinerary: [
+      {
+        day: 1,
+        title: "Departure & Agra Heritage",
+        description:
+          "Depart by AC bus. Visit Taj Mahal and Agra Fort in the morning. Overnight travel to Delhi.",
+      },
+      {
+        day: 2,
+        title: "Delhi Sightseeing & Overnight to Kasol",
+        description:
+          "Delhi tour: India Gate, Red Fort, Qutub Minar. Evening depart by overnight bus to Kasol.",
+      },
+      {
+        day: 3,
+        title: "Kasol Arrival & Parvati Valley",
+        description:
+          "Arrive Kasol. Check in to riverside camp. Visit Manikaran Gurudwara and soak in natural hot springs. Evening bonfire.",
+      },
+      {
+        day: 4,
+        title: "Kheerganga Trek (Optional) & Kasol Leisure",
+        description:
+          "Optional trek to Kheerganga through dense forests. Remaining students relax by the Parvati River and explore Kasol village.",
+      },
+      {
+        day: 5,
+        title: "Kasol to Manali Drive",
+        description:
+          "Scenic drive to Manali via Kullu. Check in to hotel. Evening stroll at Mall Road.",
+      },
+      {
+        day: 6,
+        title: "Solang Valley Adventure Day",
+        description:
+          "Full day at Solang Valley — paragliding, zorbing, snow activities, and team games. Group barbecue dinner.",
+      },
+      {
+        day: 7,
+        title: "Departure from Manali",
+        description:
+          "Souvenir shopping at Mall Road. Board overnight Volvo bus to Delhi/home. Trip ends with memories for a lifetime.",
+      },
+    ],
+  },
+  {
+    id: "col-agra-delhi-manali-kasol-grahan",
+    slug: "college-agra-delhi-manali-kasol-grahan",
+    name: "College Tour: Agra, Delhi, Manali, Kasol & Grahan",
+    type: "college",
+    duration: "8D/7N",
+    image: "/images/college/grahan-village.jpg",
+    description:
+      "Our most comprehensive college tour including the remote Himalayan village of Grahan — a hidden gem accessible only by trek. This 8-day journey covers Mughal heritage, Himalayan adventure, riverside camping, and an authentic village trekking experience.",
+    highlights: [
+      "Taj Mahal & Red Fort guided heritage visits",
+      "Manali: Solang Valley snow sports & paragliding",
+      "Kasol riverside camping & Parvati Valley trek",
+      "Grahan Village trek — a hidden Himalayan gem",
+      "Manikaran Gurudwara natural hot springs dip",
+    ],
+    price: "Starting ₹11,400/- per head",
+    priceNote: "Minimum 50 Pax Required | College Tour Plan",
+    itinerary: [
+      {
+        day: 1,
+        title: "Departure & Agra Heritage",
+        description:
+          "Overnight bus departure. Morning Taj Mahal and Agra Fort heritage tour with guide.",
+      },
+      {
+        day: 2,
+        title: "Delhi Sightseeing & Overnight to Kasol",
+        description:
+          "Delhi: Red Fort, India Gate, and Qutub Minar. Overnight bus to Bhuntar/Kasol.",
+      },
+      {
+        day: 3,
+        title: "Kasol Arrival & River Walk",
+        description:
+          "Arrive Kasol. Check in to camp. Explore Kasol village, walk by the Parvati River. Manikaran Gurudwara and hot springs visit.",
+      },
+      {
+        day: 4,
+        title: "Grahan Village Trek",
+        description:
+          "Trek to Grahan — a remote, unspoiled Himalayan village surrounded by deodar forests at 7,100 ft. Overnight stay in traditional homestay.",
+      },
+      {
+        day: 5,
+        title: "Grahan to Kasol Descent & Drive to Manali",
+        description:
+          "Descend back to Kasol. Drive to Manali via the scenic Kullu Valley. Check in to hotel.",
+      },
+      {
+        day: 6,
+        title: "Manali Local Sightseeing",
+        description:
+          "Visit Hadimba Temple, Tibetan Monastery, Club House, and Vashisht Hot Springs.",
+      },
+      {
+        day: 7,
+        title: "Solang Valley Adventure",
+        description:
+          "Full adventure day at Solang Valley — paragliding, zorbing, snow games, and team activities. Bonfire night.",
+      },
+      {
+        day: 8,
+        title: "Departure from Manali",
+        description:
+          "Shopping at Mall Road. Depart for home with memories of the ultimate student adventure.",
+      },
+    ],
+  },
+  {
+    id: "col-agra-delhi-kashmir",
+    slug: "college-agra-delhi-kashmir",
+    name: "College Tour: Agra, Delhi & Kashmir",
+    type: "college",
+    duration: "6D/5N",
+    image: "/images/college/kashmir-shikara.jpg",
+    description:
+      "Discover the stunning contrast of Mughal India and the paradise valleys of Kashmir on this 6-day college tour. From the Taj Mahal to a tranquil shikara ride on Dal Lake and the snowy slopes of Gulmarg — an unforgettable student journey.",
+    highlights: [
+      "Sunrise visit to the Taj Mahal & Agra Fort",
+      "Shikara ride on the serene Dal Lake, Srinagar",
+      "Gulmarg Gondola cable car to snow-covered peaks",
+      "Pahalgam – Betaab Valley scenic excursion",
+      "Mughal Gardens: Shalimar Bagh & Nishat Bagh",
+    ],
+    price: "Starting ₹11,400/- per head",
+    priceNote: "Minimum 40 Pax Required | College Tour Plan",
+    itinerary: [
+      {
+        day: 1,
+        title: "Agra Heritage Tour",
+        description:
+          "Arrive Agra. Visit Taj Mahal at sunrise and Agra Fort. Overnight hotel.",
+      },
+      {
+        day: 2,
+        title: "Delhi Sightseeing & Fly to Srinagar",
+        description:
+          "Visit Red Fort and Qutub Minar in Delhi. Fly to Srinagar. Check in to houseboat or hotel on Dal Lake.",
+      },
+      {
+        day: 3,
+        title: "Srinagar & Dal Lake",
+        description:
+          "Morning shikara ride on Dal Lake. Visit Mughal Gardens: Shalimar Bagh and Nishat Bagh. Shankaracharya Temple visit.",
+      },
+      {
+        day: 4,
+        title: "Gulmarg Gondola Day Trip",
+        description:
+          "Drive to Gulmarg. Ride the Gondola Phase 1 & 2 to Apharwat Peak. Snow activities, skiing, and panoramic views of the Himalayas.",
+      },
+      {
+        day: 5,
+        title: "Pahalgam & Betaab Valley",
+        description:
+          "Excursion to Pahalgam Valley. Visit Betaab Valley, Aru Valley, and Chandanwari. Scenic river walks and lunch by the Lidder River.",
+      },
+      {
+        day: 6,
+        title: "Departure from Srinagar",
+        description:
+          "Morning local market visit. Transfer to Srinagar Airport for return flight. End of tour.",
+      },
+    ],
+  },
+  {
+    id: "col-agra-delhi-jaipur",
+    slug: "college-agra-delhi-jaipur",
+    name: "College Tour: Agra, Delhi & Jaipur",
+    type: "college",
+    duration: "4D/3N",
+    image: "/images/college/jaipur-golden-triangle.jpg",
+    description:
+      "Explore India's legendary Golden Triangle — the Taj Mahal in Agra, the monuments of Delhi, and the royal pink palaces of Jaipur. This 4-day tour is ideal for history, culture, and architecture enthusiasts in any college.",
+    highlights: [
+      "Taj Mahal and Agra Fort heritage visit",
+      "Delhi: Red Fort, Qutub Minar, India Gate",
+      "Amer Fort Jaipur with elephant or Jeep ride",
+      "Hawa Mahal & City Palace Museum, Jaipur",
+      "AC bus transport throughout & certified guide",
+    ],
+    price: "Starting ₹9,300/- per head",
+    priceNote: "Minimum 50 Pax Required | College Tour Plan",
+    itinerary: [
+      {
+        day: 1,
+        title: "Departure & Agra Heritage",
+        description:
+          "Overnight bus departure. Arrive Agra morning. Visit Taj Mahal at sunrise and Agra Fort with certified guide.",
+      },
+      {
+        day: 2,
+        title: "Delhi Sightseeing & Drive to Jaipur",
+        description:
+          "Tour Delhi — Red Fort, Jama Masjid, Qutub Minar, India Gate. Drive to Jaipur via Yamuna Expressway. Check in.",
+      },
+      {
+        day: 3,
+        title: "Jaipur Royal Heritage Tour",
+        description:
+          "Visit Amer Fort, Hawa Mahal (Palace of Winds), City Palace Museum, and the Jantar Mantar astronomical observatory.",
+      },
+      {
+        day: 4,
+        title: "Jaipur Markets & Departure",
+        description:
+          "Morning visit to Johri Bazaar for block printing and gemstone shopping. Depart for home. Tour concludes.",
+      },
+    ],
+  },
+  {
+    id: "col-jaipur-jodhpur-jaisalmer",
+    slug: "college-jaipur-jodhpur-jaisalmer",
+    name: "College Tour: Jaipur, Jodhpur & Jaisalmer",
+    type: "college",
+    duration: "5D/4N",
+    image: "/images/college/rajasthan-forts.jpg",
+    description:
+      "Experience the royal grandeur of Rajasthan's three legendary cities. From the Pink City of Jaipur to the Blue City of Jodhpur and the Golden City of Jaisalmer — a 5-day journey through India's most spectacular desert kingdom.",
+    highlights: [
+      "Amer Fort & Hawa Mahal, Jaipur",
+      "Mehrangarh Fort & Jaswant Thada, Jodhpur",
+      "Jaisalmer Golden Fort (Sonar Quila)",
+      "Camel safari at Sam Sand Dunes with folk music",
+      "Certified guide & AC bus throughout Rajasthan",
+    ],
+    price: "Starting ₹9,900/- per head",
+    priceNote: "Minimum 50 Pax Required | College Tour Plan",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Jaipur — The Pink City",
+        description:
+          "Arrive in Jaipur. Visit Amer Fort, Hawa Mahal (Palace of Winds), and Jantar Mantar. Evening at local markets.",
+      },
+      {
+        day: 2,
+        title: "Jaipur to Jodhpur — The Blue City",
+        description:
+          "Drive to Jodhpur. Visit the towering Mehrangarh Fort and Jaswant Thada. Explore the blue-washed lanes of the old city.",
+      },
+      {
+        day: 3,
+        title: "Jodhpur to Jaisalmer — The Golden City",
+        description:
+          "Drive to Jaisalmer. Visit the stunning Sonar Quila (Golden Fort), Patwon Ki Haveli, and Sadar Bazaar.",
+      },
+      {
+        day: 4,
+        title: "Sam Sand Dunes & Desert Camp",
+        description:
+          "Afternoon camel safari into the Thar Desert. Watch the sunset over the dunes. Enjoy folk music, dance, and campfire dinner in a desert camp.",
+      },
+      {
+        day: 5,
+        title: "Departure from Jaisalmer",
+        description:
+          "Morning free for local shopping. Transfer to Jaisalmer railway station or airport. End of epic Rajasthan college tour.",
       },
     ],
   },

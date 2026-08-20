@@ -8,11 +8,11 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-interface GalleryItem {
+export interface GalleryItem {
   id: number;
   src: string;
   title: string;
-  category: "international" | "domestic";
+  category: "international" | "domestic" | "college";
   description: string;
 }
 
@@ -37,6 +37,12 @@ export default function Gallery() {
     { id: 13, src: "/images/destinations/golden-triangle.jpg", title: "Agra Sunrise Taj", category: "domestic", description: "Gorgeous morning reflection of Taj Mahal monument" },
     { id: 14, src: "/images/destinations/agra.jpg", title: "Baby Taj Sculptures", category: "domestic", description: "Intricate marble carvings inside Itmad-ud-Daulah tomb" },
     { id: 15, src: "/images/destinations/delhi-manali.jpg", title: "Himachal Valley Streams", category: "domestic", description: "Pine forests and mountain streams along the highway" },
+    { id: 16, src: "/images/college/college-hero.jpg", title: "Himalayas Summit Celebration", category: "college", description: "College group cheering at Manali Himalayan mountain peak" },
+    { id: 17, src: "/images/college/manali-rafting.jpg", title: "Beas River White Water Rafting", category: "college", description: "Thrilling college group river rafting expedition in Kullu" },
+    { id: 18, src: "/images/college/kasol-camping.jpg", title: "Parvati River Camping", category: "college", description: "Riverside tent camping and bonfire night in Kasol" },
+    { id: 19, src: "/images/college/kashmir-shikara.jpg", title: "Dal Lake Student Cruise", category: "college", description: "Traditional Shikara boat ride on Dal Lake in Srinagar" },
+    { id: 20, src: "/images/college/grahan-village.jpg", title: "Grahan Village Trek", category: "college", description: "Student trekking group exploring remote Grahan Himalayan village" },
+    { id: 21, src: "/images/college/jaipur-golden-triangle.jpg", title: "Hawa Mahal Student Excursion", category: "college", description: "Students photographing the iconic Hawa Mahal palace in Jaipur" },
   ];
 
   // Filter items
@@ -135,6 +141,13 @@ export default function Gallery() {
               className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider"
             >
               Domestic
+            </TabsTrigger>
+            <TabsTrigger
+              value="college"
+              onClick={() => setFilter("college")}
+              className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider"
+            >
+              College Tours
             </TabsTrigger>
           </TabsList>
 
