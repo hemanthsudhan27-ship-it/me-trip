@@ -990,7 +990,7 @@ export const packages: Package[] = [
     name: "Kullu Manali Snow Adventure",
     type: "domestic",
     duration: "5D/4N",
-    image: "/images/destinations/manali-snow.jpg",
+    image: "/images/destinations/manali.jpg",
     description:
       "Escape to the snow-capped peaks of Himachal Pradesh. Experience paragliding in Solang Valley, cross the legendary Atal Tunnel, and relax in the charming valley of Kullu Manali.",
     highlights: [
