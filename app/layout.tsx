@@ -36,6 +36,11 @@ export const metadata: Metadata = {
     "international holidays",
     "Me Trip Holidays"
   ],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     title: "ME TRIP HOLIDAYS | Premium Tour Packages",
     description: "Book customized international and domestic holiday packages. Explore Maldives, Bali, Thailand, Manali, and more.",
