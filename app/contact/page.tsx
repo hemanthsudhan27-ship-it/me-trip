@@ -195,6 +195,51 @@ export default function Contact() {
                 <MessageSquare className="h-5 w-5 fill-white text-white" />
               </a>
             </div>
+
+            {/* Destination Specialists Helplines */}
+            <div className="bg-white dark:bg-card border border-border/60 p-5 rounded-2xl shadow-sm space-y-4">
+              <h4 className="font-heading font-extrabold text-xs text-foreground uppercase tracking-wider flex items-center gap-1.5">
+                <Phone className="h-4 w-4 text-primary" />
+                Destination Specialist Direct Lines
+              </h4>
+              <div className="space-y-2.5 text-xs">
+                <div className="border-b border-border/40 pb-2">
+                  <span className="font-bold text-foreground block text-[11px] text-primary">
+                    ✈️ International (Thailand, Malaysia, Vietnam, Bali, Maldives)
+                  </span>
+                  <a href="tel:+917736322522" className="text-muted-foreground hover:text-primary transition-colors text-[11px] font-semibold">
+                    +91 7736 322 522
+                  </a>
+                </div>
+                <div className="space-y-1.5 pt-1">
+                  <span className="font-bold text-foreground block text-[11px] text-accent">
+                    🗺️ Domestic Specialists
+                  </span>
+                  <ul className="space-y-1 text-[11px] text-muted-foreground">
+                    <li className="flex justify-between items-center gap-2">
+                      <span>Manali, Agra, Delhi, Spiti Valley:</span>
+                      <a href="tel:+918593040034" className="font-bold text-foreground hover:text-primary shrink-0">+91 8593 040 034</a>
+                    </li>
+                    <li className="flex justify-between items-center gap-2">
+                      <span>Goa, Lakshadweep:</span>
+                      <a href="tel:+919207322522" className="font-bold text-foreground hover:text-primary shrink-0">+91 9207 322 522</a>
+                    </li>
+                    <li className="flex justify-between items-center gap-2">
+                      <span>Kashmir, Rajasthan:</span>
+                      <a href="tel:+918089950532" className="font-bold text-foreground hover:text-primary shrink-0">+91 8089 950 532</a>
+                    </li>
+                    <li className="flex justify-between items-center gap-2">
+                      <span>Hyderabad:</span>
+                      <a href="tel:+916238922522" className="font-bold text-foreground hover:text-primary shrink-0">+91 6238 922 522</a>
+                    </li>
+                    <li className="flex justify-between items-center gap-2">
+                      <span>Meghalaya, Sikkim, Darjeeling:</span>
+                      <a href="tel:+917736322522" className="font-bold text-foreground hover:text-primary shrink-0">+91 7736 322 522</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </ScrollReveal>
 
           {/* Form Column (7 Cols) */}

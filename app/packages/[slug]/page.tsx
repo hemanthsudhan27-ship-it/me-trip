@@ -8,6 +8,7 @@ import { Calendar, Tag, Compass, CheckCircle2, ChevronLeft, PhoneCall, ShieldChe
 import { motion } from "framer-motion";
 import { packages } from "@/data/packages";
 import { useUIModals } from "@/providers/UIModalProvider";
+import { getSpecialistContact } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import PackageCard from "@/components/ui/PackageCard";
@@ -195,21 +196,31 @@ export default function PackageDetails() {
               </div>
 
               {/* Action Buttons */}
-              <div className="space-y-3">
-                <Button
-                  onClick={() => enquiry.open(pkg.name)}
-                  className="w-full bg-primary hover:bg-primary/95 text-white font-extrabold py-3.5 rounded-full shadow-lg transform active:scale-95 transition-transform text-sm"
-                >
-                  Book / Enquire Now
-                </Button>
-                <a
-                  href="tel:+917736322522"
-                  className="w-full border border-border hover:bg-muted text-foreground font-extrabold py-3 rounded-full text-xs flex items-center justify-center gap-1.5 transition-colors"
-                >
-                  <PhoneCall className="h-4 w-4 text-accent" />
-                  Call Destination Specialist
-                </a>
-              </div>
+              {(() => {
+                const specialist = getSpecialistContact(pkg.name);
+                return (
+                  <div className="space-y-3">
+                    <Button
+                      onClick={() => enquiry.open(pkg.name)}
+                      className="w-full bg-primary hover:bg-primary/95 text-white font-extrabold py-3.5 rounded-full shadow-lg transform active:scale-95 transition-transform text-sm"
+                    >
+                      Book / Enquire Now
+                    </Button>
+                    <a
+                      href={`tel:+${specialist.rawPhone}`}
+                      className="w-full border border-border hover:bg-muted text-foreground font-extrabold py-3 rounded-full text-xs flex flex-col items-center justify-center gap-0.5 transition-colors text-center"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <PhoneCall className="h-4 w-4 text-accent" />
+                        Call Destination Specialist
+                      </span>
+                      <span className="text-[10px] text-muted-foreground font-normal">
+                        {specialist.formattedPhone}
+                      </span>
+                    </a>
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Travel trust box */}

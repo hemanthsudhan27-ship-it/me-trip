@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { packages } from "@/data/packages";
 import { useUIModals } from "@/providers/UIModalProvider";
 import { CheckCircle2, Loader2, Compass } from "lucide-react";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 // Form validation schema using Zod
 const enquirySchema = z.object({
@@ -65,7 +66,6 @@ export default function EnquiryModal() {
   const onSubmit = async (data: EnquiryFormValues) => {
     setIsSubmitting(true);
     
-    const phoneNumber = "917736322522";
     const messageText = `Hello Me Trip Holidays, I would like to enquire about a package!
     
 *Name*: ${data.name}
@@ -74,7 +74,7 @@ export default function EnquiryModal() {
 *Destination*: ${data.destination}
 ${data.message ? `*Message*: ${data.message}` : ""}`;
     
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+    const whatsappUrl = buildWhatsAppUrl(data.destination, messageText);
 
     // Simulate API request delay for better UX
     await new Promise((resolve) => setTimeout(resolve, 800));
