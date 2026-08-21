@@ -181,7 +181,7 @@ export default function DestinationsPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8"
             >
               {filteredPackages.map((pkg, index) => (
                 <motion.div
@@ -192,7 +192,7 @@ export default function DestinationsPage() {
                   className="group bg-white dark:bg-card border border-border/60 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
                 >
                   {/* Image Thumbnail */}
-                  <div className="relative h-60 w-full overflow-hidden bg-muted">
+                  <div className="relative h-36 sm:h-60 w-full overflow-hidden bg-muted">
                     <Image
                       src={pkg.image}
                       alt={pkg.name}
@@ -202,49 +202,49 @@ export default function DestinationsPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20" />
 
                     {/* Type Badge */}
-                    <div className={`absolute top-4 left-4 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider ${
+                    <div className={`absolute top-2 left-2 sm:top-4 sm:left-4 text-white text-[8px] sm:text-[10px] font-extrabold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider ${
                       pkg.type === "college" ? "bg-yellow-400 text-yellow-950" : "bg-black/40 backdrop-blur-md border border-white/20"
                     }`}>
-                      {pkg.type === "international" ? "International" : pkg.type === "college" ? "College Tour" : "Domestic"}
+                      {pkg.type === "international" ? "Intl" : pkg.type === "college" ? "College" : "Domestic"}
                     </div>
 
                     {/* Duration Badge */}
-                    <div className="absolute top-4 right-4 bg-primary text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                    <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-primary text-white text-[8px] sm:text-[10px] font-extrabold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-md">
                       {pkg.duration}
                     </div>
 
                     {/* Quick View Button on Image */}
                     <button
                       onClick={() => quickView.open(pkg)}
-                      className="absolute bottom-4 right-4 bg-white/20 hover:bg-white/40 border border-white/30 text-white backdrop-blur-md p-2 rounded-full shadow-lg transition-transform hover:scale-110"
+                      className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-white/20 hover:bg-white/40 border border-white/30 text-white backdrop-blur-md p-1.5 sm:p-2 rounded-full shadow-lg transition-transform hover:scale-110"
                       title="Quick Preview"
                     >
-                      <Eye className="h-4 w-4" />
+                      <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                     </button>
 
                     {/* Destination Name Overlay */}
-                    <div className="absolute bottom-4 left-4 right-16">
-                      <h3 className="font-heading font-extrabold text-xl text-white leading-tight drop-shadow-md">
+                    <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 right-10 sm:right-16">
+                      <h3 className="font-heading font-extrabold text-sm sm:text-xl text-white leading-tight drop-shadow-md">
                         {pkg.name}
                       </h3>
                     </div>
                   </div>
 
                   {/* Card Content Body */}
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                  <div className="p-3 sm:p-6 flex-1 flex flex-col justify-between space-y-2.5 sm:space-y-4">
+                    <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed line-clamp-2">
                       {pkg.description}
                     </p>
 
                     {/* Highlights bullet points */}
-                    <div className="space-y-1.5 border-t border-border/50 pt-3">
-                      <span className="text-[10px] font-extrabold text-primary uppercase tracking-widest block">
-                        Tour Highlights
+                    <div className="space-y-1 sm:space-y-1.5 border-t border-border/50 pt-2 sm:pt-3">
+                      <span className="text-[9px] sm:text-[10px] font-extrabold text-primary uppercase tracking-widest block">
+                        Highlights
                       </span>
                       <ul className="space-y-1">
                         {pkg.highlights.slice(0, 2).map((hl, hIdx) => (
-                          <li key={hIdx} className="text-[11px] text-foreground/80 flex items-center gap-1.5 line-clamp-1">
-                            <Sparkles className="h-3 w-3 text-accent shrink-0" />
+                          <li key={hIdx} className="text-[10px] sm:text-[11px] text-foreground/80 flex items-center gap-1 line-clamp-1">
+                            <Sparkles className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-accent shrink-0" />
                             <span>{hl}</span>
                           </li>
                         ))}
@@ -252,26 +252,26 @@ export default function DestinationsPage() {
                     </div>
 
                     {/* Price & Action Row */}
-                    <div className="flex items-center justify-between border-t border-border/50 pt-4 mt-auto">
+                    <div className="flex items-center justify-between border-t border-border/50 pt-3 sm:pt-4 mt-auto">
                       <div>
-                        <span className="text-[9px] font-extrabold text-muted-foreground uppercase tracking-wider block">Starting From</span>
-                        <span className="font-heading font-extrabold text-lg text-primary">{pkg.price}</span>
+                        <span className="text-[8px] sm:text-[9px] font-extrabold text-muted-foreground uppercase tracking-wider block">From</span>
+                        <span className="font-heading font-extrabold text-xs sm:text-lg text-primary">{pkg.price}</span>
                       </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1 sm:gap-2">
                         <Button
                           onClick={() => enquiry.open(pkg.name)}
-                          className="bg-primary hover:bg-primary/95 text-white font-extrabold text-xs px-4 py-2 rounded-full shadow-md active:scale-95 transition-transform"
+                          className="bg-primary hover:bg-primary/95 text-white font-extrabold text-[10px] sm:text-xs px-2.5 sm:px-4 py-1 sm:py-2 h-auto rounded-full shadow-md active:scale-95 transition-transform"
                         >
                           Enquire
                         </Button>
                         <Link href={`/packages/${pkg.slug}`}>
                           <Button
                             variant="outline"
-                            className="rounded-full px-3 py-2 text-xs border-border hover:bg-muted"
+                            className="rounded-full px-1.5 sm:px-3 py-1 sm:py-2 h-auto text-[10px] sm:text-xs border-border hover:bg-muted"
                             title="View Itinerary"
                           >
-                            <ArrowRight className="h-3.5 w-3.5" />
+                            <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                           </Button>
                         </Link>
                       </div>
