@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { packages } from "@/data/packages";
 import { useUIModals } from "@/providers/UIModalProvider";
-import { CheckCircle2, Loader2, Compass } from "lucide-react";
+import { CheckCircle2, Loader2, Compass, Users, Baby, CalendarDays } from "lucide-react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 // Form validation schema using Zod
@@ -21,6 +21,9 @@ const enquirySchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   phone: z.string().regex(/^\+?[0-9\s-]{10,15}$/, { message: "Please enter a valid phone number (10-15 digits)." }),
   destination: z.string().min(1, { message: "Please select a destination." }),
+  adults: z.string().min(1, { message: "Please select number of adults." }),
+  children: z.string().min(1, { message: "Please select number of children." }),
+  preferredDate: z.string().min(1, { message: "Please select your preferred travel date." }),
   message: z.string().optional(),
 });
 
@@ -36,7 +39,6 @@ export default function EnquiryModal() {
     handleSubmit,
     control,
     reset,
-    setValue,
     formState: { errors },
   } = useForm<EnquiryFormValues>({
     resolver: zodResolver(enquirySchema),
@@ -45,6 +47,9 @@ export default function EnquiryModal() {
       email: "",
       phone: "",
       destination: "",
+      adults: "",
+      children: "",
+      preferredDate: "",
       message: "",
     },
   });
@@ -58,6 +63,9 @@ export default function EnquiryModal() {
         email: "",
         phone: "",
         destination: enquiry.packageName || "",
+        adults: "",
+        children: "",
+        preferredDate: "",
         message: "",
       });
     }
@@ -65,24 +73,28 @@ export default function EnquiryModal() {
 
   const onSubmit = async (data: EnquiryFormValues) => {
     setIsSubmitting(true);
-    
-    const messageText = `Hello Me Trip Holidays, I would like to enquire about a package!
-    
+
+    const childrenText = data.children === "0" ? "None" : data.children;
+
+    const messageText = `Hello ME TRIP HOLIDAYS, I would like to enquire about a package!
+
 *Name*: ${data.name}
 *Email*: ${data.email}
 *Phone*: ${data.phone}
-*Destination*: ${data.destination}
-${data.message ? `*Message*: ${data.message}` : ""}`;
-    
+*Destination / Package*: ${data.destination}
+*Adults*: ${data.adults}
+*Children*: ${childrenText}
+*Preferred Travel Date*: ${data.preferredDate}${data.message ? `\n*Message*: ${data.message}` : ""}`;
+
     const whatsappUrl = buildWhatsAppUrl(data.destination, messageText);
 
     // Simulate API request delay for better UX
     await new Promise((resolve) => setTimeout(resolve, 800));
-    
+
     console.log("Enquiry Form Submitted: ", data);
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
+
     // Redirect to WhatsApp
     window.open(whatsappUrl, "_blank");
   };
@@ -97,15 +109,15 @@ ${data.message ? `*Message*: ${data.message}` : ""}`;
 
   return (
     <Dialog open={enquiry.isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-[92vw] sm:max-w-[450px] p-5 sm:p-6 max-h-[90vh] overflow-y-auto rounded-xl glass border-border shadow-2xl">
+      <DialogContent className="max-w-[92vw] sm:max-w-[460px] p-5 sm:p-6 max-h-[90vh] overflow-y-auto rounded-xl glass border-border shadow-2xl">
         <DialogHeader className="space-y-1 text-left">
           <DialogTitle className="text-xl font-heading font-extrabold flex items-center gap-2 text-foreground">
             <Compass className="h-5 w-5 text-primary" />
             Plan Your Journey
           </DialogTitle>
           <DialogDescription className="text-xs text-muted-foreground">
-            {isSubmitted 
-              ? "Your request has been successfully received." 
+            {isSubmitted
+              ? "Your request has been successfully received."
               : "Fill out the form below, and our travel experts will design your perfect holiday package within 24 hours."}
           </DialogDescription>
         </DialogHeader>
@@ -278,12 +290,103 @@ ${data.message ? `*Message*: ${data.message}` : ""}`;
               )}
             </div>
 
+            {/* Adults + Children side by side */}
+            <div className="grid grid-cols-2 gap-3">
+              {/* Adults */}
+              <div className="space-y-1.5">
+                <Label htmlFor="enquiry-adults" className="text-xs font-bold text-foreground flex items-center gap-1">
+                  <Users className="h-3 w-3 text-primary" />
+                  Adults
+                </Label>
+                <Controller
+                  name="adults"
+                  control={control}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger
+                        id="enquiry-adults"
+                        className={`rounded-lg py-2.5 text-sm focus:ring-primary w-full ${
+                          errors.adults ? "border-destructive focus:ring-destructive" : ""
+                        }`}
+                      >
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-popover text-popover-foreground border border-border shadow-xl rounded-xl z-50">
+                        {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10+"].map((n) => (
+                          <SelectItem key={n} value={n} className="cursor-pointer text-sm">
+                            {n} {parseInt(n) === 1 ? "Adult" : "Adults"}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                {errors.adults && (
+                  <p className="text-[11px] font-semibold text-destructive">{errors.adults.message}</p>
+                )}
+              </div>
+
+              {/* Children */}
+              <div className="space-y-1.5">
+                <Label htmlFor="enquiry-children" className="text-xs font-bold text-foreground flex items-center gap-1">
+                  <Baby className="h-3 w-3 text-primary" />
+                  Children
+                </Label>
+                <Controller
+                  name="children"
+                  control={control}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger
+                        id="enquiry-children"
+                        className={`rounded-lg py-2.5 text-sm focus:ring-primary w-full ${
+                          errors.children ? "border-destructive focus:ring-destructive" : ""
+                        }`}
+                      >
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-popover text-popover-foreground border border-border shadow-xl rounded-xl z-50">
+                        {["0", "1", "2", "3", "4", "5", "5+"].map((n) => (
+                          <SelectItem key={n} value={n} className="cursor-pointer text-sm">
+                            {n === "0" ? "No Children" : `${n} ${parseInt(n) === 1 ? "Child" : "Children"}`}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                {errors.children && (
+                  <p className="text-[11px] font-semibold text-destructive">{errors.children.message}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Preferred Travel Date */}
+            <div className="space-y-1.5">
+              <Label htmlFor="enquiry-date" className="text-xs font-bold text-foreground flex items-center gap-1">
+                <CalendarDays className="h-3 w-3 text-primary" />
+                Preferred Travel Date
+              </Label>
+              <Input
+                id="enquiry-date"
+                type="date"
+                {...register("preferredDate")}
+                min={new Date().toISOString().split("T")[0]}
+                className={`rounded-lg py-2 text-sm focus-visible:ring-primary ${
+                  errors.preferredDate ? "border-destructive focus-visible:ring-destructive" : ""
+                }`}
+              />
+              {errors.preferredDate && (
+                <p className="text-[11px] font-semibold text-destructive">{errors.preferredDate.message}</p>
+              )}
+            </div>
+
             {/* Message */}
             <div className="space-y-1.5">
               <Label htmlFor="enquiry-message" className="text-xs font-bold text-foreground">Message (Optional)</Label>
               <Textarea
                 id="enquiry-message"
-                placeholder="Mention travel dates, number of travelers, budget preferences..."
+                placeholder="Any special requests, budget preferences, or custom itinerary details..."
                 rows={3}
                 {...register("message")}
                 className="rounded-lg py-2 text-sm focus-visible:ring-primary"
@@ -302,7 +405,7 @@ ${data.message ? `*Message*: ${data.message}` : ""}`;
                   Sending Request...
                 </>
               ) : (
-                "Submit Inquiry"
+                "Submit Inquiry via WhatsApp"
               )}
             </Button>
           </form>

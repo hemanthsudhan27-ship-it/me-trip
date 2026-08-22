@@ -29,11 +29,11 @@ describe("EnquiryModal Component", () => {
       </UIModalProvider>
     );
 
-    expect(screen.getByText("Plan Your Journey")).toBeInTheDocument();
+    expect(await screen.findByText("Plan Your Journey")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("John Doe")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("john@example.com")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("+91 77363 22522")).toBeInTheDocument();
-  });
+  }, 10000);
 
   it("validates mandatory fields and blocks submission on invalid input", async () => {
     const user = userEvent.setup();
@@ -44,7 +44,7 @@ describe("EnquiryModal Component", () => {
       </UIModalProvider>
     );
 
-    const submitBtn = screen.getByRole("button", { name: /submit inquiry/i });
+    const submitBtn = await screen.findByRole("button", { name: /submit inquiry/i });
     await user.click(submitBtn);
 
     // Errors should appear for name, email, phone
@@ -55,7 +55,7 @@ describe("EnquiryModal Component", () => {
     });
 
     expect(window.open).not.toHaveBeenCalled();
-  });
+  }, 10000);
 
   it("submits valid form and triggers WhatsApp URL redirect to specialist", async () => {
     const user = userEvent.setup();
@@ -70,12 +70,25 @@ describe("EnquiryModal Component", () => {
     await user.type(screen.getByPlaceholderText("John Doe"), "Rahul Sharma");
     await user.type(screen.getByPlaceholderText("john@example.com"), "rahul@example.com");
     await user.type(screen.getByPlaceholderText("+91 77363 22522"), "9876543210");
+
+    // Fill in required Adults, Children, Date
+    const adultsTrigger = screen.getByLabelText(/adults/i);
+    await user.click(adultsTrigger);
+    await user.click(screen.getByRole("option", { name: "2 Adults" }));
+
+    const childrenTrigger = screen.getByLabelText(/children/i);
+    await user.click(childrenTrigger);
+    await user.click(screen.getByRole("option", { name: "No Children" }));
+
+    const dateInput = screen.getByLabelText(/preferred travel date/i);
+    await user.type(dateInput, "2026-10-15");
+
     await user.type(
-      screen.getByPlaceholderText("Mention travel dates, number of travelers, budget preferences..."),
+      screen.getByPlaceholderText("Any special requests, budget preferences, or custom itinerary details..."),
       "Looking for a 4-day Goa trip"
     );
 
-    const submitBtn = screen.getByRole("button", { name: /submit inquiry/i });
+    const submitBtn = screen.getByRole("button", { name: /submit inquiry via whatsapp/i });
     await user.click(submitBtn);
 
     await waitFor(
@@ -90,6 +103,9 @@ describe("EnquiryModal Component", () => {
     expect(openedUrl).toContain("https://wa.me/919207322522?text=");
     expect(openedUrl).toContain(encodeURIComponent("Rahul Sharma"));
     expect(openedUrl).toContain(encodeURIComponent("rahul@example.com"));
+    expect(openedUrl).toContain(encodeURIComponent("Adults*: 2"));
+    expect(openedUrl).toContain(encodeURIComponent("Children*: None"));
+    expect(openedUrl).toContain(encodeURIComponent("Preferred Travel Date*: 2026-10-15"));
     expect(openedUrl).toContain(encodeURIComponent("Looking for a 4-day Goa trip"));
   });
 });

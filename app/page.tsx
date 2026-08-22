@@ -303,8 +303,8 @@ export default function Home() {
         {/* College Section Header Banner */}
         <div className="relative h-[380px] w-full flex items-center overflow-hidden">
           <Image
-            src="/images/college/college-hero.jpg"
-            alt="College students celebrating on a mountain peak during a Me Trip Holidays college group tour"
+            src="/images/college/kasol-camping.jpg"
+            alt="College students camping and celebrating by a riverside bonfire during a Me Trip Holidays college group tour"
             fill
             className="object-cover object-center"
           />
