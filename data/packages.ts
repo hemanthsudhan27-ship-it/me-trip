@@ -24,7 +24,7 @@ export const packages: Package[] = [
   {
     id: "int-maldives",
     slug: "maldives-paradise",
-    name: "Maldives Luxury Escape",
+    name: "Maldives",
     type: "international",
     duration: "4D/3N",
     image: "/images/destinations/maldives.jpg",
@@ -69,7 +69,7 @@ export const packages: Package[] = [
   {
     id: "int-phuket-krabi",
     slug: "phuket-krabi-islands",
-    name: "Phuket & Krabi Island Explorer",
+    name: "Phuket & Krabi",
     type: "international",
     duration: "5D/4N",
     image: "/images/destinations/phuket.jpg",
@@ -120,7 +120,7 @@ export const packages: Package[] = [
   {
     id: "int-bali",
     slug: "bali-cultural-beaches",
-    name: "Bali Wonders & Culture",
+    name: "Bali",
     type: "international",
     duration: "4D/3N",
     image: "/images/destinations/bali.jpg",
@@ -165,7 +165,7 @@ export const packages: Package[] = [
   {
     id: "int-pattaya-bangkok",
     slug: "pattaya-bangkok",
-    name: "Pattaya & Bangkok Explorer",
+    name: "Pattaya & Bangkok",
     type: "international",
     duration: "4D/3N",
     image: "/images/destinations/bangkok.jpg",
@@ -210,7 +210,7 @@ export const packages: Package[] = [
   {
     id: "int-malaysia-kl",
     slug: "malaysia-kuala-lumpur",
-    name: "Malaysia Kuala Lumpur City Escape",
+    name: "Kuala Lumpur",
     type: "international",
     duration: "4D/3N",
     image: "/images/destinations/kuala-lumpur.jpg",
@@ -255,7 +255,7 @@ export const packages: Package[] = [
   {
     id: "int-malaysia-langkawi",
     slug: "malaysia-langkawi-island",
-    name: "Malaysia Langkawi Island Paradise",
+    name: "Langkawi",
     type: "international",
     duration: "3D/2N",
     image: "/images/destinations/langkawi.jpg",
@@ -294,7 +294,7 @@ export const packages: Package[] = [
   {
     id: "int-vietnam-danang-hanoi-saigon",
     slug: "vietnam-grand-tour",
-    name: "Vietnam Grand: Danang, Hanoi & Ho Chi Minh",
+    name: "Danang, Hanoi & Ho Chi Minh",
     type: "international",
     duration: "6D/5N",
     image: "/images/destinations/vietnam.jpg",
@@ -351,7 +351,7 @@ export const packages: Package[] = [
   {
     id: "int-vietnam-danang-hanoi",
     slug: "vietnam-heritage-danang-hanoi",
-    name: "Vietnam Heritage: Danang & Hanoi",
+    name: "Danang & Hanoi",
     type: "international",
     duration: "5D/4N",
     image: "/images/destinations/danang.jpg",
@@ -402,7 +402,7 @@ export const packages: Package[] = [
   {
     id: "int-hanoi",
     slug: "hanoi-vietnam-capital",
-    name: "Classic Hanoi & Halong Bay",
+    name: "Hanoi & Halong Bay",
     type: "international",
     duration: "5D/4N",
     image: "/images/destinations/hanoi.jpg",
@@ -453,7 +453,7 @@ export const packages: Package[] = [
   {
     id: "int-pattaya-budget",
     slug: "pattaya-beach-break",
-    name: "Pattaya Beach Getaway",
+    name: "Pattaya",
     type: "international",
     duration: "4D/3N",
     image: "/images/destinations/pattaya.jpg",
@@ -501,7 +501,7 @@ export const packages: Package[] = [
   {
     id: "dom-kashmir",
     slug: "kashmir-paradise-valley",
-    name: "Kashmir – Paradise Valley",
+    name: "Kashmir",
     type: "domestic",
     duration: "5D/4N",
     image: "/images/destinations/kashmir.jpg",
@@ -552,7 +552,7 @@ export const packages: Package[] = [
   {
     id: "dom-delhi-agra-manali",
     slug: "delhi-agra-kullu-manali",
-    name: "Delhi – Agra – Kullu Manali Grand Tour",
+    name: "Delhi, Agra & Manali",
     type: "domestic",
     duration: "6D/5N",
     image: "/images/destinations/delhi-manali.jpg",
@@ -609,7 +609,7 @@ export const packages: Package[] = [
   {
     id: "dom-kullu-manali-kasol",
     slug: "kullu-manali-kasol",
-    name: "Kullu Manali & Kasol Adventure",
+    name: "Manali & Kasol",
     type: "domestic",
     duration: "6D/5N",
     image: "/images/destinations/manali.jpg",
@@ -666,7 +666,7 @@ export const packages: Package[] = [
   {
     id: "dom-rajasthan",
     slug: "rajasthan-royal-heritage",
-    name: "Rajasthan Royal Heritage Tour",
+    name: "Rajasthan",
     type: "domestic",
     duration: "5D/4N",
     image: "/images/destinations/rajasthan.jpg",
@@ -717,7 +717,7 @@ export const packages: Package[] = [
   {
     id: "dom-lakshadweep",
     slug: "lakshadweep-coral-islands",
-    name: "Lakshadweep Coral Island Escape",
+    name: "Lakshadweep",
     type: "domestic",
     duration: "4D/3N",
     image: "/images/destinations/lakshadweep.jpg",
@@ -762,7 +762,7 @@ export const packages: Package[] = [
   {
     id: "dom-agra-delhi",
     slug: "agra-delhi-heritage",
-    name: "Agra Delhi Heritage Getaway",
+    name: "Agra & Delhi",
     type: "domestic",
     duration: "3D/2N",
     image: "/images/destinations/agra.jpg",
@@ -801,7 +801,7 @@ export const packages: Package[] = [
   {
     id: "dom-meghalaya",
     slug: "meghalaya-abode-of-clouds",
-    name: "Meghalaya: Abode of Clouds",
+    name: "Meghalaya",
     type: "domestic",
     duration: "5D/4N",
     image: "/images/destinations/meghalaya.jpg",
@@ -852,7 +852,7 @@ export const packages: Package[] = [
   {
     id: "dom-goa",
     slug: "goa-beach-paradise",
-    name: "Goa Beach Paradise",
+    name: "Goa",
     type: "domestic",
     duration: "3D/2N",
     image: "/images/destinations/goa.jpg",
@@ -891,7 +891,7 @@ export const packages: Package[] = [
   {
     id: "dom-hyderabad",
     slug: "hyderabad-city-of-pearls",
-    name: "Hyderabad Heritage Tour",
+    name: "Hyderabad",
     type: "domestic",
     duration: "4D/3N",
     image: "/images/destinations/hyderabad.jpg",
@@ -936,7 +936,7 @@ export const packages: Package[] = [
   {
     id: "dom-golden-triangle",
     slug: "golden-triangle-india",
-    name: "Golden Triangle: Delhi – Agra – Jaipur",
+    name: "Delhi, Agra & Jaipur",
     type: "domestic",
     duration: "5D/4N",
     image: "/images/destinations/golden-triangle.jpg",
@@ -987,7 +987,7 @@ export const packages: Package[] = [
   {
     id: "dom-kullu-manali",
     slug: "kullu-manali-snow-adventure",
-    name: "Kullu Manali Snow Adventure",
+    name: "Manali",
     type: "domestic",
     duration: "5D/4N",
     image: "/images/destinations/manali.jpg",
@@ -1038,7 +1038,7 @@ export const packages: Package[] = [
   {
     id: "dom-spiti-valley",
     slug: "spiti-valley-adventure",
-    name: "Spiti Valley Himalayan Expedition",
+    name: "Spiti Valley",
     type: "domestic",
     duration: "7D/6N",
     image: "/images/destinations/spiti.jpg",
@@ -1104,7 +1104,7 @@ export const packages: Package[] = [
   {
     id: "col-agra-delhi",
     slug: "college-agra-delhi",
-    name: "College Tour: Agra & Delhi",
+    name: "Agra & Delhi",
     type: "college",
     duration: "2D/1N",
     image: "/images/college/agra-delhi.jpg",
@@ -1137,7 +1137,7 @@ export const packages: Package[] = [
   {
     id: "col-agra-delhi-manali",
     slug: "college-agra-delhi-manali",
-    name: "College Tour: Agra, Delhi & Manali",
+    name: "Agra, Delhi & Manali",
     type: "college",
     duration: "5D/4N",
     image: "/images/college/manali-rafting.jpg",
@@ -1188,7 +1188,7 @@ export const packages: Package[] = [
   {
     id: "col-delhi-manali",
     slug: "college-delhi-manali",
-    name: "College Tour: Delhi & Manali",
+    name: "Delhi & Manali",
     type: "college",
     duration: "4D/3N",
     image: "/images/college/manali-paragliding.jpg",
@@ -1233,7 +1233,7 @@ export const packages: Package[] = [
   {
     id: "col-agra-delhi-manali-kasol",
     slug: "college-agra-delhi-manali-kasol",
-    name: "College Tour: Agra, Delhi, Manali & Kasol",
+    name: "Agra, Delhi, Manali & Kasol",
     type: "college",
     duration: "7D/6N",
     image: "/images/college/kasol-camping.jpg",
@@ -1296,7 +1296,7 @@ export const packages: Package[] = [
   {
     id: "col-agra-delhi-manali-kasol-grahan",
     slug: "college-agra-delhi-manali-kasol-grahan",
-    name: "College Tour: Agra, Delhi, Manali, Kasol & Grahan",
+    name: "Agra, Delhi, Manali, Kasol & Grahan",
     type: "college",
     duration: "8D/7N",
     image: "/images/college/grahan-village.jpg",
@@ -1365,7 +1365,7 @@ export const packages: Package[] = [
   {
     id: "col-agra-delhi-kashmir",
     slug: "college-agra-delhi-kashmir",
-    name: "College Tour: Agra, Delhi & Kashmir",
+    name: "Agra, Delhi & Kashmir",
     type: "college",
     duration: "6D/5N",
     image: "/images/college/kashmir-shikara.jpg",
@@ -1422,7 +1422,7 @@ export const packages: Package[] = [
   {
     id: "col-agra-delhi-jaipur",
     slug: "college-agra-delhi-jaipur",
-    name: "College Tour: Agra, Delhi & Jaipur",
+    name: "Agra, Delhi & Jaipur",
     type: "college",
     duration: "4D/3N",
     image: "/images/college/jaipur-golden-triangle.jpg",
@@ -1467,7 +1467,7 @@ export const packages: Package[] = [
   {
     id: "col-jaipur-jodhpur-jaisalmer",
     slug: "college-jaipur-jodhpur-jaisalmer",
-    name: "College Tour: Jaipur, Jodhpur & Jaisalmer",
+    name: "Jaipur, Jodhpur & Jaisalmer",
     type: "college",
     duration: "5D/4N",
     image: "/images/college/rajasthan-forts.jpg",
