@@ -612,7 +612,7 @@ export const packages: Package[] = [
     name: "Manali & Kasol",
     type: "domestic",
     duration: "6D/5N",
-    image: "/images/destinations/manali.jpg",
+    image: "/images/destinations/kasol.jpg",
     description:
       "Combine the snow-capped peaks of Kullu Manali with the riverside hippie village of Kasol in the Parvati Valley. Perfect for nature lovers, trekkers, and those seeking mountain serenity.",
     highlights: [
