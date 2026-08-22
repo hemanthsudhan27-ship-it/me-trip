@@ -14,6 +14,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ExpandableGallery from "@/components/ui/gallery-animation";
 
 export default function Home() {
   const { enquiry, quickView } = useUIModals();
@@ -576,41 +577,17 @@ export default function Home() {
           </div>
         </ScrollReveal>
 
-        <ScrollStaggerContainer staggerDelay={0.12} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 h-[350px] md:h-[280px]">
-          <ScrollStaggerItem direction="scale" className="h-full w-full md:col-span-2">
-            <div className="relative h-full w-full rounded-xl overflow-hidden group shadow-md">
-              <Image
-                src="/images/destinations/maldives.jpg"
-                alt="Maldives Resort"
-                fill
-                className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-black/20" />
-            </div>
-          </ScrollStaggerItem>
-          <ScrollStaggerItem direction="scale" className="h-full w-full">
-            <div className="relative h-full w-full rounded-xl overflow-hidden group shadow-md">
-              <Image
-                src="/images/destinations/bali.jpg"
-                alt="Bali Temple"
-                fill
-                className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-black/20" />
-            </div>
-          </ScrollStaggerItem>
-          <ScrollStaggerItem direction="scale" className="h-full w-full">
-            <div className="relative h-full w-full rounded-xl overflow-hidden group shadow-md">
-              <Image
-                src="/images/destinations/vietnam.jpg"
-                alt="Halong Bay"
-                fill
-                className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-black/20" />
-            </div>
-          </ScrollStaggerItem>
-        </ScrollStaggerContainer>
+        <ScrollReveal direction="up" delay={0.1}>
+          <ExpandableGallery
+            images={[
+              "/images/destinations/maldives.jpg",
+              "/images/destinations/manali.jpg",
+              "/images/destinations/bali.jpg",
+              "/images/destinations/kasol.jpg",
+            ]}
+            className="w-full"
+          />
+        </ScrollReveal>
       </section>
 
       {/* 8. CLOSING CTA BANNER */}
