@@ -42,7 +42,7 @@ export default function Footer() {
                 alt="ME TRIP HOLIDAYS Logo"
                 width={180}
                 height={52}
-                className="h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+                className="h-11 w-auto object-contain invert transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </Link>
             <p className="text-sm text-background/60 leading-relaxed">
@@ -117,7 +117,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="block text-primary hover:underline text-[11px] font-semibold"
                   >
-                    📍 Open Google Maps
+                    Open Google Maps
                   </a>
                 </div>
               </li>
@@ -132,7 +132,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="block text-accent hover:underline text-[11px] font-semibold"
                   >
-                    📍 Open Google Maps
+                    Open Google Maps
                   </a>
                 </div>
               </li>
@@ -198,14 +198,12 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} ME TRIP HOLIDAYS. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/about" className="hover:text-primary transition-colors">
-              Privacy Policy
+
             </Link>
             <Link href="/contact" className="hover:text-primary transition-colors">
-              Terms of Service
+
             </Link>
-            <Link href="/contact" className="hover:text-primary transition-colors">
-              Sitemap
-            </Link>
+
           </div>
         </div>
       </div>

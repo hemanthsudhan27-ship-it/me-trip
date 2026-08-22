@@ -1106,7 +1106,7 @@ export const packages: Package[] = [
     slug: "college-agra-delhi",
     name: "Agra & Delhi",
     type: "college",
-    duration: "2D/1N",
+    duration: "3D/2N",
     image: "/images/college/agra-delhi.jpg",
     description:
       "The most budget-friendly college tour covering India's two most iconic heritage destinations. Visit the world-famous Taj Mahal in Agra and the historic Red Fort and Qutub Minar in Delhi. Perfect for a short study-trip or cultural excursion.",

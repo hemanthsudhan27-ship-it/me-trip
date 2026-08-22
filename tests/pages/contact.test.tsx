@@ -42,7 +42,7 @@ describe("Contact Page", () => {
     const user = userEvent.setup();
     render(<Contact />);
 
-    const honeymoonPill = screen.getByRole("button", { name: /💍 honeymoon/i });
+    const honeymoonPill = screen.getByRole("button", { name: /^honeymoon$/i });
     expect(honeymoonPill).toBeInTheDocument();
 
     await user.click(honeymoonPill);

@@ -195,7 +195,7 @@ export default function Contact() {
               <div className="space-y-2.5 text-xs">
                 <div className="border-b border-border/40 pb-2">
                   <span className="font-bold text-foreground block text-[11px] text-primary">
-                    ✈️ International (Thailand, Malaysia, Vietnam, Bali, Maldives)
+                    International (Thailand, Malaysia, Vietnam, Bali, Maldives)
                   </span>
                   <a href="tel:+917736322522" className="text-muted-foreground hover:text-primary transition-colors text-[11px] font-semibold">
                     +91 7736 322 522
@@ -203,7 +203,7 @@ export default function Contact() {
                 </div>
                 <div className="space-y-1.5 pt-1">
                   <span className="font-bold text-foreground block text-[11px] text-accent">
-                    🗺️ Domestic Specialists
+                    Domestic Specialists
                   </span>
                   <ul className="space-y-1 text-[11px] text-muted-foreground">
                     <li className="flex justify-between items-center gap-2">
@@ -302,11 +302,11 @@ export default function Contact() {
                     </Label>
                     <div className="flex flex-wrap gap-2">
                       {[
-                        { label: "🏖️ Holiday Tour", value: "Holiday Tour" },
-                        { label: "💍 Honeymoon", value: "Honeymoon" },
-                        { label: "👨‍👩‍👧 Family Trip", value: "Family Trip" },
-                        { label: "👥 Group Tour", value: "Group Tour" },
-                        { label: "💼 Corporate / Visa", value: "Corporate / Visa" },
+                        { label: "Holiday Tour", value: "Holiday Tour" },
+                        { label: "Honeymoon", value: "Honeymoon" },
+                        { label: "Family Trip", value: "Family Trip" },
+                        { label: "Group Tour", value: "Group Tour" },
+                        { label: "Corporate / Visa", value: "Corporate / Visa" },
                       ].map((t) => (
                         <button
                           key={t.value}
@@ -476,7 +476,7 @@ export default function Contact() {
                     </Label>
                     <Textarea
                       id="contact-msg"
-                      placeholder="Share your budget range, hotel preferences (3★/4★/5★), customized sightseeing requests, or questions..."
+                      placeholder="Share your budget range, hotel preferences (3 Star/4 Star/5 Star), customized sightseeing requests, or questions..."
                       rows={3}
                       {...register("message")}
                       className={`rounded-xl p-3 text-xs bg-muted/30 focus-visible:ring-primary focus-visible:bg-transparent transition-all leading-relaxed flex-1 min-h-[85px] ${errors.message ? "border-destructive focus-visible:ring-destructive" : "border-border/80"}`}

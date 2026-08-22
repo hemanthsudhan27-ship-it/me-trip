@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { packages } from "@/data/packages";
 import { useUIModals } from "@/providers/UIModalProvider";
 import { CheckCircle2, Loader2, Compass } from "lucide-react";
@@ -177,31 +177,101 @@ ${data.message ? `*Message*: ${data.message}` : ""}`;
 
             {/* Destination Selection */}
             <div className="space-y-1.5">
-              <Label htmlFor="enquiry-destination" className="text-xs font-bold text-foreground">Destination / Holiday Package</Label>
+              <Label htmlFor="enquiry-destination" className="text-xs font-bold text-foreground">
+                Destination / Holiday Package
+              </Label>
               <Controller
                 name="destination"
                 control={control}
-                render={({ field }) => (
-                  <Select
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
-                    <SelectTrigger
-                      id="enquiry-destination"
-                      className={`rounded-lg py-2 text-sm focus:ring-primary ${errors.destination ? "border-destructive focus:ring-destructive" : ""}`}
+                render={({ field }) => {
+                  const intPkgs = packages.filter((p) => p.type === "international");
+                  const domPkgs = packages.filter((p) => p.type === "domestic");
+                  const colPkgs = packages.filter((p) => p.type === "college");
+
+                  return (
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value}
                     >
-                      <SelectValue placeholder="Select Destination" />
-                    </SelectTrigger>
-                    <SelectContent className="glass">
-                      <SelectItem value="general" className="font-semibold text-primary">General Enquiry (Not Destination Specific)</SelectItem>
-                      {packages.map((pkg) => (
-                        <SelectItem key={pkg.id} value={pkg.name}>
-                          {pkg.name} ({pkg.duration})
+                      <SelectTrigger
+                        id="enquiry-destination"
+                        className={`rounded-lg py-2.5 px-3 text-xs sm:text-sm focus:ring-primary w-full ${
+                          errors.destination ? "border-destructive focus:ring-destructive" : ""
+                        }`}
+                      >
+                        <SelectValue placeholder="Choose a destination or package..." />
+                      </SelectTrigger>
+                      <SelectContent className="bg-popover text-popover-foreground max-h-[300px] overflow-y-auto border border-border shadow-2xl rounded-xl p-1.5 z-50">
+                        <SelectItem value="general" className="py-2 px-2.5 font-bold text-primary focus:bg-primary/10 rounded-lg cursor-pointer">
+                          General / Custom Itinerary (Any Destination)
                         </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
+
+                        {/* International */}
+                        <SelectGroup className="pt-2">
+                          <SelectLabel className="px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest text-primary flex items-center gap-1 bg-primary/10 rounded-md mb-1">
+                            International Holidays
+                          </SelectLabel>
+                          {intPkgs.map((pkg) => (
+                            <SelectItem
+                              key={pkg.id}
+                              value={pkg.name}
+                              className="py-2 px-2.5 focus:bg-muted rounded-lg cursor-pointer text-xs"
+                            >
+                              <div className="flex items-center justify-between w-full gap-2">
+                                <span className="font-semibold text-foreground">{pkg.name}</span>
+                                <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded-full font-bold shrink-0">
+                                  {pkg.duration}
+                                </span>
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+
+                        {/* Domestic */}
+                        <SelectGroup className="pt-2">
+                          <SelectLabel className="px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest text-accent flex items-center gap-1 bg-accent/10 rounded-md mb-1">
+                            Domestic Holiday Tours
+                          </SelectLabel>
+                          {domPkgs.map((pkg) => (
+                            <SelectItem
+                              key={pkg.id}
+                              value={pkg.name}
+                              className="py-2 px-2.5 focus:bg-muted rounded-lg cursor-pointer text-xs"
+                            >
+                              <div className="flex items-center justify-between w-full gap-2">
+                                <span className="font-semibold text-foreground">{pkg.name}</span>
+                                <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded-full font-bold shrink-0">
+                                  {pkg.duration}
+                                </span>
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+
+                        {/* College */}
+                        <SelectGroup className="pt-2">
+                          <SelectLabel className="px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest text-yellow-700 dark:text-yellow-400 flex items-center gap-1 bg-yellow-500/10 rounded-md mb-1">
+                            College Group Tours
+                          </SelectLabel>
+                          {colPkgs.map((pkg) => (
+                            <SelectItem
+                              key={pkg.id}
+                              value={pkg.name}
+                              className="py-2 px-2.5 focus:bg-muted rounded-lg cursor-pointer text-xs"
+                            >
+                              <div className="flex items-center justify-between w-full gap-2">
+                                <span className="font-semibold text-foreground">{pkg.name}</span>
+                                <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded-full font-bold shrink-0">
+                                  {pkg.duration}
+                                </span>
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  );
+                }}
               />
               {errors.destination && (
                 <p className="text-[11px] font-semibold text-destructive">{errors.destination.message}</p>
