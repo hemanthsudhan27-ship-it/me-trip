@@ -93,7 +93,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="space-y-24 pb-12">
+    <div className="space-y-24 pb-12 w-full overflow-x-hidden">
 
 
       {/* 1. HERO SECTION */}
@@ -169,14 +169,14 @@ export default function Home() {
 
         <Tabs defaultValue="international" className="w-full text-center space-y-10">
           <ScrollReveal direction="up" delay={0.1}>
-            <TabsList className="bg-muted p-1 rounded-full inline-flex border border-border mb-4">
-              <TabsTrigger value="international" className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider">
+            <TabsList className="bg-muted p-1 rounded-full inline-flex border border-border mb-4 max-w-full overflow-x-auto">
+              <TabsTrigger value="international" className="rounded-full px-4 sm:px-6 py-2 text-xs font-bold uppercase tracking-wider whitespace-nowrap">
                 International
               </TabsTrigger>
-              <TabsTrigger value="domestic" className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider">
+              <TabsTrigger value="domestic" className="rounded-full px-4 sm:px-6 py-2 text-xs font-bold uppercase tracking-wider whitespace-nowrap">
                 Domestic Trips
               </TabsTrigger>
-              <TabsTrigger value="college" className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider">
+              <TabsTrigger value="college" className="rounded-full px-4 sm:px-6 py-2 text-xs font-bold uppercase tracking-wider whitespace-nowrap">
                 College Tours
               </TabsTrigger>
             </TabsList>
@@ -484,12 +484,12 @@ export default function Home() {
           />
         </ScrollReveal>
 
-        <ScrollReveal direction="scale" duration={0.7} className="max-w-4xl mx-auto relative px-8">
+        <ScrollReveal direction="scale" duration={0.7} className="max-w-4xl mx-auto relative px-4 sm:px-8">
           <Carousel className="w-full">
             <CarouselContent>
               {testimonials.map((test, index) => (
                 <CarouselItem key={index}>
-                  <div className="dot-bg bg-white dark:bg-card border border-border/60 p-8 sm:p-12 rounded-2xl flex flex-col items-center text-center space-y-6 shadow-xl relative">
+                  <div className="dot-bg bg-white dark:bg-card border border-border/60 p-6 sm:p-12 rounded-2xl flex flex-col items-center text-center space-y-6 shadow-xl relative">
                     <Quote className="absolute top-6 left-6 h-10 w-10 text-primary/10" />
 
                     {/* Google Review Badge & Stars */}
@@ -550,8 +550,8 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute left-0 -translate-x-1/2 border border-border bg-white dark:bg-card" />
-            <CarouselNext className="absolute right-0 translate-x-1/2 border border-border bg-white dark:bg-card" />
+            <CarouselPrevious className="hidden sm:flex absolute left-0 -translate-x-1/2 border border-border bg-white dark:bg-card" />
+            <CarouselNext className="hidden sm:flex absolute right-0 translate-x-1/2 border border-border bg-white dark:bg-card" />
           </Carousel>
         </ScrollReveal>
       </section>

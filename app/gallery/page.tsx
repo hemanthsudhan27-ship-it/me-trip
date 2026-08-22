@@ -83,7 +83,7 @@ export default function Gallery() {
     lightboxIndex !== null ? filteredItems[lightboxIndex] : null;
 
   return (
-    <div className="space-y-12 pb-16">
+    <div className="space-y-12 pb-16 w-full overflow-x-hidden">
       {/* 1. HERO HEADER */}
       <section className="relative h-[25vh] min-h-[180px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
@@ -119,43 +119,45 @@ export default function Gallery() {
       {/* 2. GALLERY INTERACTIVE SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Tabs defaultValue="all" className="w-full text-center space-y-10">
-          {/* Filters List */}
-          <TabsList className="bg-muted p-1 rounded-full inline-flex border border-border">
-            <TabsTrigger
-              value="all"
-              onClick={() => setFilter("all")}
-              className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider"
-            >
-              All Photos
-            </TabsTrigger>
-            <TabsTrigger
-              value="international"
-              onClick={() => setFilter("international")}
-              className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider"
-            >
-              International
-            </TabsTrigger>
-            <TabsTrigger
-              value="domestic"
-              onClick={() => setFilter("domestic")}
-              className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider"
-            >
-              Domestic
-            </TabsTrigger>
-            <TabsTrigger
-              value="college"
-              onClick={() => setFilter("college")}
-              className="rounded-full px-6 py-2 text-xs font-bold uppercase tracking-wider"
-            >
-              College Tours
-            </TabsTrigger>
-          </TabsList>
+          {/* Filters List with horizontal scroll wrapper for small phones */}
+          <div className="w-full overflow-x-auto flex justify-center pb-2">
+            <TabsList className="bg-muted p-1 rounded-full inline-flex border border-border max-w-full">
+              <TabsTrigger
+                value="all"
+                onClick={() => setFilter("all")}
+                className="rounded-full px-3.5 sm:px-6 py-2 text-xs font-bold uppercase tracking-wider whitespace-nowrap"
+              >
+                All Photos
+              </TabsTrigger>
+              <TabsTrigger
+                value="international"
+                onClick={() => setFilter("international")}
+                className="rounded-full px-3.5 sm:px-6 py-2 text-xs font-bold uppercase tracking-wider whitespace-nowrap"
+              >
+                International
+              </TabsTrigger>
+              <TabsTrigger
+                value="domestic"
+                onClick={() => setFilter("domestic")}
+                className="rounded-full px-3.5 sm:px-6 py-2 text-xs font-bold uppercase tracking-wider whitespace-nowrap"
+              >
+                Domestic
+              </TabsTrigger>
+              <TabsTrigger
+                value="college"
+                onClick={() => setFilter("college")}
+                className="rounded-full px-3.5 sm:px-6 py-2 text-xs font-bold uppercase tracking-wider whitespace-nowrap"
+              >
+                College Tours
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           {/* Masonry Columns Layout */}
           <TabsContent value={filter} className="text-left">
             <motion.div
               layout
-              className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
+              className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 w-full"
             >
               {filteredItems.map((item, index) => (
                 <motion.div
