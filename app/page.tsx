@@ -200,7 +200,7 @@ export default function Home() {
 
                     {/* Info Overlay */}
                     <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-5 sm:left-5 sm:right-5 text-white space-y-0.5 sm:space-y-1">
-                      <h3 className="font-heading font-extrabold text-xs sm:text-lg leading-tight group-hover:text-primary transition-colors line-clamp-1">
+                      <h3 className="font-heading font-extrabold text-xs sm:text-lg leading-tight text-white group-hover:text-primary transition-colors line-clamp-1">
                         {pkg.name}
                       </h3>
                       <p className="text-[10px] sm:text-xs text-white/70 line-clamp-1">{pkg.description}</p>
@@ -238,7 +238,7 @@ export default function Home() {
 
                     {/* Info Overlay */}
                     <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-5 sm:left-5 sm:right-5 text-white space-y-0.5 sm:space-y-1">
-                      <h3 className="font-heading font-extrabold text-xs sm:text-lg leading-tight group-hover:text-primary transition-colors line-clamp-1">
+                      <h3 className="font-heading font-extrabold text-xs sm:text-lg leading-tight text-white group-hover:text-primary transition-colors line-clamp-1">
                         {pkg.name}
                       </h3>
                       <p className="text-[10px] sm:text-xs text-white/70 line-clamp-1">{pkg.description}</p>
@@ -276,7 +276,7 @@ export default function Home() {
 
                     {/* Info Overlay */}
                     <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-5 sm:left-5 sm:right-5 text-white space-y-0.5 sm:space-y-1">
-                      <h3 className="font-heading font-extrabold text-xs sm:text-lg leading-tight group-hover:text-yellow-400 transition-colors line-clamp-1">
+                      <h3 className="font-heading font-extrabold text-xs sm:text-lg leading-tight text-white group-hover:text-yellow-400 transition-colors line-clamp-1">
                         {pkg.name}
                       </h3>
                       <p className="text-[10px] sm:text-xs text-white/70 line-clamp-1">{pkg.description}</p>
