@@ -7,43 +7,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-
-export interface GalleryItem {
-  id: number;
-  src: string;
-  title: string;
-  category: "international" | "domestic" | "college";
-  description: string;
-}
+import { galleryItems, GalleryItem } from "@/data/gallery";
 
 export default function Gallery() {
   const [filter, setFilter] = useState("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-
-  const galleryItems: GalleryItem[] = [
-    { id: 0, src: "/images/destinations/bangkok.jpg", title: "Bangkok Temples", category: "international", description: "Ornate traditional Buddhist pagodas in Bangkok" },
-    { id: 1, src: "/images/destinations/maldives.jpg", title: "Maldives Lagoons", category: "international", description: "Overwater bungalows in crystal-clear Malé lagoon" },
-    { id: 2, src: "/images/destinations/bali.jpg", title: "Bali Valleys", category: "international", description: "Lush green terrace farms and jungle swing in Ubud" },
-    { id: 3, src: "/images/destinations/kuala-lumpur.jpg", title: "Kuala Lumpur Night", category: "international", description: "Bright lights of Petronas Twin Towers at dusk" },
-    { id: 4, src: "/images/destinations/langkawi.jpg", title: "Langkawi Archipelago", category: "international", description: "Cable car peak overlooking Andaman Sea" },
-    { id: 5, src: "/images/destinations/vietnam.jpg", title: "Halong Bay Sails", category: "international", description: "Scenic luxury cruise junk around limestone karsts" },
-    { id: 6, src: "/images/destinations/pattaya.jpg", title: "Pattaya Coastlines", category: "international", description: "Speedboats anchored along Pattaya sandy beaches" },
-    { id: 7, src: "/images/destinations/phuket.jpg", title: "Phuket Shores", category: "international", description: "Maya Bay cliff walls and transparent emerald water" },
-    { id: 8, src: "/images/destinations/danang.jpg", title: "Danang Hands Bridge", category: "international", description: "Breathtaking Golden Hands Bridge in Ba Na Hills" },
-    { id: 9, src: "/images/destinations/hanoi.jpg", title: "Hanoi Street Cafes", category: "international", description: "Quaint old French-quarter paths and train tracks" },
-    { id: 10, src: "/images/destinations/hyderabad.jpg", title: "Charminar Stone arches", category: "domestic", description: "Historic 16th-century stone monument in Hyderabad" },
-    { id: 11, src: "/images/destinations/meghalaya.jpg", title: "Meghalaya Roots", category: "domestic", description: "Famous Double Decker Living Root Bridge in Cherrapunji" },
-    { id: 12, src: "/images/destinations/manali.jpg", title: "Solang Snow Peaks", category: "domestic", description: "Scenic snowy cottage views in Solang Valley, Manali" },
-    { id: 13, src: "/images/destinations/golden-triangle.jpg", title: "Agra Sunrise Taj", category: "domestic", description: "Gorgeous morning reflection of Taj Mahal monument" },
-    { id: 14, src: "/images/destinations/agra.jpg", title: "Baby Taj Sculptures", category: "domestic", description: "Intricate marble carvings inside Itmad-ud-Daulah tomb" },
-    { id: 15, src: "/images/destinations/delhi-manali.jpg", title: "Himachal Valley Streams", category: "domestic", description: "Pine forests and mountain streams along the highway" },
-    { id: 16, src: "/images/college/college-hero.jpg", title: "Himalayas Summit Celebration", category: "college", description: "College group cheering at Manali Himalayan mountain peak" },
-    { id: 17, src: "/images/college/manali-rafting.jpg", title: "Beas River White Water Rafting", category: "college", description: "Thrilling college group river rafting expedition in Kullu" },
-    { id: 18, src: "/images/college/kasol-camping.jpg", title: "Parvati River Camping", category: "college", description: "Riverside tent camping and bonfire night in Kasol" },
-    { id: 19, src: "/images/college/kashmir-shikara.jpg", title: "Dal Lake Student Cruise", category: "college", description: "Traditional Shikara boat ride on Dal Lake in Srinagar" },
-    { id: 20, src: "/images/college/grahan-village.jpg", title: "Grahan Village Trek", category: "college", description: "Student trekking group exploring remote Grahan Himalayan village" },
-    { id: 21, src: "/images/college/jaipur-golden-triangle.jpg", title: "Hawa Mahal Student Excursion", category: "college", description: "Students photographing the iconic Hawa Mahal palace in Jaipur" },
-  ];
 
   // Filter items
   const filteredItems = galleryItems.filter(
