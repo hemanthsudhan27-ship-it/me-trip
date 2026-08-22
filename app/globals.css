@@ -160,30 +160,6 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    background-color: #E5E5F7;
-    opacity: 0.6;
-    background: radial-gradient(#444CF7 15%, transparent 16%) 0 0, radial-gradient(#444CF7 15%, transparent 16%) 5px 5px, radial-gradient(#444CF733 15%, transparent 20%) 0 1px, radial-gradient(#444CF733 15%, transparent 20%) 5px 6px;
-    background-size: 10px 10px;
-    mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 75%);
-    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 75%);
-    mask-size: 100% 100%;
-    -webkit-mask-size: 100% 100%;
-    mask-repeat: no-repeat;
-    -webkit-mask-repeat: no-repeat;
-  }
-
-  .dark body::before {
-    opacity: 0.12;
-  }
-
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight font-bold text-foreground;
   }
@@ -208,30 +184,10 @@
   background: hsl(14 87% 58% / 60%);
 }
 
-/* Dot pattern overlay — subtle enhancement for opaque cards */
+/* Card Surface Styling */
 .dot-bg {
   position: relative;
 }
-.dot-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: radial-gradient(circle, hsl(215 15% 45% / 0.04) 1px, transparent 1px);
-  background-size: 20px 20px;
-  pointer-events: none;
-  z-index: 0;
-}
-.dot-bg > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Dark mode: slightly lighter dots on dark cards */
-.dark .dot-bg::before {
-  background-image: radial-gradient(circle, hsl(215 80% 80% / 0.03) 1px, transparent 1px);
-}
-
 
 .glass {
   background: rgba(255, 255, 255, 0.95);

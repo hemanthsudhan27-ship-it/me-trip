@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import TravelDoodleBackground from "@/components/ui/TravelDoodleBackground";
 import { SmoothScrollProvider } from "@/providers/SmoothScrollProvider";
 import { UIModalProvider } from "@/providers/UIModalProvider";
 import EnquiryModal from "@/components/ui/EnquiryModal";
@@ -63,6 +64,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-primary/20 selection:text-primary">
         <UIModalProvider>
           <SmoothScrollProvider>
+            {/* Travel Doodles Background Layer */}
+            <TravelDoodleBackground />
+
             {/* Global Navbar */}
             <Navbar />
 
