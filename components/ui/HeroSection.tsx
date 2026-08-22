@@ -71,14 +71,62 @@ function MagneticBtn({ children }: { children: React.ReactElement }) {
 
 export { MagneticBtn as MagneticButton };
 
+// ─── Hero Scenic Slides & Color Matching ─────────────────────────────────────────
+const heroSlides = [
+  {
+    id: "maldives",
+    title: "Maldives",
+    image: "/images/destinations/maldives.jpg",
+    accentColor: "#00d2ff", // Turquoise Cyan
+    accentGlow: "rgba(0, 210, 255, 0.4)",
+  },
+  {
+    id: "manali",
+    title: "Manali",
+    image: "/images/destinations/manali.jpg",
+    accentColor: "#34d399", // Emerald Alpine Green
+    accentGlow: "rgba(52, 211, 153, 0.4)",
+  },
+  {
+    id: "rajasthan",
+    title: "Rajasthan",
+    image: "/images/destinations/rajasthan.jpg",
+    accentColor: "#fbbf24", // Royal Sunset Gold
+    accentGlow: "rgba(251, 191, 36, 0.4)",
+  },
+  {
+    id: "kasol",
+    title: "Kasol",
+    image: "/images/destinations/kasol.jpg",
+    accentColor: "#c084fc", // Mystic Violet
+    accentGlow: "rgba(192, 132, 252, 0.4)",
+  },
+  {
+    id: "goa",
+    title: "Goa",
+    image: "/images/destinations/goa.jpg",
+    accentColor: "#fb923c", // Warm Coral Sunset
+    accentGlow: "rgba(251, 146, 60, 0.4)",
+  },
+];
+
 // ─── Main component ─────────────────────────────────────────────────────────────
 export default function HeroSection() {
   const { enquiry } = useUIModals();
   const [plannerType, setPlannerType] = useState("all");
   const [plannerDest, setPlannerDest] = useState("");
+  const [currentSlide, setCurrentSlide] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
   // Ref to hold the paused entrance timeline so the event handler can play it.
   const entranceTlRef = useRef<gsap.core.Timeline | null>(null);
+
+  // Auto-rotate hero slide every 6 seconds with 2-second crossfade
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
   const filteredPkgs = packages.filter(
     (pkg) => plannerType === "all" || pkg.type === plannerType
@@ -292,6 +340,8 @@ export default function HeroSection() {
     };
   }, []);
 
+  const currentTheme = heroSlides[currentSlide];
+
   // ─── JSX ──────────────────────────────────────────────────────────────────
   return (
     <section
@@ -301,26 +351,36 @@ export default function HeroSection() {
       className="relative h-[95vh] min-h-[640px] w-full flex items-center justify-center overflow-hidden bg-[#0b0d12]"
       aria-label="Hero section"
     >
-      {/* ── Background ─────────────────────────────────────────────────── */}
+      {/* ── Background Images with 2s Crossfade ─────────────────────────── */}
       <div className="hero-bg-wrap absolute inset-0 z-0 w-full h-[115%] -top-[7%]">
-        <div className="hero-ken-img absolute inset-0 w-full h-full">
-          <Image
-            src="/images/hero.jpg"
-            alt="Scenic travel landscape"
-            fill
-            priority
-            className="object-cover object-center"
-          />
-        </div>
+        {heroSlides.map((slide, idx) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out ${
+              currentSlide === idx ? "opacity-100 z-1" : "opacity-0 z-0 pointer-events-none"
+            }`}
+          >
+            <div className="hero-ken-img absolute inset-0 w-full h-full">
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                priority={idx === 0}
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
+        ))}
+
         {/* Cinematic gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/72" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/75 z-2" />
         <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#0b0d12] to-transparent z-10 pointer-events-none" />
         {/* Edge vignette */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none z-3"
           style={{
             background:
-              "radial-gradient(ellipse at center, transparent 38%, rgba(0,0,0,0.52) 100%)",
+              "radial-gradient(ellipse at center, transparent 38%, rgba(0,0,0,0.55) 100%)",
           }}
         />
       </div>
@@ -331,8 +391,11 @@ export default function HeroSection() {
         {/* Trust badge */}
         <div className="hero-badge">
           <div className="hero-badge-inner">
-            <div className="hero-badge-float inline-flex items-center gap-2.5 bg-white/8 border border-white/15 backdrop-blur-md px-5 py-2.5 rounded-full shadow-xl">
-              <div className="flex gap-0.5 text-amber-400">
+            <div className="hero-badge-float inline-flex items-center gap-2.5 bg-white/10 border border-white/20 backdrop-blur-md px-5 py-2.5 rounded-full shadow-xl">
+              <div
+                className="flex gap-0.5 transition-colors duration-[2000ms]"
+                style={{ color: currentTheme.accentColor }}
+              >
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-3 w-3 fill-current" />
                 ))}
@@ -350,10 +413,15 @@ export default function HeroSection() {
             <SplitWords text="Your Journey," wordClass="text-white" />
             <br className="hidden sm:block" />
             <span className="sm:hidden"> </span>
-            <SplitWords text="Perfectly Planned." wordClass="text-primary" />
+            <span
+              className="transition-colors duration-[2000ms] inline-block"
+              style={{ color: currentTheme.accentColor }}
+            >
+              <SplitWords text="Perfectly Planned." />
+            </span>
           </h1>
 
-          <p className="hero-sub text-sm sm:text-lg md:text-[1.15rem] text-white/68 max-w-xl mx-auto leading-relaxed">
+          <p className="hero-sub text-sm sm:text-lg md:text-[1.15rem] text-white/75 max-w-xl mx-auto leading-relaxed">
             Explore bespoke international &amp; domestic holiday packages
             curated by destination experts.
           </p>
@@ -361,39 +429,39 @@ export default function HeroSection() {
 
         {/* ── CTA Buttons ────────────────────────────────────────────────── */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-          {/* Primary — coral with shimmer ring + icon pill */}
+          {/* Primary CTA with dynamic background color & glow matching current scene */}
           <MagneticBtn>
             <button
               onClick={() => enquiry.open()}
-              className="hero-cta-primary group relative overflow-hidden flex items-center gap-3 bg-primary px-9 py-[1.05rem] rounded-full font-extrabold text-white text-sm uppercase tracking-widest shadow-2xl shadow-primary/25 hover:shadow-primary/45 transition-shadow duration-300"
+              className="hero-cta-primary group relative overflow-hidden flex items-center gap-3 px-9 py-[1.05rem] rounded-full font-extrabold text-white text-sm uppercase tracking-widest transition-all duration-[2000ms]"
+              style={{
+                backgroundColor: currentTheme.accentColor,
+                boxShadow: `0 10px 30px -5px ${currentTheme.accentGlow}`,
+              }}
             >
               {/* Hover tint overlay */}
-              <span className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/[0.08] transition-colors duration-300 pointer-events-none" />
+              <span className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/[0.12] transition-colors duration-300 pointer-events-none" />
               <span>Explore Packages</span>
-              <span className="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-white/15 group-hover:bg-white/25 transition-colors duration-300">
+              <span className="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors duration-300">
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-[2px]" />
               </span>
             </button>
           </MagneticBtn>
 
-          {/* Ghost — glassmorphism with teal border glow */}
+          {/* Ghost — glassmorphism with dynamic accent border glow */}
           <MagneticBtn>
             <button
               onClick={() => enquiry.open("Custom Trip Planning")}
-              className="hero-cta-ghost group flex items-center gap-3 bg-white/6 hover:bg-white/11 border border-white/22 hover:border-accent/55 backdrop-blur-sm px-9 py-[1.05rem] rounded-full font-extrabold text-white text-sm uppercase tracking-widest transition-all duration-300"
+              className="hero-cta-ghost group flex items-center gap-3 bg-white/6 hover:bg-white/12 border backdrop-blur-sm px-9 py-[1.05rem] rounded-full font-extrabold text-white text-sm uppercase tracking-widest transition-all duration-[2000ms]"
               style={{
-                boxShadow: "0 0 0 0 transparent",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                  "0 0 18px 1px hsl(175 46% 42% / 0.28)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                  "0 0 0 0 transparent";
+                borderColor: currentTheme.accentColor,
+                boxShadow: `0 0 16px -2px ${currentTheme.accentGlow}`,
               }}
             >
-              <Compass className="h-4 w-4 text-accent transition-transform duration-500 group-hover:rotate-45" />
+              <Compass
+                className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45"
+                style={{ color: currentTheme.accentColor }}
+              />
               <span>Plan My Trip</span>
             </button>
           </MagneticBtn>
@@ -403,7 +471,7 @@ export default function HeroSection() {
         <div className="hero-planner w-full max-w-4xl">
           <form
             onSubmit={handlePlannerSubmit}
-            className="glass p-5 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center gap-4 text-foreground text-left border border-white/10"
+            className="glass p-5 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center gap-4 text-foreground text-left border border-white/15"
           >
             {/* Trip type */}
             <div className="flex-1 w-full space-y-1.5">
@@ -448,7 +516,11 @@ export default function HeroSection() {
             <div className="w-full md:w-auto md:self-end pt-2 md:pt-0">
               <button
                 type="submit"
-                className="group w-full md:w-auto bg-primary hover:bg-primary/90 text-white font-extrabold px-8 py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-all text-xs uppercase tracking-widest"
+                className="group w-full md:w-auto text-white font-extrabold px-8 py-3.5 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-all duration-[2000ms] text-xs uppercase tracking-widest cursor-pointer"
+                style={{
+                  backgroundColor: currentTheme.accentColor,
+                  boxShadow: `0 8px 24px -4px ${currentTheme.accentGlow}`,
+                }}
               >
                 Search Tours
                 <Plane className="h-4 w-4 rotate-45 transition-transform duration-300 group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
