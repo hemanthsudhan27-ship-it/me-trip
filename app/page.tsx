@@ -5,7 +5,7 @@ import HeroSection from "@/components/ui/HeroSection";
 import ScrollReveal, { ScrollStaggerContainer, ScrollStaggerItem } from "@/components/ui/ScrollReveal";
 import Image from "next/image";
 import Link from "next/link";
-import { Compass, Users, Map, Award, ShieldCheck, HeartHandshake, BadgePercent, Headset, Plane, ArrowRight, Star, Quote, GraduationCap, Users2, CheckCircle2, PhoneCall } from "lucide-react";
+import { Compass, Users, Map, Award, ShieldCheck, HeartHandshake, BadgePercent, Headset, Plane, ArrowRight, Star, Quote, GraduationCap, Users2, CheckCircle2, PhoneCall, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { useUIModals } from "@/providers/UIModalProvider";
 import { packages } from "@/data/packages";
@@ -32,9 +32,16 @@ export default function Home() {
 
   const testimonials = [
     {
+      name: "Rahul kumar",
+      role: "Spiti Valley Expedition",
+      stars: 5,
+      source: "Google Review",
+      quote:
+        "An unforgettable experience! Traveling through Spiti Valley offers some of the most thrilling and scenic mountain routes you'll ever witness. The high-altitude terrain, crystal-clear skies, and the peaceful vibe at the local monasteries are simply unmatched. If you love a good road trip and raw mountain energy, this is the perfect escape.",
+    },
+    {
       name: "Rahul vlogs10",
       role: "Spiti Valley Traveler",
-      avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=120&h=120",
       stars: 5,
       source: "Google Review",
       quote:
@@ -43,7 +50,6 @@ export default function Home() {
     {
       name: "Manoj A",
       role: "Customized Holiday Tour",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120",
       stars: 5,
       source: "Google Review",
       quote:
@@ -52,7 +58,6 @@ export default function Home() {
     {
       name: "Hacker VSpro",
       role: "Group Holiday Tour",
-      avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&q=80&w=120&h=120",
       stars: 5,
       source: "Google Review",
       quote:
@@ -530,13 +535,8 @@ export default function Home() {
 
                     {/* Profile */}
                     <div className="flex items-center gap-3 pt-2">
-                      <div className="relative h-12 w-12 rounded-full overflow-hidden border-2 border-primary/20 shadow-sm">
-                        <Image
-                          src={test.avatar}
-                          alt={test.name}
-                          fill
-                          className="object-cover"
-                        />
+                      <div className="h-11 w-11 rounded-full flex items-center justify-center bg-primary/10 border border-primary/25 text-primary shadow-xs shrink-0">
+                        <User className="h-5 w-5 text-primary" />
                       </div>
                       <div className="text-left">
                         <h4 className="font-heading font-extrabold text-sm text-foreground">
