@@ -72,7 +72,7 @@ export const packages: Package[] = [
     name: "Phuket & Krabi",
     type: "international",
     duration: "5D/4N",
-    image: "/images/destinations/phuket.jpg",
+    image: "/images/destinations/phuket-krabi.jpg",
     description:
       "Discover the spectacular karst formations and pristine beaches of Southern Thailand. Visit Phuket's lively beach clubs and the tranquil limestone cliffs of Krabi for an unforgettable island adventure.",
     highlights: [
@@ -258,7 +258,7 @@ export const packages: Package[] = [
     name: "Langkawi",
     type: "international",
     duration: "3D/2N",
-    image: "/images/destinations/langkawi.jpg",
+    image: "/images/destinations/langkawi-skybridge.jpg",
     description:
       "Escape to the Jewel of Kedah. Langkawi offers duty-free shopping, breathtaking cable car views, lush mangrove forests, and pristine archipelago island-hopping adventures.",
     highlights: [
