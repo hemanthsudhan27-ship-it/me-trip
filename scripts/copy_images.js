@@ -3,9 +3,10 @@ const path = require('path');
 
 const srcDir = 'C:\\Users\\LOQ\\.gemini\\antigravity-ide\\brain\\5a4a07bd-787e-4e26-84be-e20de369da7f';
 const maps = [
-  ['phuket_krabi_1787395972446.jpg', 'public/images/destinations/phuket.jpg'],
-  ['pattaya_beach_1787395997700.jpg', 'public/images/destinations/pattaya.jpg'],
+  ['maldives_overwater_luxury_1787397355467.jpg', 'public/images/destinations/maldives.jpg'],
+  ['phuket_krabi_james_bond_1787397387132.jpg', 'public/images/destinations/phuket.jpg'],
   ['langkawi_skybridge_1787396019317.jpg', 'public/images/destinations/langkawi.jpg'],
+  ['pattaya_beach_1787395997700.jpg', 'public/images/destinations/pattaya.jpg'],
   ['danang_hands_bridge_1787396103302.jpg', 'public/images/destinations/danang.jpg'],
   ['halong_bay_junk_1787396122324.jpg', 'public/images/destinations/hanoi.jpg'],
   ['delhi_india_gate_1787396148383.jpg', 'public/images/destinations/delhi-manali.jpg'],
