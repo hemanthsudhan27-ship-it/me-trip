@@ -4,7 +4,7 @@ import React from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, Tag, Compass, CheckCircle2, ChevronLeft, PhoneCall, ShieldCheck, HelpCircle } from "lucide-react";
+import { Calendar, Compass, CheckCircle2, ChevronLeft, PhoneCall, ShieldCheck, HelpCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { packages } from "@/data/packages";
 import { useUIModals } from "@/providers/UIModalProvider";
@@ -38,22 +38,21 @@ export default function PackageDetails() {
           We couldn't find the holiday package you're looking for. It may have been renamed or moved.
         </p>
         <Button onClick={() => router.push("/")} className="bg-primary hover:bg-primary/95 text-white font-bold rounded-full">
-          Back to Home Page
+          Return to Home
         </Button>
       </div>
     );
   }
 
-  // Filter related packages (same category, excluding current one)
+  // Related Packages (Same type, excluding current)
   const relatedPkgs = packages
     .filter((p) => p.type === pkg.type && p.id !== pkg.id)
     .slice(0, 3);
 
   return (
-    <div className="pb-16 space-y-12">
-      {/* 1. HERO BANNER */}
-      <section className="relative h-[55vh] min-h-[350px] w-full flex items-end overflow-hidden">
-        {/* Background Image */}
+    <div className="space-y-16 pb-20">
+      {/* 1. HERO HEADER SECTION */}
+      <section className="relative min-h-[45vh] w-full flex items-end overflow-hidden pb-12 pt-28">
         <div className="absolute inset-0 z-0">
           <Image
             src={pkg.image}
@@ -62,11 +61,10 @@ export default function PackageDetails() {
             priority
             className="object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
         </div>
 
-        {/* Hero Info Overlay */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-10 text-white space-y-4">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-4">
           <button
             onClick={() => router.back()}
             className="inline-flex items-center gap-1.5 text-xs text-white/75 hover:text-white mb-2 bg-white/10 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/10 transition-colors"
@@ -85,19 +83,10 @@ export default function PackageDetails() {
             </h1>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 text-sm text-white/90 pt-1">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-white/90 pt-1">
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 px-4 py-1.5 rounded-full">
               <Calendar className="h-4.5 w-4.5 text-primary" />
               <span className="font-bold">{pkg.duration}</span>
-            </div>
-            <div className="flex flex-col gap-0.5">
-              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 px-4 py-1.5 rounded-full">
-                <Tag className="h-4.5 w-4.5 text-primary" />
-                <span className="font-bold">{pkg.price}</span>
-              </div>
-              {pkg.priceNote && (
-                <span className="text-[11px] text-white/60 pl-4">{pkg.priceNote}</span>
-              )}
             </div>
           </div>
 
@@ -170,16 +159,16 @@ export default function PackageDetails() {
             {/* Booking Sidebar Card */}
             <div className="dot-bg bg-white dark:bg-card border border-border/60 p-6 rounded-2xl shadow-xl space-y-6">
               <div className="space-y-2">
-                <span className="text-[10px] font-extrabold text-muted-foreground uppercase tracking-widest block">
-                  Estimated Value
+                <span className="text-[10px] font-extrabold text-primary uppercase tracking-widest block">
+                  Customized Quote
                 </span>
                 <div className="flex items-baseline gap-1.5">
-                  <span className="font-heading font-extrabold text-2xl text-foreground">
-                    {pkg.price}
+                  <span className="font-heading font-extrabold text-xl sm:text-2xl text-foreground">
+                    Price on Request
                   </span>
                 </div>
                 <p className="text-[10px] text-muted-foreground leading-normal">
-                  *Rates vary based on flight bookings, selected dates, hotel categories, and customization preferences.
+                  *Get tailored pricing based on travel dates, group size, hotels, and custom requirements.
                 </p>
               </div>
 
@@ -208,15 +197,10 @@ export default function PackageDetails() {
                     </Button>
                     <a
                       href={`tel:+${specialist.rawPhone}`}
-                      className="w-full border border-border hover:bg-muted text-foreground font-extrabold py-3 rounded-full text-xs flex flex-col items-center justify-center gap-0.5 transition-colors text-center"
+                      className="w-full flex items-center justify-center gap-2 bg-muted hover:bg-muted/80 text-foreground font-bold py-3 rounded-full border border-border text-xs transition-colors"
                     >
-                      <span className="flex items-center gap-1.5">
-                        <PhoneCall className="h-4 w-4 text-accent" />
-                        Call Destination Specialist
-                      </span>
-                      <span className="text-[10px] text-muted-foreground font-normal">
-                        {specialist.formattedPhone}
-                      </span>
+                      <PhoneCall className="h-4 w-4 text-accent" />
+                      Call Specialist ({specialist.formattedPhone})
                     </a>
                   </div>
                 );
@@ -247,7 +231,7 @@ export default function PackageDetails() {
               align="left"
             />
           </ScrollReveal>
-          <ScrollStaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <ScrollStaggerContainer staggerDelay={0.1} className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
             {relatedPkgs.map((p, idx) => (
               <ScrollStaggerItem key={p.id} direction="up">
                 <PackageCard pkg={p} index={idx} />

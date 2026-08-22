@@ -251,30 +251,24 @@ export default function DestinationsPage() {
                       </ul>
                     </div>
 
-                    {/* Price & Action Row */}
-                    <div className="flex items-center justify-between border-t border-border/50 pt-3 sm:pt-4 mt-auto">
-                      <div>
-                        <span className="text-[8px] sm:text-[9px] font-extrabold text-muted-foreground uppercase tracking-wider block">From</span>
-                        <span className="font-heading font-extrabold text-xs sm:text-lg text-primary">{pkg.price}</span>
-                      </div>
-
-                      <div className="flex items-center gap-1 sm:gap-2">
+                    {/* Action Row */}
+                    <div className="flex items-center justify-between border-t border-border/50 pt-2.5 sm:pt-4 mt-auto gap-1.5 sm:gap-2">
+                      <Button
+                        onClick={() => enquiry.open(pkg.name)}
+                        className="flex-1 bg-primary hover:bg-primary/95 text-white font-extrabold text-[10px] sm:text-xs px-2.5 sm:px-4 py-1.5 sm:py-2 h-auto rounded-full shadow-md active:scale-95 transition-transform"
+                      >
+                        Enquire
+                      </Button>
+                      <Link href={`/packages/${pkg.slug}`}>
                         <Button
-                          onClick={() => enquiry.open(pkg.name)}
-                          className="bg-primary hover:bg-primary/95 text-white font-extrabold text-[10px] sm:text-xs px-2.5 sm:px-4 py-1 sm:py-2 h-auto rounded-full shadow-md active:scale-95 transition-transform"
+                          variant="outline"
+                          className="rounded-full px-2 sm:px-3 py-1.5 sm:py-2 h-auto text-[10px] sm:text-xs border-border hover:bg-muted font-bold flex items-center gap-1"
+                          title="View Itinerary"
                         >
-                          Enquire
+                          <span className="hidden sm:inline">Itinerary</span>
+                          <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                         </Button>
-                        <Link href={`/packages/${pkg.slug}`}>
-                          <Button
-                            variant="outline"
-                            className="rounded-full px-1.5 sm:px-3 py-1 sm:py-2 h-auto text-[10px] sm:text-xs border-border hover:bg-muted"
-                            title="View Itinerary"
-                          >
-                            <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                          </Button>
-                        </Link>
-                      </div>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>

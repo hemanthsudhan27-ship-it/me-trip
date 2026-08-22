@@ -142,7 +142,7 @@ export default function Home() {
           </div>
         </ScrollReveal>
 
-        <ScrollStaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ScrollStaggerContainer staggerDelay={0.1} className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {featuredPkgs.map((pkg, index) => (
             <ScrollStaggerItem key={pkg.id} direction="up">
               <PackageCard pkg={pkg} index={index} />
@@ -178,12 +178,12 @@ export default function Home() {
 
           {/* International Tab */}
           <TabsContent value="international" className="text-left animate-in fade-in slide-in-from-bottom-5 duration-300">
-            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {internationalPkgs.slice(0, 6).map((pkg) => (
                 <ScrollStaggerItem key={pkg.id} direction="up">
                   <div
                     onClick={() => quickView.open(pkg)}
-                    className="group relative h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
+                    className="group relative h-36 sm:h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
                   >
                     <Image
                       src={pkg.image}
@@ -194,18 +194,18 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
                     {/* Top Header Tag */}
-                    <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider">
+                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[8px] sm:text-[9px] font-bold py-0.5 sm:py-1 px-2 sm:px-3 rounded-full uppercase tracking-wider">
                       {pkg.duration}
                     </div>
 
                     {/* Info Overlay */}
-                    <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
-                      <h3 className="font-heading font-extrabold text-lg leading-tight group-hover:text-primary transition-colors">
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-5 sm:left-5 sm:right-5 text-white space-y-0.5 sm:space-y-1">
+                      <h3 className="font-heading font-extrabold text-xs sm:text-lg leading-tight group-hover:text-primary transition-colors line-clamp-1">
                         {pkg.name}
                       </h3>
-                      <p className="text-xs text-white/70 line-clamp-1">{pkg.description}</p>
-                      <span className="text-[10px] font-bold text-primary tracking-wider uppercase inline-flex items-center gap-1.5 pt-1.5">
-                        Explore Package <ArrowRight className="h-3 w-3" />
+                      <p className="text-[10px] sm:text-xs text-white/70 line-clamp-1">{pkg.description}</p>
+                      <span className="text-[8px] sm:text-[10px] font-bold text-primary tracking-wider uppercase inline-flex items-center gap-1 sm:gap-1.5 pt-0.5 sm:pt-1.5">
+                        Explore <ArrowRight className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                       </span>
                     </div>
                   </div>
@@ -216,12 +216,12 @@ export default function Home() {
 
           {/* Domestic Tab */}
           <TabsContent value="domestic" className="text-left animate-in fade-in slide-in-from-bottom-5 duration-300">
-            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {domesticPkgs.map((pkg) => (
                 <ScrollStaggerItem key={pkg.id} direction="up">
                   <div
                     onClick={() => quickView.open(pkg)}
-                    className="group relative h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
+                    className="group relative h-36 sm:h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
                   >
                     <Image
                       src={pkg.image}
@@ -232,18 +232,18 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
                     {/* Top Header Tag */}
-                    <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider">
+                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[8px] sm:text-[9px] font-bold py-0.5 sm:py-1 px-2 sm:px-3 rounded-full uppercase tracking-wider">
                       {pkg.duration}
                     </div>
 
                     {/* Info Overlay */}
-                    <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
-                      <h3 className="font-heading font-extrabold text-lg leading-tight group-hover:text-primary transition-colors">
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-5 sm:left-5 sm:right-5 text-white space-y-0.5 sm:space-y-1">
+                      <h3 className="font-heading font-extrabold text-xs sm:text-lg leading-tight group-hover:text-primary transition-colors line-clamp-1">
                         {pkg.name}
                       </h3>
-                      <p className="text-xs text-white/70 line-clamp-1">{pkg.description}</p>
-                      <span className="text-[10px] font-bold text-accent tracking-wider uppercase inline-flex items-center gap-1.5 pt-1.5">
-                        Explore Package <ArrowRight className="h-3 w-3" />
+                      <p className="text-[10px] sm:text-xs text-white/70 line-clamp-1">{pkg.description}</p>
+                      <span className="text-[8px] sm:text-[10px] font-bold text-accent tracking-wider uppercase inline-flex items-center gap-1 sm:gap-1.5 pt-0.5 sm:pt-1.5">
+                        Explore <ArrowRight className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                       </span>
                     </div>
                   </div>
@@ -254,12 +254,12 @@ export default function Home() {
 
           {/* College Tab */}
           <TabsContent value="college" className="text-left animate-in fade-in slide-in-from-bottom-5 duration-300">
-            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {collegePkgs.map((pkg) => (
                 <ScrollStaggerItem key={pkg.id} direction="up">
                   <div
                     onClick={() => quickView.open(pkg)}
-                    className="group relative h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
+                    className="group relative h-36 sm:h-[250px] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
                   >
                     <Image
                       src={pkg.image}
@@ -270,22 +270,19 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
                     {/* Top Header Tag */}
-                    <div className="absolute top-4 left-4 bg-yellow-400 text-yellow-950 text-[9px] font-extrabold py-1 px-3 rounded-full uppercase tracking-wider">
-                      {pkg.duration} • Min 40-50 Pax
+                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-yellow-400 text-yellow-950 text-[8px] sm:text-[9px] font-extrabold py-0.5 sm:py-1 px-2 sm:px-3 rounded-full uppercase tracking-wider">
+                      {pkg.duration} • 40-50 Pax
                     </div>
 
                     {/* Info Overlay */}
-                    <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
-                      <h3 className="font-heading font-extrabold text-lg leading-tight group-hover:text-yellow-400 transition-colors">
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-5 sm:left-5 sm:right-5 text-white space-y-0.5 sm:space-y-1">
+                      <h3 className="font-heading font-extrabold text-xs sm:text-lg leading-tight group-hover:text-yellow-400 transition-colors line-clamp-1">
                         {pkg.name}
                       </h3>
-                      <p className="text-xs text-white/70 line-clamp-1">{pkg.description}</p>
-                      <div className="flex items-center justify-between pt-1">
-                        <span className="text-xs font-extrabold text-yellow-400">{pkg.price}</span>
-                        <span className="text-[10px] font-bold text-yellow-400 tracking-wider uppercase inline-flex items-center gap-1">
-                          Explore Package <ArrowRight className="h-3 w-3" />
-                        </span>
-                      </div>
+                      <p className="text-[10px] sm:text-xs text-white/70 line-clamp-1">{pkg.description}</p>
+                      <span className="text-[8px] sm:text-[10px] font-bold text-yellow-400 tracking-wider uppercase inline-flex items-center gap-1 sm:gap-1.5 pt-0.5 sm:pt-1.5">
+                        Explore <ArrowRight className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
+                      </span>
                     </div>
                   </div>
                 </ScrollStaggerItem>
@@ -357,7 +354,7 @@ export default function Home() {
               </div>
             </ScrollReveal>
 
-            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <ScrollStaggerContainer staggerDelay={0.08} className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
               {collegePkgs.map((pkg, index) => (
                 <ScrollStaggerItem key={pkg.id} direction="up">
                   <div
@@ -365,7 +362,7 @@ export default function Home() {
                     className="group relative bg-card border border-border/60 rounded-2xl overflow-hidden cursor-pointer hover:border-yellow-400/40 hover:shadow-xl transition-all duration-400 flex flex-col h-full"
                   >
                     {/* Image */}
-                    <div className="relative h-[200px] w-full overflow-hidden bg-muted">
+                    <div className="relative h-32 sm:h-[200px] w-full overflow-hidden bg-muted">
                       <Image
                         src={pkg.image}
                         alt={`Me Trip Holidays college tour to ${pkg.name.replace('College Tour: ', '')} - group student travel package`}
@@ -375,33 +372,29 @@ export default function Home() {
                       {/* Gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       {/* College badge */}
-                      <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-yellow-400 text-yellow-900 text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-widest">
-                        <GraduationCap className="h-3 w-3" />
-                        College Tour
+                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 bg-yellow-400 text-yellow-900 text-[8px] sm:text-[9px] font-extrabold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full uppercase tracking-widest">
+                        <GraduationCap className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
+                        College
                       </div>
                       {/* Duration */}
-                      <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                      <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-black/60 backdrop-blur-sm text-white text-[9px] sm:text-[10px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">
                         {pkg.duration}
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="p-4 flex flex-col flex-grow space-y-3">
-                      <h3 className="font-heading font-extrabold text-sm text-foreground group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors leading-snug line-clamp-2">
+                    <div className="p-3 sm:p-4 flex flex-col flex-grow space-y-2 sm:space-y-3">
+                      <h3 className="font-heading font-extrabold text-xs sm:text-sm text-foreground group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors leading-snug line-clamp-2">
                         {pkg.name.replace("College Tour: ", "")}
                       </h3>
-                      <p className="text-[11px] text-muted-foreground line-clamp-2 leading-relaxed flex-grow">
+                      <p className="text-[10px] sm:text-[11px] text-muted-foreground line-clamp-2 leading-relaxed flex-grow">
                         {pkg.description}
                       </p>
-                      <div className="border-t border-border/60 pt-3 space-y-1">
-                        <p className="text-base font-extrabold text-yellow-600 dark:text-yellow-400">{pkg.price}</p>
-                        <p className="text-[10px] text-muted-foreground">{pkg.priceNote}</p>
-                      </div>
                       <button
                         onClick={(e) => { e.stopPropagation(); enquiry.open(pkg.name); }}
-                        className="w-full bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-extrabold text-xs py-2 rounded-full transition-all flex items-center justify-center gap-1.5 mt-1"
+                        className="w-full bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-extrabold text-[10px] sm:text-xs py-1.5 sm:py-2 rounded-full transition-all flex items-center justify-center gap-1 sm:gap-1.5 mt-auto"
                       >
-                        Enquire Now <ArrowRight className="h-3.5 w-3.5" />
+                        Enquire Now <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                       </button>
                     </div>
                   </div>
