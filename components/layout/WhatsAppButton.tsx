@@ -11,7 +11,7 @@ export default function WhatsAppButton() {
   );
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 select-none">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 select-none">
       {/* Pulse Rings */}
       <div className="absolute inset-0 rounded-full bg-[#25D366] opacity-35 animate-ping duration-1000 pointer-events-none scale-110" />
       

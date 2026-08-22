@@ -105,7 +105,7 @@ export default function Contact() {
     ];
 
   return (
-    <div className="space-y-16 pb-16">
+    <div className="space-y-16 pb-16 w-full overflow-x-hidden">
       {/* 1. HERO HEADER */}
       <section className="relative h-[25vh] min-h-[180px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">

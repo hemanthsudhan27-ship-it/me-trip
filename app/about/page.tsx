@@ -30,7 +30,7 @@ export default function About() {
   ];
 
   return (
-    <div className="space-y-20 pb-12">
+    <div className="space-y-20 pb-12 w-full overflow-x-hidden">
       {/* 1. HERO BANNER */}
       <section className="relative h-[30vh] min-h-[220px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">

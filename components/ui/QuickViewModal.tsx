@@ -31,7 +31,7 @@ export default function QuickViewModal() {
 
   return (
     <Dialog open={quickView.isOpen} onOpenChange={quickView.close}>
-      <DialogContent className="sm:max-w-[650px] p-0 overflow-hidden rounded-xl glass border-border shadow-2xl">
+      <DialogContent className="max-w-[92vw] sm:max-w-[650px] max-h-[90vh] overflow-y-auto p-0 rounded-xl glass border-border shadow-2xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Package Image Area */}
           <div className="relative h-[250px] md:h-full min-h-[250px] w-full bg-muted">

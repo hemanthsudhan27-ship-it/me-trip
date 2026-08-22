@@ -97,8 +97,8 @@ ${data.message ? `*Message*: ${data.message}` : ""}`;
 
   return (
     <Dialog open={enquiry.isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[450px] p-6 max-h-[90vh] overflow-y-auto rounded-xl glass border-border shadow-2xl">
-        <DialogHeader className="mb-4">
+      <DialogContent className="max-w-[92vw] sm:max-w-[450px] p-5 sm:p-6 max-h-[90vh] overflow-y-auto rounded-xl glass border-border shadow-2xl">
+        <DialogHeader className="space-y-1 text-left">
           <DialogTitle className="text-xl font-heading font-extrabold flex items-center gap-2 text-foreground">
             <Compass className="h-5 w-5 text-primary" />
             Plan Your Journey

@@ -50,7 +50,7 @@ export default function PackageDetails() {
     .slice(0, 3);
 
   return (
-    <div className="space-y-16 pb-20">
+    <div className="space-y-16 pb-20 w-full overflow-x-hidden">
       {/* 1. HERO HEADER SECTION */}
       <section className="relative min-h-[45vh] w-full flex items-end overflow-hidden pb-12 pt-28">
         <div className="absolute inset-0 z-0">
@@ -78,7 +78,7 @@ export default function PackageDetails() {
               <Compass className="h-3.5 w-3.5" />
               {pkg.type === "international" ? "International Holiday" : pkg.type === "college" ? "College Group Tour" : "Domestic Tour"}
             </span>
-            <h1 className="font-heading font-extrabold text-2xl sm:text-4xl md:text-5xl leading-tight text-white max-w-4xl">
+            <h1 className="font-heading font-extrabold text-2xl sm:text-4xl md:text-5xl leading-tight text-white max-w-4xl break-words">
               {pkg.name}
             </h1>
           </div>
@@ -129,7 +129,7 @@ export default function PackageDetails() {
 
             {/* Day-by-Day Itinerary */}
             <ScrollReveal direction="up" delay={0.15}>
-              <div className="dot-bg bg-white dark:bg-card border border-border/60 p-6 sm:p-8 rounded-2xl shadow-sm space-y-4">
+              <div className="dot-bg bg-white dark:bg-card border border-border/60 p-5 sm:p-8 rounded-2xl shadow-sm space-y-4">
                 <h3 className="font-heading font-extrabold text-lg text-foreground border-b border-border/60 pb-3">
                   Detailed Day-wise Itinerary
                 </h3>
@@ -137,14 +137,14 @@ export default function PackageDetails() {
                   {pkg.itinerary.map((day) => (
                     <AccordionItem key={day.day} value={`day-${day.day}`} className="border-none py-1">
                       <AccordionTrigger className="font-heading font-extrabold text-sm sm:text-base text-foreground hover:text-primary hover:no-underline text-left py-4.5">
-                        <span className="flex items-center gap-3">
-                          <span className="bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold px-2.5 py-1 rounded-md shrink-0 select-none">
+                        <span className="flex items-start sm:items-center gap-2.5 sm:gap-3 text-left">
+                          <span className="bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold px-2.5 py-1 rounded-md shrink-0 select-none mt-0.5 sm:mt-0">
                             Day {day.day}
                           </span>
-                          {day.title}
+                          <span className="leading-snug">{day.title}</span>
                         </span>
                       </AccordionTrigger>
-                      <AccordionContent className="text-xs sm:text-sm text-muted-foreground leading-relaxed pl-14 pb-5 pt-1">
+                      <AccordionContent className="text-xs sm:text-sm text-muted-foreground leading-relaxed pl-4 sm:pl-12 pb-5 pt-1">
                         {day.description}
                       </AccordionContent>
                     </AccordionItem>

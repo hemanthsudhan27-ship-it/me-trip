@@ -34,7 +34,7 @@ export default function DestinationsPage() {
   const collegeCount = packages.filter((p) => p.type === "college").length;
 
   return (
-    <div className="space-y-16 pb-20">
+    <div className="space-y-16 pb-20 w-full overflow-x-hidden">
       {/* 1. HERO BANNER */}
       <section className="relative h-[35vh] min-h-[260px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -89,7 +89,7 @@ export default function DestinationsPage() {
               <div className="flex items-center bg-muted p-1 rounded-full border border-border w-full md:w-auto overflow-x-auto">
                 <button
                   onClick={() => setActiveTab("all")}
-                  className={`flex-1 md:flex-none px-5 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all whitespace-nowrap ${
+                  className={`flex-1 md:flex-none px-3.5 sm:px-5 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all whitespace-nowrap ${
                     activeTab === "all"
                       ? "bg-primary text-white shadow-md"
                       : "text-muted-foreground hover:text-foreground"
@@ -99,7 +99,7 @@ export default function DestinationsPage() {
                 </button>
                 <button
                   onClick={() => setActiveTab("international")}
-                  className={`flex-1 md:flex-none px-5 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all whitespace-nowrap ${
+                  className={`flex-1 md:flex-none px-3.5 sm:px-5 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all whitespace-nowrap ${
                     activeTab === "international"
                       ? "bg-primary text-white shadow-md"
                       : "text-muted-foreground hover:text-foreground"
@@ -109,7 +109,7 @@ export default function DestinationsPage() {
                 </button>
                 <button
                   onClick={() => setActiveTab("domestic")}
-                  className={`flex-1 md:flex-none px-5 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all whitespace-nowrap ${
+                  className={`flex-1 md:flex-none px-3.5 sm:px-5 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all whitespace-nowrap ${
                     activeTab === "domestic"
                       ? "bg-primary text-white shadow-md"
                       : "text-muted-foreground hover:text-foreground"
@@ -119,7 +119,7 @@ export default function DestinationsPage() {
                 </button>
                 <button
                   onClick={() => setActiveTab("college")}
-                  className={`flex-1 md:flex-none px-5 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all whitespace-nowrap ${
+                  className={`flex-1 md:flex-none px-3.5 sm:px-5 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all whitespace-nowrap ${
                     activeTab === "college"
                       ? "bg-yellow-400 text-yellow-950 shadow-md"
                       : "text-muted-foreground hover:text-foreground"
