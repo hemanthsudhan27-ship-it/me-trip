@@ -527,24 +527,153 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* 3. GOOGLE MAP IFRAME PLACEHOLDER */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" distance={30}>
-          <div className="rounded-2xl overflow-hidden border border-border shadow-xl h-[350px] relative bg-muted">
-            {/* Map Iframe */}
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.0456102604696!2d75.80789717474442!3d11.26900418890987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba6595561a0f8bf%3A0xf6358c2794eb8e3d!2sNellikkode%2C%20Kozhikode%2C%20Kerala!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen={false}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="grayscale contrast-110 opacity-90"
-              title="ME TRIP HOLIDAYS Office Location"
-            ></iframe>
+      {/* 3. DUAL OFFICE LOCATIONS: CALICUT HQ & MANALI BRANCH */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <ScrollReveal direction="up" distance={20}>
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20 px-3.5 py-1 rounded-full inline-block">
+              Our Physical Desks
+            </span>
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-foreground">
+              Visit Our Office Locations
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              Whether you are planning a getaway from Kerala or preparing for a Himalayan expedition in Himachal, our travel desks are ready to assist you.
+            </p>
           </div>
         </ScrollReveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* 1. CALICUT HEADQUARTERS */}
+          <ScrollReveal direction="left" distance={25}>
+            <div className="dot-bg bg-white dark:bg-card border border-border/70 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all h-full flex flex-col justify-between">
+              <div className="p-6 sm:p-7 space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">
+                    <MapPin className="h-3.5 w-3.5" />
+                    Headquarters • Kerala Desk
+                  </span>
+                  <span className="text-[11px] font-semibold text-muted-foreground">
+                    South Operations
+                  </span>
+                </div>
+
+                <div className="space-y-1.5">
+                  <h3 className="font-heading font-extrabold text-lg sm:text-xl text-foreground">
+                    Calicut Office (Headquarters)
+                  </h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    KMJ Complex, Room No 29/1157, Kattukulangara, Nellikkode, Kozhikode, Kerala 673016
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-4 pt-1 text-xs text-muted-foreground">
+                  <a href="tel:+917736322522" className="flex items-center gap-1.5 hover:text-primary font-semibold">
+                    <Phone className="h-3.5 w-3.5 text-primary" />
+                    +91 77363 22522
+                  </a>
+                  <a href="tel:+919207322522" className="flex items-center gap-1.5 hover:text-primary font-semibold">
+                    <Phone className="h-3.5 w-3.5 text-primary" />
+                    +91 92073 22522
+                  </a>
+                </div>
+
+                <div className="pt-2">
+                  <a
+                    href="https://maps.app.goo.gl/rT2H1nbAdNVUhpMf7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full bg-primary/10 hover:bg-primary text-primary hover:text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-primary/20 transition-all duration-300 shadow-sm"
+                  >
+                    <MapPin className="h-4 w-4" />
+                    Open in Google Maps / Get Directions
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Calicut Map Container */}
+              <div className="h-56 w-full border-t border-border/50 bg-muted">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.0456102604696!2d75.80789717474442!3d11.26900418890987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba6595561a0f8bf%3A0xf6358c2794eb8e3d!2sNellikkode%2C%20Kozhikode%2C%20Kerala!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="opacity-90 grayscale contrast-110 hover:grayscale-0 transition-all duration-500"
+                  title="ME TRIP HOLIDAYS Calicut Headquarters"
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* 2. MANALI BRANCH OFFICE */}
+          <ScrollReveal direction="right" distance={25} delay={0.1}>
+            <div className="dot-bg bg-white dark:bg-card border border-border/70 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all h-full flex flex-col justify-between">
+              <div className="p-6 sm:p-7 space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-accent dark:text-accent bg-accent/10 border border-accent/20 px-3 py-1 rounded-full">
+                    <MapPin className="h-3.5 w-3.5" />
+                    Branch Office • Himachal Desk
+                  </span>
+                  <span className="text-[11px] font-semibold text-muted-foreground">
+                    Himalayan Operations
+                  </span>
+                </div>
+
+                <div className="space-y-1.5">
+                  <h3 className="font-heading font-extrabold text-lg sm:text-xl text-foreground">
+                    Manali Branch Office
+                  </h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    Me Trip Holidays, Near Mall Road / Aleo, Manali, Himachal Pradesh 175131
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-4 pt-1 text-xs text-muted-foreground">
+                  <a href="tel:+918593040034" className="flex items-center gap-1.5 hover:text-accent font-semibold">
+                    <Phone className="h-3.5 w-3.5 text-accent" />
+                    +91 8593 040 034
+                  </a>
+                  <a href="tel:+917736322522" className="flex items-center gap-1.5 hover:text-accent font-semibold">
+                    <Phone className="h-3.5 w-3.5 text-accent" />
+                    +91 77363 22522
+                  </a>
+                </div>
+
+                <div className="pt-2">
+                  <a
+                    href="https://maps.app.goo.gl/2zJZWVBuR1dNrPj87"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full bg-accent/10 hover:bg-accent text-accent hover:text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl border border-accent/20 transition-all duration-300 shadow-sm"
+                  >
+                    <MapPin className="h-4 w-4" />
+                    Open in Google Maps / Get Directions
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Manali Map Container */}
+              <div className="h-56 w-full border-t border-border/50 bg-muted">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27038.56708307399!2d77.16456345000001!3d32.2396325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904870810ff39f9%3A0x6fb0d24c088c3a13!2sManali%2C%20Himachal%20Pradesh!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="opacity-90 grayscale contrast-110 hover:grayscale-0 transition-all duration-500"
+                  title="ME TRIP HOLIDAYS Manali Branch Office"
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
     </div>
   );

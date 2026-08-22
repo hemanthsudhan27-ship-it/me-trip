@@ -13,10 +13,13 @@ describe("Contact Page", () => {
     expect(screen.getByText("Destination Specialist Direct Lines")).toBeInTheDocument();
 
     // Direct lines
-    expect(screen.getByText(/\+91 8593 040 034/i)).toBeInTheDocument(); // Manali
+    expect(screen.getAllByText(/\+91 8593 040 034/i)[0]).toBeInTheDocument(); // Manali
     expect(screen.getByText(/\+91 9207 322 522/i)).toBeInTheDocument(); // Goa
     expect(screen.getByText(/\+91 8089 950 532/i)).toBeInTheDocument(); // Kashmir
     expect(screen.getByText(/\+91 6238 922 522/i)).toBeInTheDocument(); // Hyderabad
+    expect(screen.getByText("Visit Our Office Locations")).toBeInTheDocument();
+    expect(screen.getByText("Calicut Office (Headquarters)")).toBeInTheDocument();
+    expect(screen.getByText("Manali Branch Office")).toBeInTheDocument();
   });
 
   it("validates form requirements on empty submit", async () => {

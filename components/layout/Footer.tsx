@@ -103,29 +103,53 @@ export default function Footer() {
           {/* Contact Details */}
           <div className="space-y-4">
             <h4 className="font-heading font-extrabold text-white text-sm uppercase tracking-wider mb-4">
-              Contact Us
+              Our Desks & Contact
             </h4>
             <ul className="space-y-3.5 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span className="text-background/60">
-                  KMJ Complex, Room No 29/1157, Kattukulangara, Nellikkode, Kozhikode, Kerala 673016
-                </span>
+                <div className="text-xs text-background/70 space-y-1">
+                  <span className="font-bold text-white block">Calicut HQ (Kerala):</span>
+                  <span>KMJ Complex, Nellikkode, Kozhikode 673016</span>
+                  <a
+                    href="https://maps.app.goo.gl/rT2H1nbAdNVUhpMf7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-primary hover:underline text-[11px] font-semibold"
+                  >
+                    📍 Open Google Maps
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                <div className="text-xs text-background/70 space-y-1">
+                  <span className="font-bold text-white block">Manali Branch (Himachal):</span>
+                  <span>Me Trip Holidays, Manali, HP 175131</span>
+                  <a
+                    href="https://maps.app.goo.gl/2zJZWVBuR1dNrPj87"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-accent hover:underline text-[11px] font-semibold"
+                  >
+                    📍 Open Google Maps
+                  </a>
+                </div>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="h-4.5 w-4.5 text-primary shrink-0 mt-0.5" />
-                <div className="flex flex-col gap-1">
-                  <a href="tel:+917736322522" className="text-background/60 hover:text-white transition-colors">
-                    +91 77363 22522
+                <div className="flex flex-col gap-1 text-xs">
+                  <a href="tel:+917736322522" className="text-background/70 hover:text-white transition-colors">
+                    +91 77363 22522 (General & Intl)
                   </a>
-                  <a href="tel:+919207322522" className="text-background/60 hover:text-white transition-colors">
-                    +91 92073 22522
+                  <a href="tel:+918593040034" className="text-background/70 hover:text-white transition-colors">
+                    +91 8593 040 034 (Manali & North Hub)
                   </a>
                 </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4.5 w-4.5 text-primary shrink-0" />
-                <a href="mailto:metripholidays@gmail.com" className="text-background/60 hover:text-white transition-colors">
+                <a href="mailto:metripholidays@gmail.com" className="text-background/70 hover:text-white transition-colors text-xs">
                   metripholidays@gmail.com
                 </a>
               </li>
