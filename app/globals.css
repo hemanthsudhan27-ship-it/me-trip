@@ -147,11 +147,30 @@
   }
 
   body {
-    @apply bg-background text-foreground overflow-x-hidden min-h-screen;
+    @apply bg-background text-foreground overflow-x-hidden min-h-screen relative;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    /* Subtle dot pattern — visible on light sections, covered by dark section backgrounds */
-    background-image: radial-gradient(circle, hsl(215 15% 45% / 0.13) 1px, transparent 1px);
-    background-size: 22px 22px;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-color: #E5E5F7;
+    opacity: 1;
+    background: radial-gradient(#444CF7 15%, transparent 16%) 0 0, radial-gradient(#444CF7 15%, transparent 16%) 5px 5px, radial-gradient(#444CF733 15%, transparent 20%) 0 1px, radial-gradient(#444CF733 15%, transparent 20%) 5px 6px;
+    background-size: 10px 10px;
+    mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 75%);
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+  }
+
+  .dark body::before {
+    opacity: 0.18;
   }
 
   h1, h2, h3, h4, h5, h6 {
