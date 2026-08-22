@@ -580,10 +580,10 @@ export default function Home() {
         <ScrollReveal direction="up" delay={0.1}>
           <ExpandableGallery
             images={[
-              "/images/destinations/maldives.jpg",
-              "/images/destinations/manali.jpg",
-              "/images/destinations/bali.jpg",
-              "/images/destinations/kasol.jpg",
+              "/images/gallery/trip-moment-02.jpg",
+              "/images/gallery/trip-moment-07.jpg",
+              "/images/gallery/trip-moment-04.jpg",
+              "/images/gallery/trip-moment-03.jpg",
             ]}
             className="w-full"
           />

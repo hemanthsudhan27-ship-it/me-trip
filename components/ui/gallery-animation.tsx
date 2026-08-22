@@ -187,10 +187,10 @@ export const ExpandableGallery: React.FC<ExpandableGalleryProps> = ({
 // Example Usage
 export function Component() {
   const images = [
-    "/images/destinations/maldives.jpg",
-    "/images/destinations/manali.jpg",
-    "/images/destinations/bali.jpg",
-    "/images/destinations/vietnam.jpg",
+    "/images/gallery/trip-moment-02.jpg",
+    "/images/gallery/trip-moment-07.jpg",
+    "/images/gallery/trip-moment-04.jpg",
+    "/images/gallery/trip-moment-03.jpg",
   ];
 
   return (
