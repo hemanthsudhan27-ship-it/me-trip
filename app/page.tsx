@@ -5,23 +5,18 @@ import HeroSection from "@/components/ui/HeroSection";
 import ScrollReveal, { ScrollStaggerContainer, ScrollStaggerItem } from "@/components/ui/ScrollReveal";
 import Image from "next/image";
 import Link from "next/link";
-import { Compass, Users, Map, Award, ShieldCheck, HeartHandshake, BadgePercent, Headset, Plane, ArrowRight, Star, Quote, GraduationCap, Users2, CheckCircle2, PhoneCall, User } from "lucide-react";
+import { Compass, Users, Award, ShieldCheck, BadgePercent, Headset, ArrowRight, GraduationCap, Users2, CheckCircle2, PhoneCall } from "lucide-react";
 import { motion } from "framer-motion";
 import { useUIModals } from "@/providers/UIModalProvider";
 import { packages } from "@/data/packages";
 import PackageCard from "@/components/ui/PackageCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ExpandableGallery from "@/components/ui/gallery-animation";
 
 export default function Home() {
   const { enquiry, quickView } = useUIModals();
-  const autoplayPlugin = React.useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
-  );
 
   // Featured Packages (Maldives, Bali, Meghalaya, Golden Triangle)
   const featuredPkgs = packages.filter((pkg) =>
@@ -32,65 +27,6 @@ export default function Home() {
   const internationalPkgs = packages.filter((pkg) => pkg.type === "international");
   const domesticPkgs = packages.filter((pkg) => pkg.type === "domestic");
   const collegePkgs = packages.filter((pkg) => pkg.type === "college");
-
-  const testimonials = [
-    {
-      name: "Safwan Safwan",
-      role: "Manali Group Tour",
-      stars: 5,
-      source: "Google Review",
-      quote:
-        "Me and myfriends dream place Manali visited this month with Me trip holidays,This trip was truly unforgettable! From start to finish, everything was well organized -from bus and hotels to sightseeing and local transfers.The team was very professional, friendly,and helpful throughout the trip.we felt very comfortable and well taken care of. Thankyou, me trip travels, for making our vecation so smooth and memorable..!me and frnds recommended for any planning with friend",
-    },
-    {
-      name: "Archana vijayan",
-      role: "Manali Holiday Tour",
-      stars: 5,
-      source: "Google Review",
-      quote:
-        "Most beautiful days i have been through with anas bro, everything went superb as we planned , i had some health issue when i reached manali, but anas bro helped and supported very much, he came with us to the hospital, actually he acted as GUARDIAN for all of us. Our manali days were actually nice, such a good experience, even though the driver of traveller was also funny 😂, hotels, vehicle everything was good, special mention to the time management 💯 It is a wonderful journey Thank you me trip and all the credits goes to ANAS BRO, THANK YOU SO MUCH",
-    },
-    {
-      name: "Salik zaeem",
-      role: "Malaysia Family Vacation",
-      stars: 5,
-      source: "Google Review",
-      quote:
-        "I recently completed my family trip to Malaysia with Metrip Travels, and it was an amazing experience! Everything was perfectly organized — from flights and hotels to sightseeing and local transfers. The team was very professional, friendly, and helpful throughout the trip. We felt very comfortable and well taken care of. Thank you, Metrip Travels, for making our vacation so smooth and memorable! Highly recommended for anyone planning a family trip abroad. 🌏✈️",
-    },
-    {
-      name: "Rahul kumar",
-      role: "Spiti Valley Expedition",
-      stars: 5,
-      source: "Google Review",
-      quote:
-        "An unforgettable experience! Traveling through Spiti Valley offers some of the most thrilling and scenic mountain routes you'll ever witness. The high-altitude terrain, crystal-clear skies, and the peaceful vibe at the local monasteries are simply unmatched. If you love a good road trip and raw mountain energy, this is the perfect escape.",
-    },
-    {
-      name: "Rahul vlogs10",
-      role: "Spiti Valley Traveler",
-      stars: 5,
-      source: "Google Review",
-      quote:
-        "Our Spiti Valley trip was truly unforgettable from start to finish. Everything was well organized, and the entire journey was smooth despite the challenging mountain roads. The itinerary was perfectly planned, allowing us to enjoy every destination without feeling rushed.",
-    },
-    {
-      name: "Manoj A",
-      role: "Customized Holiday Tour",
-      stars: 5,
-      source: "Google Review",
-      quote:
-        "Had a well organised trip right from planning till the execution and completion. We approached Sherin and Anas who customised the trip according to our interest and quoted a budget friendly estimation. We were able to enjoy thoroughly without any stress as all the arrangements were properly planned whether it is driver and car allotment or hotel bookings. They made sure everyday whether everything is fine. They really exceeded our expectations. Thanks Me Trip Holidays for making this trip a memorable one.",
-    },
-    {
-      name: "Hacker VSpro",
-      role: "Group Holiday Tour",
-      stars: 5,
-      source: "Google Review",
-      quote:
-        "An unforgettable journey with beautiful views, friendly people, and amazing memories. Every moment was worth it, and I can't wait to travel again.",
-    },
-  ];
 
   const features = [
     {
@@ -505,89 +441,6 @@ export default function Home() {
             ))}
           </ScrollStaggerContainer>
         </div>
-      </section>
-
-      {/* 6. TESTIMONIALS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <ScrollReveal direction="up">
-          <SectionHeading
-            title="What Our Clients Say"
-            subtitle="Happy Travelers"
-            align="center"
-          />
-        </ScrollReveal>
-
-        <ScrollReveal direction="scale" duration={0.7} className="max-w-4xl mx-auto relative px-4 sm:px-8">
-          <Carousel
-            plugins={[autoplayPlugin.current]}
-            opts={{
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {testimonials.map((test, index) => (
-                <CarouselItem key={index}>
-                  <div className="dot-bg bg-white dark:bg-card border border-border/60 p-6 sm:p-12 rounded-2xl flex flex-col items-center text-center space-y-6 shadow-xl relative">
-                    <Quote className="absolute top-6 left-6 h-10 w-10 text-primary/10" />
-
-                    {/* Google Review Badge & Stars */}
-                    <div className="flex flex-col items-center gap-2">
-                      <div className="inline-flex items-center gap-1.5 bg-muted/80 border border-border/80 px-3 py-1 rounded-full text-[11px] font-bold text-foreground">
-                        <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24">
-                          <path
-                            fill="#4285F4"
-                            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                          />
-                          <path
-                            fill="#34A853"
-                            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                          />
-                          <path
-                            fill="#FBBC05"
-                            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
-                          />
-                          <path
-                            fill="#EA4335"
-                            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
-                          />
-                        </svg>
-                        <span>Verified Google Review</span>
-                      </div>
-                      <div className="flex gap-1 pt-1">
-                        {Array.from({ length: test.stars }).map((_, i) => (
-                          <Star key={i} className="h-4.5 w-4.5 fill-amber-400 text-amber-400" />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Quote */}
-                    <p className="text-base sm:text-lg text-foreground/85 font-medium italic leading-relaxed max-w-2xl">
-                      "{test.quote}"
-                    </p>
-
-                    {/* Profile */}
-                    <div className="flex items-center gap-3 pt-2">
-                      <div className="h-11 w-11 rounded-full flex items-center justify-center bg-primary/10 border border-primary/25 text-primary shadow-xs shrink-0">
-                        <User className="h-5 w-5 text-primary" />
-                      </div>
-                      <div className="text-left">
-                        <h4 className="font-heading font-extrabold text-sm text-foreground">
-                          {test.name}
-                        </h4>
-                        <span className="text-xs font-semibold text-accent">
-                          {test.role}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex absolute left-0 -translate-x-1/2 border border-border bg-white dark:bg-card" />
-            <CarouselNext className="hidden sm:flex absolute right-0 translate-x-1/2 border border-border bg-white dark:bg-card" />
-          </Carousel>
-        </ScrollReveal>
       </section>
 
       {/* 7. GALLERY PREVIEW */}
