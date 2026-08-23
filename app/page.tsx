@@ -13,12 +13,15 @@ import PackageCard from "@/components/ui/PackageCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ExpandableGallery from "@/components/ui/gallery-animation";
 
 export default function Home() {
   const { enquiry, quickView } = useUIModals();
-
+  const autoplayPlugin = React.useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
+  );
 
   // Featured Packages (Maldives, Bali, Meghalaya, Golden Triangle)
   const featuredPkgs = packages.filter((pkg) =>
@@ -31,6 +34,30 @@ export default function Home() {
   const collegePkgs = packages.filter((pkg) => pkg.type === "college");
 
   const testimonials = [
+    {
+      name: "Safwan Safwan",
+      role: "Manali Group Tour",
+      stars: 5,
+      source: "Google Review",
+      quote:
+        "Me and myfriends dream place Manali visited this month with Me trip holidays,This trip was truly unforgettable! From start to finish, everything was well organized -from bus and hotels to sightseeing and local transfers.The team was very professional, friendly,and helpful throughout the trip.we felt very comfortable and well taken care of. Thankyou, me trip travels, for making our vecation so smooth and memorable..!me and frnds recommended for any planning with friend",
+    },
+    {
+      name: "Archana vijayan",
+      role: "Manali Holiday Tour",
+      stars: 5,
+      source: "Google Review",
+      quote:
+        "Most beautiful days i have been through with anas bro, everything went superb as we planned , i had some health issue when i reached manali, but anas bro helped and supported very much, he came with us to the hospital, actually he acted as GUARDIAN for all of us. Our manali days were actually nice, such a good experience, even though the driver of traveller was also funny 😂, hotels, vehicle everything was good, special mention to the time management 💯 It is a wonderful journey Thank you me trip and all the credits goes to ANAS BRO, THANK YOU SO MUCH",
+    },
+    {
+      name: "Salik zaeem",
+      role: "Malaysia Family Vacation",
+      stars: 5,
+      source: "Google Review",
+      quote:
+        "I recently completed my family trip to Malaysia with Metrip Travels, and it was an amazing experience! Everything was perfectly organized — from flights and hotels to sightseeing and local transfers. The team was very professional, friendly, and helpful throughout the trip. We felt very comfortable and well taken care of. Thank you, Metrip Travels, for making our vacation so smooth and memorable! Highly recommended for anyone planning a family trip abroad. 🌏✈️",
+    },
     {
       name: "Rahul kumar",
       role: "Spiti Valley Expedition",
@@ -491,7 +518,13 @@ export default function Home() {
         </ScrollReveal>
 
         <ScrollReveal direction="scale" duration={0.7} className="max-w-4xl mx-auto relative px-4 sm:px-8">
-          <Carousel className="w-full">
+          <Carousel
+            plugins={[autoplayPlugin.current]}
+            opts={{
+              loop: true,
+            }}
+            className="w-full"
+          >
             <CarouselContent>
               {testimonials.map((test, index) => (
                 <CarouselItem key={index}>
