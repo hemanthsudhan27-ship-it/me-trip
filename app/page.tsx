@@ -68,37 +68,6 @@ export default function Home() {
       {/* 1. HERO SECTION */}
       <HeroSection />
 
-      {/* 2. TRUST STRIP */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" distance={25}>
-          <div className="dot-bg bg-white dark:bg-card border border-border/60 rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-border/60">
-            <div className="space-y-1.5 py-4 md:py-0">
-              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-primary">10+</span>
-              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
-                Years of Experience
-              </span>
-            </div>
-            <div className="space-y-1.5 py-4 md:py-0">
-              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-accent">15K+</span>
-              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
-                Happy Travelers
-              </span>
-            </div>
-            <div className="space-y-1.5 py-4 md:py-0">
-              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-primary">50+</span>
-              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
-                Destinations Covered
-              </span>
-            </div>
-            <div className="space-y-1.5 py-4 md:py-0">
-              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-accent">24/7</span>
-              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
-                On-trip Concierge
-              </span>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
 
       {/* 3. FEATURED/POPULAR PACKAGES */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -443,7 +412,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. GALLERY PREVIEW */}
+      {/* 7. TRUST STRIP */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal direction="up" distance={25}>
+          <div className="dot-bg bg-white dark:bg-card border border-border/60 rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-border/60">
+            <div className="space-y-1.5 py-4 md:py-0">
+              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-primary">5+</span>
+              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                Years of Experience
+              </span>
+            </div>
+            <div className="space-y-1.5 py-4 md:py-0">
+              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-accent">15K+</span>
+              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                Happy Travelers
+              </span>
+            </div>
+            <div className="space-y-1.5 py-4 md:py-0">
+              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-primary">30+</span>
+              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                Destinations Covered
+              </span>
+            </div>
+            <div className="space-y-1.5 py-4 md:py-0">
+              <span className="block font-heading font-extrabold text-3xl sm:text-4xl text-accent">24/7</span>
+              <span className="block text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                On-trip Concierge
+              </span>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* 8. GALLERY PREVIEW */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="up">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">

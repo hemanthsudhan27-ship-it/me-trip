@@ -19,7 +19,7 @@ import { packages } from "@/data/packages";
 // Validation schema identical to Enquiry modal
 const contactSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  email: z.string().email({ message: "Please enter a valid email address." }).optional().or(z.literal("")),
   phone: z.string().regex(/^\+?[0-9\s-]{10,15}$/, { message: "Please enter a valid phone number (10-15 digits)." }),
   destination: z.string().min(1, { message: "Please select an interest." }),
   travelDate: z.string().optional(),
@@ -348,12 +348,12 @@ export default function Contact() {
                     <div className="space-y-1.5">
                       <Label htmlFor="contact-email" className="text-xs font-bold text-foreground flex items-center gap-1.5">
                         <Mail className="h-3.5 w-3.5 text-accent" />
-                        Email Address <span className="text-primary">*</span>
+                        Email Address <span className="text-muted-foreground text-[10px] font-medium">(Optional)</span>
                       </Label>
                       <Input
                         id="contact-email"
                         type="email"
-                        placeholder="e.g. rahul@example.com"
+                        placeholder="e.g. rahul@example.com (optional)"
                         {...register("email")}
                         className={`rounded-xl py-2.5 text-xs bg-muted/30 focus-visible:ring-primary focus-visible:bg-transparent transition-all ${errors.email ? "border-destructive focus-visible:ring-destructive" : "border-border/80"}`}
                       />

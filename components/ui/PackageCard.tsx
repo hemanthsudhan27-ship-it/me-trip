@@ -35,9 +35,9 @@ export default function PackageCard({ pkg, index }: PackageCardProps) {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <Card className="group overflow-hidden rounded-2xl bg-card border border-border/60 hover:border-primary/20 hover:shadow-2xl transition-all duration-500 flex flex-col h-full relative">
+      <Card className="group overflow-hidden rounded-2xl bg-card border border-border/60 hover:border-primary/20 hover:shadow-2xl transition-all duration-500 flex flex-col h-full relative !pt-0 !gap-0">
         {/* Image Section */}
-        <div className="relative h-36 sm:h-[220px] w-full overflow-hidden bg-muted">
+        <div className="relative h-36 sm:h-[220px] w-full overflow-hidden bg-muted flex-shrink-0">
           <Image
             src={pkg.image}
             alt={pkg.name}

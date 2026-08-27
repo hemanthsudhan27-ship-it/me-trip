@@ -1041,7 +1041,7 @@ export const packages: Package[] = [
     name: "Spiti Valley",
     type: "domestic",
     duration: "7D/6N",
-    image: "/images/destinations/spiti.jpg",
+    image: "/images/destinations/spiti_new.jpg",
     description:
       "Journey to the cold desert mountain valley of Spiti. At over 4,200 metres, Spiti offers ancient monasteries, lunar landscapes, starlit skies, and an adventure that pushes boundaries.",
     highlights: [

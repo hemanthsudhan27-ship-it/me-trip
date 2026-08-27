@@ -18,7 +18,7 @@ import { buildWhatsAppUrl } from "@/lib/whatsapp";
 // Form validation schema using Zod
 const enquirySchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  email: z.string().email({ message: "Please enter a valid email address." }).optional().or(z.literal("")),
   phone: z.string().regex(/^\+?[0-9\s-]{10,15}$/, { message: "Please enter a valid phone number (10-15 digits)." }),
   destination: z.string().min(1, { message: "Please select a destination." }),
   adults: z.string().min(1, { message: "Please select number of adults." }),
@@ -160,11 +160,11 @@ export default function EnquiryModal() {
 
             {/* Email */}
             <div className="space-y-1.5">
-              <Label htmlFor="enquiry-email" className="text-xs font-bold text-foreground">Email Address</Label>
+              <Label htmlFor="enquiry-email" className="text-xs font-bold text-foreground">Email Address <span className="text-muted-foreground text-[10px] font-medium">(Optional)</span></Label>
               <Input
                 id="enquiry-email"
                 type="email"
-                placeholder="john@example.com"
+                placeholder="john@example.com (optional)"
                 {...register("email")}
                 className={`rounded-lg py-2 text-sm focus-visible:ring-primary ${errors.email ? "border-destructive focus-visible:ring-destructive" : ""}`}
               />

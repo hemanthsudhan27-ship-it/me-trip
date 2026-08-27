@@ -24,6 +24,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.metripholidays.com"),
   title: "ME TRIP HOLIDAYS | Premium International & Domestic Tour Packages",
   description: "Book customized international and domestic holiday packages with ME TRIP HOLIDAYS. Explore Maldives, Bali, Thailand, Vietnam, Europe, Manali, Meghalaya, and more. 24/7 support and unbeatable prices.",
   keywords: [
@@ -38,9 +39,12 @@ export const metadata: Metadata = {
     "Me Trip Holidays"
   ],
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: { url: "/icon.png", type: "image/png", sizes: "512x512" },
   },
   openGraph: {
     title: "ME TRIP HOLIDAYS | Premium Tour Packages",
@@ -48,6 +52,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "ME TRIP HOLIDAYS",
+    images: ["/icon.png"],
   },
 };
 

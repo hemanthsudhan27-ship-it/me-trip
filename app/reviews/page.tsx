@@ -303,6 +303,15 @@ const reviews: ReviewData[] = [
     helpful: 5,
     quote: "Our Spiti Valley trip was truly unforgettable from start to finish. Everything was well organized, and the entire journey was smooth despite the challenging mountain roads. The itinerary was perfectly planned, allowing us to enjoy every destination without feeling rushed.",
   },
+  {
+    name: "Hacker VSpro",
+    role: "Group Holiday Tour",
+    stars: 5,
+    date: "December 2024",
+    colorIdx: 6,
+    helpful: 3,
+    quote: "An unforgettable journey with beautiful views, friendly people, and amazing memories. Every moment was worth it, and I cannot wait to travel again.",
+  },
 ];
 
 export default function ReviewsPage() {
@@ -341,7 +350,7 @@ export default function ReviewsPage() {
                 <div className="flex justify-center mt-1.5">
                   <StarRow count={5} />
                 </div>
-                <p className="text-xs text-muted-foreground mt-1 font-medium">{reviews.length} reviews</p>
+                <p className="text-xs text-muted-foreground mt-1 font-medium">30+ reviews</p>
               </div>
               <div className="w-px h-16 bg-border hidden sm:block" />
               <div className="flex flex-col gap-1.5">
@@ -381,6 +390,32 @@ export default function ReviewsPage() {
               <ReviewCard review={review} index={i} />
             </div>
           ))}
+          {/* Write a Review CTA Card */}
+          <div className="break-inside-avoid mb-5">
+            <motion.a
+              href="https://share.google/BvGliij5qPjkqejvV"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="write-google-review-card"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: reviews.length * 0.07, duration: 0.4 }}
+              className="bg-white dark:bg-[#1e1e1e] border-2 border-dashed border-primary/30 hover:border-primary/60 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-center gap-4 text-center group min-h-[160px]"
+            >
+              <div className="h-14 w-14 rounded-full bg-primary/8 group-hover:bg-primary/14 border border-primary/20 flex items-center justify-center transition-colors">
+                <GoogleIcon size={28} />
+              </div>
+              <div>
+                <p className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">Enjoyed Traveling with Us?</p>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">Share your experience on Google<br />and help others find us!</p>
+              </div>
+              <span className="inline-flex items-center gap-2 bg-primary text-white text-xs font-extrabold px-5 py-2 rounded-full group-hover:bg-primary/90 transition-colors shadow-md">
+                <GoogleIcon size={13} />
+                Write a Google Review
+                <ExternalLink className="h-3 w-3" />
+              </span>
+            </motion.a>
+          </div>
         </div>
       </section>
 
